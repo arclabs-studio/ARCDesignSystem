@@ -136,7 +136,7 @@ public extension Color {
     
     static let arcTextPrimary = Color.primary
     static let arcTextSecondary = Color.secondary
-    static let arcHighlight = Color.accentColor
+    static let arcHighlight = Color.yellow
 }
 
 // =====================================================
