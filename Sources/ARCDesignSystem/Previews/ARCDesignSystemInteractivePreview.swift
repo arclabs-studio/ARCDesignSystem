@@ -6,42 +6,32 @@
 //
 
 import SwiftUI
-#if canImport(UIKit)
-import UIKit
-#elseif canImport(AppKit)
-import AppKit
-#endif
 
-/// Interactive preview that allows developers and designers
-/// to explore ARCDesignSystem tokens dynamically.
-/// Works in both iOS and macOS environments.
 @available(iOS 15.0, *)
-struct ARCDesignSystemInteractivePreview: View {
+public struct ARCDesignSystemInteractivePreview: View {
     
-    // MARK: State
+    // MARK: - State
     
     @State private var colorScheme: ColorScheme = .light
     @State private var textScale: DynamicTypeSize = .medium
     
-    // MARK: Initializer
-
     public init() {}
     
-    // MARK: View
+    // MARK: - View
     
     public var body: some View {
         VStack(spacing: .arcSpacingLarge) {
             
             // =====================================================
-            // MARK: Controls
+            // MARK: - Controls
             // =====================================================
             
             HStack(spacing: .arcSpacingLarge) {
-                // Color Scheme Toggle
+                
                 VStack(alignment: .leading) {
                     Text("Color Scheme")
                         .font(.arcFontBodySmall)
-                        .foregroundStyle(arcTextPrimary())
+                        .foregroundStyle(ARCColorHelper.textPrimary)
                     
                     Picker("Color Scheme", selection: $colorScheme) {
                         Text("Light").tag(ColorScheme.light)
@@ -51,11 +41,10 @@ struct ARCDesignSystemInteractivePreview: View {
                     .frame(width: 180)
                 }
                 
-                // Dynamic Type Toggle
                 VStack(alignment: .leading) {
                     Text("Dynamic Type")
                         .font(.arcFontBodySmall)
-                        .foregroundStyle(arcTextPrimary())
+                        .foregroundStyle(ARCColorHelper.textPrimary)
                     
                     Picker("Dynamic Type", selection: $textScale) {
                         Text("XS").tag(DynamicTypeSize.xSmall)
@@ -69,15 +58,11 @@ struct ARCDesignSystemInteractivePreview: View {
                 }
             }
             .padding(.arcPaddingCard)
-            .background(arcBackgroundSecondary())
+            .background(ARCColorHelper.backgroundSecondary)
             .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
             
             Divider()
-                .overlay(arcTextSecondary())
-            
-            // =====================================================
-            // MARK: System Preview
-            // =====================================================
+                .overlay(ARCColorHelper.textSecondary)
             
             ScrollView {
                 ARCDesignSystemPreview()
@@ -86,59 +71,12 @@ struct ARCDesignSystemInteractivePreview: View {
             }
         }
         .padding(.arcPaddingSection)
-        .background(arcBackgroundPrimary())
+        .background(ARCColorHelper.backgroundPrimary)
     }
 }
 
 // =====================================================
-// MARK: - Cross-platform Color Helpers
-// =====================================================
-
-/// These helpers return the appropriate Color for each OS.
-/// They prevent `.foregroundStyle()` or `.background()` crashes
-/// when running on macOS where UIKit-based tokens don't exist.
-private func arcTextPrimary() -> Color {
-    #if canImport(UIKit)
-    return .arcTextPrimary
-    #elseif canImport(AppKit)
-    return Color.primary
-    #else
-    return Color.white
-    #endif
-}
-
-private func arcTextSecondary() -> Color {
-    #if canImport(UIKit)
-    return .arcTextSecondary
-    #elseif canImport(AppKit)
-    return Color.secondary
-    #else
-    return Color.gray
-    #endif
-}
-
-private func arcBackgroundPrimary() -> Color {
-    #if canImport(UIKit)
-    return .arcBackgroundPrimary
-    #elseif canImport(AppKit)
-    return Color(NSColor.windowBackgroundColor)
-    #else
-    return Color.white
-    #endif
-}
-
-private func arcBackgroundSecondary() -> Color {
-    #if canImport(UIKit)
-    return .arcBackgroundSecondary
-    #elseif canImport(AppKit)
-    return Color(NSColor.controlBackgroundColor)
-    #else
-    return Color.gray.opacity(0.15)
-    #endif
-}
-
-// =====================================================
-// MARK: - Previews
+// MARK: - Preview
 // =====================================================
 
 #Preview("Interactive ARC Design System (Light)") {

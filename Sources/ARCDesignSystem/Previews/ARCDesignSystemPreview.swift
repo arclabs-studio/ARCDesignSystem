@@ -6,24 +6,15 @@
 //
 
 import SwiftUI
-#if canImport(UIKit)
-import UIKit
-#elseif canImport(AppKit)
-import AppKit
-#endif
 
 /// A visual showcase of ARCDesignSystem tokens:
 /// spacing, typography, colors, and corner radius.
 /// Works on iOS and macOS to verify visual consistency.
 @available(iOS 15.0, *)
-struct ARCDesignSystemPreview: View {
-    
-    // MARK: Initializer
+public struct ARCDesignSystemPreview: View {
     
     public init() {}
     
-    // MARK: View
-
     public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: .arcSpacingXLarge) {
@@ -45,10 +36,10 @@ struct ARCDesignSystemPreview: View {
                         Text("Body Small").font(.arcFontBodySmall)
                         Text("Label Small").font(.arcFontLabelSmall)
                     }
-                    .foregroundStyle(arcTextPrimary())
+                    .foregroundStyle(ARCColorHelper.textPrimary)
                 }
                 .padding(.arcPaddingCard)
-                .background(arcBackgroundSecondary())
+                .background(ARCColorHelper.backgroundSecondary)
                 .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
                 
                 // =====================================================
@@ -67,7 +58,7 @@ struct ARCDesignSystemPreview: View {
                     ARCSpacingDemoRow(label: "XXLarge", value: .arcSpacingXXLarge)
                 }
                 .padding(.arcPaddingCard)
-                .background(arcBackgroundSecondary())
+                .background(ARCColorHelper.backgroundSecondary)
                 .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
                 
                 // =====================================================
@@ -78,15 +69,15 @@ struct ARCDesignSystemPreview: View {
                         .font(.arcFontTitleMedium)
                         .padding(.bottom, .arcSpacingSmall)
                     
-                    ARCColorSwatch(name: "Background Primary", color: arcBackgroundPrimary())
-                    ARCColorSwatch(name: "Background Secondary", color: arcBackgroundSecondary())
-                    ARCColorSwatch(name: "Background Tertiary", color: arcBackgroundTertiary())
-                    ARCColorSwatch(name: "Text Primary", color: arcTextPrimary())
-                    ARCColorSwatch(name: "Text Secondary", color: arcTextSecondary())
-                    ARCColorSwatch(name: "Highlight", color: arcHighlight())
+                    ARCColorSwatch(name: "Background Primary", color: ARCColorHelper.backgroundPrimary)
+                    ARCColorSwatch(name: "Background Secondary", color: ARCColorHelper.backgroundSecondary)
+                    ARCColorSwatch(name: "Background Tertiary", color: ARCColorHelper.backgroundTertiary)
+                    ARCColorSwatch(name: "Text Primary", color: ARCColorHelper.textPrimary)
+                    ARCColorSwatch(name: "Text Secondary", color: ARCColorHelper.textSecondary)
+                    ARCColorSwatch(name: "Highlight", color: ARCColorHelper.highlight)
                 }
                 .padding(.arcPaddingCard)
-                .background(arcBackgroundSecondary())
+                .background(ARCColorHelper.backgroundSecondary)
                 .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
                 
                 // =====================================================
@@ -103,17 +94,17 @@ struct ARCDesignSystemPreview: View {
                     ARCRadiusDemo(radius: .arcCornerRadiusXLarge, label: "XLarge")
                 }
                 .padding(.arcPaddingCard)
-                .background(arcBackgroundSecondary())
+                .background(ARCColorHelper.backgroundSecondary)
                 .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
             }
             .padding(.arcPaddingSection)
         }
-        .background(arcBackgroundPrimary())
+        .background(ARCColorHelper.backgroundPrimary)
     }
 }
 
 // =====================================================
-// MARK: - Components for the Preview
+// MARK: - Components
 // =====================================================
 
 @available(iOS 15.0, *)
@@ -125,9 +116,10 @@ private struct ARCSpacingDemoRow: View {
         VStack(alignment: .leading, spacing: 4) {
             Text("\(label) — \(Int(value))pt")
                 .font(.arcFontBodySmall)
-                .foregroundStyle(arcTextSecondary())
+                .foregroundStyle(ARCColorHelper.textSecondary)
+            
             Rectangle()
-                .fill(arcHighlight().opacity(0.8))
+                .fill(ARCColorHelper.highlight.opacity(0.8))
                 .frame(height: 6)
                 .frame(width: value)
                 .clipShape(Capsule())
@@ -147,12 +139,12 @@ private struct ARCColorSwatch: View {
                 .frame(width: 60, height: 40)
                 .overlay(
                     RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
-                        .stroke(arcShadowMedium().opacity(0.3), lineWidth: 0.5)
+                        .stroke(ARCColorHelper.shadowMedium.opacity(0.3), lineWidth: 0.5)
                 )
             
             Text(name)
                 .font(.arcFontBodyMedium)
-                .foregroundStyle(arcTextPrimary())
+                .foregroundStyle(ARCColorHelper.textPrimary)
             
             Spacer()
         }
@@ -168,86 +160,12 @@ private struct ARCRadiusDemo: View {
         VStack(alignment: .leading, spacing: .arcSpacingSmall) {
             Text("\(label) — \(Int(radius))pt")
                 .font(.arcFontBodySmall)
-                .foregroundStyle(arcTextSecondary())
+                .foregroundStyle(ARCColorHelper.textSecondary)
             RoundedRectangle(cornerRadius: radius)
-                .fill(arcHighlight().opacity(0.8))
+                .fill(ARCColorHelper.highlight.opacity(0.8))
                 .frame(width: 100, height: 40)
         }
     }
-}
-
-// =====================================================
-// MARK: - Cross-platform Color Helpers
-// =====================================================
-
-private func arcTextPrimary() -> Color {
-    #if canImport(UIKit)
-    return .arcTextPrimary
-    #elseif canImport(AppKit)
-    return Color.primary
-    #else
-    return Color.white
-    #endif
-}
-
-private func arcTextSecondary() -> Color {
-    #if canImport(UIKit)
-    return .arcTextSecondary
-    #elseif canImport(AppKit)
-    return Color.secondary
-    #else
-    return Color.gray
-    #endif
-}
-
-private func arcBackgroundPrimary() -> Color {
-    #if canImport(UIKit)
-    return .arcBackgroundPrimary
-    #elseif canImport(AppKit)
-    return Color(NSColor.windowBackgroundColor)
-    #else
-    return Color.white
-    #endif
-}
-
-private func arcBackgroundSecondary() -> Color {
-    #if canImport(UIKit)
-    return .arcBackgroundSecondary
-    #elseif canImport(AppKit)
-    return Color(NSColor.controlBackgroundColor)
-    #else
-    return Color.gray.opacity(0.15)
-    #endif
-}
-
-private func arcBackgroundTertiary() -> Color {
-    #if canImport(UIKit)
-    return .arcBackgroundTertiary
-    #elseif canImport(AppKit)
-    return Color(NSColor.underPageBackgroundColor)
-    #else
-    return Color.gray.opacity(0.1)
-    #endif
-}
-
-private func arcHighlight() -> Color {
-    #if canImport(UIKit)
-    return .arcHighlight
-    #elseif canImport(AppKit)
-    return Color.accentColor
-    #else
-    return Color.yellow
-    #endif
-}
-
-private func arcShadowMedium() -> Color {
-    #if canImport(UIKit)
-    return .arcShadowMedium
-    #elseif canImport(AppKit)
-    return Color.black.opacity(0.15)
-    #else
-    return Color.black.opacity(0.15)
-    #endif
 }
 
 // =====================================================
