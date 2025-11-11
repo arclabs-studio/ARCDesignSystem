@@ -11,6 +11,7 @@ import SwiftUI
 /// spacing, typography, colors, and corner radius.
 /// Works on iOS and macOS to verify visual consistency.
 @available(iOS 15.0, *)
+@available(macOS 12.0, *)
 public struct ARCDesignSystemPreview: View {
     
     public init() {}
@@ -108,6 +109,7 @@ public struct ARCDesignSystemPreview: View {
 // =====================================================
 
 @available(iOS 15.0, *)
+@available(macOS 12.0, *)
 private struct ARCSpacingDemoRow: View {
     let label: String
     let value: CGFloat
@@ -128,6 +130,7 @@ private struct ARCSpacingDemoRow: View {
 }
 
 @available(iOS 15.0, *)
+@available(macOS 12.0, *)
 private struct ARCColorSwatch: View {
     let name: String
     let color: Color
@@ -152,6 +155,7 @@ private struct ARCColorSwatch: View {
 }
 
 @available(iOS 15.0, *)
+@available(macOS 12.0, *)
 private struct ARCRadiusDemo: View {
     let radius: CGFloat
     let label: String
@@ -172,20 +176,16 @@ private struct ARCRadiusDemo: View {
 // MARK: - Preview
 // =====================================================
 
+@available(iOS 15.0, *)
+@available(macOS 12.0, *)
 #Preview("ARC Design System (Dark)") {
-    if #available(iOS 15.0, *) {
-        ARCDesignSystemPreview()
-            .preferredColorScheme(.dark)
-    } else {
-        // Fallback on earlier versions
-    }
+    ARCDesignSystemPreview()
+        .preferredColorScheme(.dark)
 }
 
+@available(iOS 15.0, *)
+@available(macOS 12.0, *)
 #Preview("ARC Design System (Light)") {
-    if #available(iOS 15.0, *) {
-        ARCDesignSystemPreview()
-            .preferredColorScheme(.light)
-    } else {
-        // Fallback on earlier versions
-    }
+    ARCDesignSystemPreview()
+        .preferredColorScheme(.light)
 }

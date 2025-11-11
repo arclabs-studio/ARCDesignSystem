@@ -13,6 +13,7 @@ import SwiftUI
 ///
 /// This is intended for design review, documentation and developer onboarding.
 @available(iOS 15.0, *)
+@available(macOS 12.0, *)
 public struct ARCDesignSystemDocumentation: View {
     
     public init() {}
@@ -91,6 +92,7 @@ public struct ARCDesignSystemDocumentation: View {
 //
 
 @available(iOS 15.0, *)
+@available(macOS 12.0, *)
 private struct ARCDocSection<Content: View>: View {
     let title: String
     let content: Content
@@ -117,6 +119,7 @@ private struct ARCDocSection<Content: View>: View {
 }
 
 @available(iOS 15.0, *)
+@available(macOS 12.0, *)
 private struct ARCDocColorRow: View {
     let name: String
     let color: Color
@@ -145,6 +148,7 @@ private struct ARCDocColorRow: View {
 }
 
 @available(iOS 15.0, *)
+@available(macOS 12.0, *)
 private struct ARCDocFontRow: View {
     let name: String
     let font: Font
@@ -162,6 +166,7 @@ private struct ARCDocFontRow: View {
 }
 
 @available(iOS 15.0, *)
+@available(macOS 12.0, *)
 private struct ARCDocSpacingRow: View {
     let name: String
     let value: CGFloat
@@ -181,6 +186,7 @@ private struct ARCDocSpacingRow: View {
 }
 
 @available(iOS 15.0, *)
+@available(macOS 12.0, *)
 private struct ARCDocRadiusRow: View {
     let name: String
     let value: CGFloat
@@ -198,6 +204,7 @@ private struct ARCDocRadiusRow: View {
 }
 
 @available(iOS 15.0, *)
+@available(macOS 12.0, *)
 private struct ARCDocAnimationRow: View {
     let name: String
     let animation: Animation
@@ -227,20 +234,16 @@ private struct ARCDocAnimationRow: View {
 // =====================================================
 //
 
+@available(iOS 15.0, *)
+@available(macOS 12.0, *)
 #Preview("ARC Design System Documentation (Dark)") {
-    if #available(iOS 15.0, *) {
-        ARCDesignSystemDocumentation()
-            .preferredColorScheme(.dark)
-    } else {
-        // Fallback on earlier versions
-    }
+    ARCDesignSystemDocumentation()
+        .preferredColorScheme(.dark)
 }
 
+@available(iOS 15.0, *)
+@available(macOS 12.0, *)
 #Preview("ARC Design System Documentation (Light)") {
-    if #available(iOS 15.0, *) {
-        ARCDesignSystemDocumentation()
-            .preferredColorScheme(.light)
-    } else {
-        // Fallback on earlier versions
-    }
+    ARCDesignSystemDocumentation()
+        .preferredColorScheme(.light)
 }
