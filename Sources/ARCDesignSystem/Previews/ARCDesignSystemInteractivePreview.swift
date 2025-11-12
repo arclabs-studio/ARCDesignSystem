@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
-@available(macOS 12.0, *)
+@available(iOS 17.0, macOS 12.0, *)
 public struct ARCDesignSystemInteractivePreview: View {
     
     // MARK: - State
@@ -80,15 +79,13 @@ public struct ARCDesignSystemInteractivePreview: View {
 // MARK: - Preview
 // =====================================================
 
-@available(iOS 15.0, *)
-@available(macOS 12.0, *)
+@available(iOS 17.0, macOS 12.0, *)
 #Preview("Interactive ARC Design System (Light)") {
     ARCDesignSystemInteractivePreview()
         .preferredColorScheme(.light)
 }
 
-@available(iOS 15.0, *)
-@available(macOS 12.0, *)
+@available(iOS 17.0, macOS 12.0, *)
 #Preview("Interactive ARC Design System (Dark)") {
     ARCDesignSystemInteractivePreview()
         .preferredColorScheme(.dark)

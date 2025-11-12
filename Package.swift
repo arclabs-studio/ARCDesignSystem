@@ -6,8 +6,8 @@ import PackageDescription
 let package = Package(
     name: "ARCDesignSystem",
     platforms: [
-        .iOS(.v14),
-        .macOS(.v11),
+        .iOS(.v17),
+        .macOS(.v12),
         .tvOS(.v14),
         .watchOS(.v7)
     ],
