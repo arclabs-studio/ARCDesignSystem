@@ -7,14 +7,65 @@
 
 import SwiftUI
 
-/// A catalog-style documentation view for ARCDesignSystem tokens.
-/// Displays all available colors, spacing, typography, and corner radii
-/// with their names, values, and live previews.
+/// A comprehensive catalog-style documentation view for the ARC Design System.
 ///
-/// This is intended for design review, documentation and developer onboarding.
-@available(iOS 17.0, macOS 12.0, *)
+/// `ARCDesignSystemDocumentation` provides a detailed, handoff-ready catalog
+/// of all design tokens with their names, values, and live visual examples.
+/// This view is specifically formatted for design handoffs, developer onboarding,
+/// and maintaining a single source of truth for your design system.
+///
+/// ## Overview
+///
+/// The documentation is organized into five main sections:
+/// - **Colors**: All semantic colors with swatches and names
+/// - **Typography**: Font samples with the quick brown fox pangram
+/// - **Spacing**: Visual bars showing actual spacing values
+/// - **Corner Radius**: Rounded rectangles demonstrating each radius
+/// - **Animations**: Live animated examples of timing presets
+///
+/// Each token is displayed with:
+/// - Its programmatic name (e.g., `arcFontTitleLarge`)
+/// - Its computed value at current Dynamic Type setting
+/// - A live visual preview
+///
+/// ## Usage
+///
+/// Use this view for design documentation and handoffs:
+///
+/// ```swift
+/// #Preview {
+///     ARCDesignSystemDocumentation()
+/// }
+/// ```
+///
+/// Integrate it into a style guide section of your app:
+///
+/// ```swift
+/// NavigationLink("Design System Docs") {
+///     ARCDesignSystemDocumentation()
+/// }
+/// ```
+///
+/// ## Design Handoff
+///
+/// This view serves as a living style guide that stays synchronized with
+/// your code. Share it with designers and stakeholders to:
+/// - Verify design implementation accuracy
+/// - Document spacing and typography decisions
+/// - Demonstrate responsive behavior with Dynamic Type
+/// - Maintain design-development alignment
+///
+/// ## Platform Compatibility
+///
+/// Available on iOS 15.0+ and macOS 12.0+. All values are calculated
+/// dynamically based on the current platform and accessibility settings.
+///
+/// - Note: For a simpler overview, see ``ARCDesignSystemPreview``.
+///   For interactive testing, see ``ARCDesignSystemInteractivePreview``.
+@available(iOS 15.0, *)
 public struct ARCDesignSystemDocumentation: View {
-    
+
+    /// Creates a new ARC Design System documentation catalog.
     public init() {}
     
     public var body: some View {
