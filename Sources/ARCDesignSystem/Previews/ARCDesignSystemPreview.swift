@@ -7,12 +7,51 @@
 
 import SwiftUI
 
-/// A visual showcase of ARCDesignSystem tokens:
-/// spacing, typography, colors, and corner radius.
-/// Works on iOS and macOS to verify visual consistency.
-@available(iOS 17.0, macOS 12.0, *)
+/// A visual showcase of ARC Design System tokens.
+///
+/// `ARCDesignSystemPreview` provides a comprehensive gallery view displaying
+/// all available design tokens including typography, spacing, colors, and
+/// corner radii. This view is intended for design review, documentation,
+/// and visual consistency verification across platforms.
+///
+/// ## Overview
+///
+/// The preview organizes tokens into four main sections:
+/// - **Typography**: All font styles from large titles to small labels
+/// - **Spacing**: Visual representation of spacing scale with measurements
+/// - **Color Palette**: Swatches of all semantic colors
+/// - **Corner Radius**: Examples of all corner radius values
+///
+/// ## Usage
+///
+/// Use this view in Xcode previews or as part of a design documentation app:
+///
+/// ```swift
+/// #Preview {
+///     ARCDesignSystemPreview()
+/// }
+/// ```
+///
+/// You can also integrate it into a developer tools section of your app:
+///
+/// ```swift
+/// NavigationLink("Design System Preview") {
+///     ARCDesignSystemPreview()
+/// }
+/// ```
+///
+/// ## Platform Compatibility
+///
+/// This view works on iOS 15.0+ and macOS 12.0+, adapting its presentation
+/// to each platform's conventions using ``ARCColorHelper`` for cross-platform
+/// color consistency.
+///
+/// - Note: For an interactive version with Dynamic Type and color scheme
+///   controls, see ``ARCDesignSystemInteractivePreview``.
+@available(iOS 15.0, *)
 public struct ARCDesignSystemPreview: View {
-    
+
+    /// Creates a new ARC Design System preview.
     public init() {}
     
     public var body: some View {
@@ -107,7 +146,7 @@ public struct ARCDesignSystemPreview: View {
 // MARK: - Components
 // =====================================================
 
-@available(iOS 17.0, macOS 12.0, *)
+@available(iOS 15.0, *)
 private struct ARCSpacingDemoRow: View {
     let label: String
     let value: CGFloat
@@ -127,7 +166,7 @@ private struct ARCSpacingDemoRow: View {
     }
 }
 
-@available(iOS 17.0, macOS 12.0, *)
+@available(iOS 15.0, *)
 private struct ARCColorSwatch: View {
     let name: String
     let color: Color
@@ -151,7 +190,7 @@ private struct ARCColorSwatch: View {
     }
 }
 
-@available(iOS 17.0, macOS 12.0, *)
+@available(iOS 15.0, *)
 private struct ARCRadiusDemo: View {
     let radius: CGFloat
     let label: String
@@ -172,14 +211,20 @@ private struct ARCRadiusDemo: View {
 // MARK: - Preview
 // =====================================================
 
-@available(iOS 17.0, macOS 12.0, *)
 #Preview("ARC Design System (Dark)") {
-    ARCDesignSystemPreview()
-        .preferredColorScheme(.dark)
+    if #available(iOS 15.0, *) {
+        ARCDesignSystemPreview()
+            .preferredColorScheme(.dark)
+    } else {
+        // Fallback on earlier versions
+    }
 }
 
-@available(iOS 17.0, macOS 12.0, *)
 #Preview("ARC Design System (Light)") {
-    ARCDesignSystemPreview()
-        .preferredColorScheme(.light)
+    if #available(iOS 15.0, *) {
+        ARCDesignSystemPreview()
+            .preferredColorScheme(.light)
+    } else {
+        // Fallback on earlier versions
+    }
 }
