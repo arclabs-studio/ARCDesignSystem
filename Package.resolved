@@ -1,0 +1,15 @@
+{
+  "originHash" : "e17afd904704c46826140da452131d21baafcefa040cfaeb65ba2f352dc373fa",
+  "pins" : [
+    {
+      "identity" : "arcagentsdocs",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/arclabs-studio/ARCAgentsDocs.git",
+      "state" : {
+        "revision" : "13f828e7e51608905d39a2523feca378052ef3fa",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}
