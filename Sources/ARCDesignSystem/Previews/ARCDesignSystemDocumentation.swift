@@ -64,16 +64,15 @@ import SwiftUI
 ///   For interactive testing, see ``ARCDesignSystemInteractivePreview``.
 @available(iOS 15.0, *)
 public struct ARCDesignSystemDocumentation: View {
-
     /// Creates a new ARC Design System documentation catalog.
     public init() {}
-    
+
     public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: .arcSpacingXLarge) {
-                
                 // =====================================================
                 // MARK: - Colors
+
                 // =====================================================
                 ARCDocSection(title: "🎨 Colors") {
                     ARCDocColorRow(name: "Background Primary", color: ARCColorHelper.backgroundPrimary)
@@ -84,9 +83,10 @@ public struct ARCDesignSystemDocumentation: View {
                     ARCDocColorRow(name: "Highlight", color: ARCColorHelper.highlight)
                     ARCDocColorRow(name: "Shadow Medium", color: ARCColorHelper.shadowMedium)
                 }
-                
+
                 // =====================================================
                 // MARK: - Typography
+
                 // =====================================================
                 ARCDocSection(title: "🔠 Typography") {
                     ARCDocFontRow(name: "arcFontTitleLarge", font: .arcFontTitleLarge)
@@ -97,9 +97,10 @@ public struct ARCDesignSystemDocumentation: View {
                     ARCDocFontRow(name: "arcFontBodySmall", font: .arcFontBodySmall)
                     ARCDocFontRow(name: "arcFontLabelSmall", font: .arcFontLabelSmall)
                 }
-                
+
                 // =====================================================
                 // MARK: - Spacing
+
                 // =====================================================
                 ARCDocSection(title: "📏 Spacing") {
                     ARCDocSpacingRow(name: "arcSpacingXSmall", value: .arcSpacingXSmall)
@@ -109,9 +110,10 @@ public struct ARCDesignSystemDocumentation: View {
                     ARCDocSpacingRow(name: "arcSpacingXLarge", value: .arcSpacingXLarge)
                     ARCDocSpacingRow(name: "arcSpacingXXLarge", value: .arcSpacingXXLarge)
                 }
-                
+
                 // =====================================================
                 // MARK: - Corner Radius
+
                 // =====================================================
                 ARCDocSection(title: "🟢 Corner Radius") {
                     ARCDocRadiusRow(name: "arcCornerRadiusSmall", value: .arcCornerRadiusSmall)
@@ -119,9 +121,10 @@ public struct ARCDesignSystemDocumentation: View {
                     ARCDocRadiusRow(name: "arcCornerRadiusLarge", value: .arcCornerRadiusLarge)
                     ARCDocRadiusRow(name: "arcCornerRadiusXLarge", value: .arcCornerRadiusXLarge)
                 }
-                
+
                 // =====================================================
                 // MARK: - Animations
+
                 // =====================================================
                 ARCDocSection(title: "⚡ Animations") {
                     ARCDocAnimationRow(name: "arcAnimationBase", animation: .arcAnimationBase)
@@ -138,6 +141,7 @@ public struct ARCDesignSystemDocumentation: View {
 //
 // =====================================================
 // MARK: - Documentation Components
+
 // =====================================================
 //
 
@@ -145,18 +149,18 @@ public struct ARCDesignSystemDocumentation: View {
 private struct ARCDocSection<Content: View>: View {
     let title: String
     let content: Content
-    
+
     init(title: String, @ViewBuilder content: () -> Content) {
         self.title = title
         self.content = content()
     }
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingMedium) {
             Text(title)
                 .font(.arcFontTitleMedium)
                 .foregroundStyle(ARCColorHelper.textPrimary)
-            
+
             VStack(alignment: .leading, spacing: .arcSpacingSmall) {
                 content
             }
@@ -171,7 +175,7 @@ private struct ARCDocSection<Content: View>: View {
 private struct ARCDocColorRow: View {
     let name: String
     let color: Color
-    
+
     var body: some View {
         HStack(spacing: .arcSpacingMedium) {
             RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
@@ -181,7 +185,7 @@ private struct ARCDocColorRow: View {
                     RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
                         .stroke(ARCColorHelper.shadowMedium.opacity(0.2), lineWidth: 0.5)
                 )
-            
+
             VStack(alignment: .leading, spacing: 2) {
                 Text(name)
                     .font(.arcFontBodyMedium)
@@ -199,7 +203,7 @@ private struct ARCDocColorRow: View {
 private struct ARCDocFontRow: View {
     let name: String
     let font: Font
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(name)
@@ -216,7 +220,7 @@ private struct ARCDocFontRow: View {
 private struct ARCDocSpacingRow: View {
     let name: String
     let value: CGFloat
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingSmall) {
             Text("\(name) — \(Int(value))pt")
@@ -235,7 +239,7 @@ private struct ARCDocSpacingRow: View {
 private struct ARCDocRadiusRow: View {
     let name: String
     let value: CGFloat
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingSmall) {
             Text("\(name) — \(Int(value))pt")
@@ -252,9 +256,9 @@ private struct ARCDocRadiusRow: View {
 private struct ARCDocAnimationRow: View {
     let name: String
     let animation: Animation
-    
+
     @State private var isAnimating = false
-    
+
     var body: some View {
         HStack(spacing: .arcSpacingMedium) {
             Circle()
@@ -263,7 +267,7 @@ private struct ARCDocAnimationRow: View {
                 .offset(x: isAnimating ? 80 : 0)
                 .animation(animation.repeatForever(autoreverses: true), value: isAnimating)
                 .onAppear { isAnimating = true }
-            
+
             Text(name)
                 .font(.arcFontBodySmall)
                 .foregroundStyle(ARCColorHelper.textSecondary)
@@ -275,6 +279,7 @@ private struct ARCDocAnimationRow: View {
 //
 // =====================================================
 // MARK: - Preview
+
 // =====================================================
 //
 

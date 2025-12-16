@@ -50,22 +50,21 @@ import SwiftUI
 ///   controls, see ``ARCDesignSystemInteractivePreview``.
 @available(iOS 15.0, *)
 public struct ARCDesignSystemPreview: View {
-
     /// Creates a new ARC Design System preview.
     public init() {}
-    
+
     public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: .arcSpacingXLarge) {
-                
                 // =====================================================
                 // MARK: - Typography
+
                 // =====================================================
                 VStack(alignment: .leading, spacing: .arcSpacingMedium) {
                     Text("Typography")
                         .font(.arcFontTitleMedium)
                         .padding(.bottom, .arcSpacingSmall)
-                    
+
                     Group {
                         Text("Title Large").font(.arcFontTitleLarge)
                         Text("Title Medium").font(.arcFontTitleMedium)
@@ -80,15 +79,16 @@ public struct ARCDesignSystemPreview: View {
                 .padding(.arcPaddingCard)
                 .background(ARCColorHelper.backgroundSecondary)
                 .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
-                
+
                 // =====================================================
                 // MARK: - Spacing Demonstration
+
                 // =====================================================
                 VStack(alignment: .leading, spacing: .arcSpacingMedium) {
                     Text("Spacing Scale")
                         .font(.arcFontTitleMedium)
                         .padding(.bottom, .arcSpacingSmall)
-                    
+
                     ARCSpacingDemoRow(label: "XSmall", value: .arcSpacingXSmall)
                     ARCSpacingDemoRow(label: "Small", value: .arcSpacingSmall)
                     ARCSpacingDemoRow(label: "Medium", value: .arcSpacingMedium)
@@ -99,15 +99,16 @@ public struct ARCDesignSystemPreview: View {
                 .padding(.arcPaddingCard)
                 .background(ARCColorHelper.backgroundSecondary)
                 .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
-                
+
                 // =====================================================
                 // MARK: - Color Palette
+
                 // =====================================================
                 VStack(alignment: .leading, spacing: .arcSpacingMedium) {
                     Text("Color Palette")
                         .font(.arcFontTitleMedium)
                         .padding(.bottom, .arcSpacingSmall)
-                    
+
                     ARCColorSwatch(name: "Background Primary", color: ARCColorHelper.backgroundPrimary)
                     ARCColorSwatch(name: "Background Secondary", color: ARCColorHelper.backgroundSecondary)
                     ARCColorSwatch(name: "Background Tertiary", color: ARCColorHelper.backgroundTertiary)
@@ -118,15 +119,16 @@ public struct ARCDesignSystemPreview: View {
                 .padding(.arcPaddingCard)
                 .background(ARCColorHelper.backgroundSecondary)
                 .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
-                
+
                 // =====================================================
                 // MARK: - Corner Radius Demonstration
+
                 // =====================================================
                 VStack(alignment: .leading, spacing: .arcSpacingMedium) {
                     Text("Corner Radius")
                         .font(.arcFontTitleMedium)
                         .padding(.bottom, .arcSpacingSmall)
-                    
+
                     ARCRadiusDemo(radius: .arcCornerRadiusSmall, label: "Small")
                     ARCRadiusDemo(radius: .arcCornerRadiusMedium, label: "Medium")
                     ARCRadiusDemo(radius: .arcCornerRadiusLarge, label: "Large")
@@ -144,19 +146,20 @@ public struct ARCDesignSystemPreview: View {
 
 // =====================================================
 // MARK: - Components
+
 // =====================================================
 
 @available(iOS 15.0, *)
 private struct ARCSpacingDemoRow: View {
     let label: String
     let value: CGFloat
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("\(label) — \(Int(value))pt")
                 .font(.arcFontBodySmall)
                 .foregroundStyle(ARCColorHelper.textSecondary)
-            
+
             Rectangle()
                 .fill(ARCColorHelper.highlight.opacity(0.8))
                 .frame(height: 6)
@@ -170,7 +173,7 @@ private struct ARCSpacingDemoRow: View {
 private struct ARCColorSwatch: View {
     let name: String
     let color: Color
-    
+
     var body: some View {
         HStack {
             RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
@@ -180,11 +183,11 @@ private struct ARCColorSwatch: View {
                     RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
                         .stroke(ARCColorHelper.shadowMedium.opacity(0.3), lineWidth: 0.5)
                 )
-            
+
             Text(name)
                 .font(.arcFontBodyMedium)
                 .foregroundStyle(ARCColorHelper.textPrimary)
-            
+
             Spacer()
         }
     }
@@ -194,7 +197,7 @@ private struct ARCColorSwatch: View {
 private struct ARCRadiusDemo: View {
     let radius: CGFloat
     let label: String
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingSmall) {
             Text("\(label) — \(Int(radius))pt")
@@ -209,6 +212,7 @@ private struct ARCRadiusDemo: View {
 
 // =====================================================
 // MARK: - Preview
+
 // =====================================================
 
 #Preview("ARC Design System (Dark)") {

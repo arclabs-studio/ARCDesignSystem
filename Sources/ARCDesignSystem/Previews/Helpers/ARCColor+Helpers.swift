@@ -14,6 +14,7 @@ import AppKit
 
 // =====================================================
 // MARK: - ARC Color Cross-Platform Helpers
+
 // =====================================================
 
 /// Cross-platform color helper for the ARC Design System.
@@ -59,7 +60,6 @@ import AppKit
 /// - Note: All colors automatically adapt to light/dark mode and respect
 ///   system appearance settings on each platform.
 public enum ARCColorHelper {
-
     // MARK: Text Colors
 
     /// Primary text color that adapts to the current platform.
@@ -90,7 +90,7 @@ public enum ARCColorHelper {
         return Color.white
         #endif
     }
-    
+
     /// Secondary text color for captions, hints, and supporting content.
     ///
     /// Returns the appropriate secondary text color for the platform:
@@ -151,7 +151,7 @@ public enum ARCColorHelper {
         return Color.white
         #endif
     }
-    
+
     /// Secondary background color for cards, containers, and elevated surfaces.
     ///
     /// Returns the appropriate secondary background color for the platform:

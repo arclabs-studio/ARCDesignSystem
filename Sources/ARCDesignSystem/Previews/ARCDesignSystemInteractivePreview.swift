@@ -58,7 +58,6 @@ import SwiftUI
 /// - Note: For a static preview without controls, see ``ARCDesignSystemPreview``.
 @available(iOS 15.0, *)
 public struct ARCDesignSystemInteractivePreview: View {
-
     // MARK: - State
 
     /// Currently selected color scheme (light or dark).
@@ -69,23 +68,22 @@ public struct ARCDesignSystemInteractivePreview: View {
 
     /// Creates a new interactive ARC Design System preview.
     public init() {}
-    
+
     // MARK: - View
-    
+
     public var body: some View {
         VStack(spacing: .arcSpacingLarge) {
-            
             // =====================================================
             // MARK: - Controls
+
             // =====================================================
-            
+
             HStack(spacing: .arcSpacingLarge) {
-                
                 VStack(alignment: .leading) {
                     Text("Color Scheme")
                         .font(.arcFontBodySmall)
                         .foregroundStyle(ARCColorHelper.textPrimary)
-                    
+
                     Picker("Color Scheme", selection: $colorScheme) {
                         Text("Light").tag(ColorScheme.light)
                         Text("Dark").tag(ColorScheme.dark)
@@ -93,12 +91,12 @@ public struct ARCDesignSystemInteractivePreview: View {
                     .pickerStyle(.segmented)
                     .frame(width: 180)
                 }
-                
+
                 VStack(alignment: .leading) {
                     Text("Dynamic Type")
                         .font(.arcFontBodySmall)
                         .foregroundStyle(ARCColorHelper.textPrimary)
-                    
+
                     Picker("Dynamic Type", selection: $textScale) {
                         Text("XS").tag(DynamicTypeSize.xSmall)
                         Text("S").tag(DynamicTypeSize.small)
@@ -113,10 +111,10 @@ public struct ARCDesignSystemInteractivePreview: View {
             .padding(.arcPaddingCard)
             .background(ARCColorHelper.backgroundSecondary)
             .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
-            
+
             Divider()
                 .overlay(ARCColorHelper.textSecondary)
-            
+
             ScrollView {
                 ARCDesignSystemPreview()
                     .dynamicTypeSize(textScale)
@@ -130,6 +128,7 @@ public struct ARCDesignSystemInteractivePreview: View {
 
 // =====================================================
 // MARK: - Preview
+
 // =====================================================
 
 @available(iOS 17.0, macOS 12.0, *)
