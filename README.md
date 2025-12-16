@@ -2,7 +2,7 @@
 
 Un **design system modular** para SwiftUI, pensado para escalar productos de ARC Labs manteniendo consistencia visual en todo el ecosistema Apple.
 
-![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)
+![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)
 ![Platform](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 ![Xcode](https://img.shields.io/badge/Xcode-15%2B-blue.svg)
@@ -99,7 +99,7 @@ struct ARCExampleCard: View {
 
 ## Catálogo y previews incluidos
 
-El paquete expone tres vistas pensadas para documentación y validación visual (requieren iOS 15+ o macOS 12+):
+El paquete expone tres vistas pensadas para documentación y validación visual (requieren iOS 17+ o macOS 12+):
 
 ```swift
 import ARCDesignSystem
@@ -193,9 +193,9 @@ Los valores se escalan con `ARCLayoutScale.arcScaleFactor` de acuerdo con la pre
 
 ## Compatibilidad y requisitos
 
-- Swift 5.9 o superior
+- Swift 6.0 o superior
 - Xcode 15 o superior
-- iOS 15, macOS 12, tvOS 15 y watchOS 9 (o versiones posteriores con disponibilidad equivalente)
+- iOS 17, macOS 12, tvOS 15 y watchOS 9 (o versiones posteriores con disponibilidad equivalente)
 - SwiftUI como framework principal
 
 ---

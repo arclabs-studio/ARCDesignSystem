@@ -7,22 +7,72 @@
 
 import SwiftUI
 
-/// A catalog-style documentation view for ARCDesignSystem tokens.
-/// Displays all available colors, spacing, typography, and corner radii
-/// with their names, values, and live previews.
+/// A comprehensive catalog-style documentation view for the ARC Design System.
 ///
-/// This is intended for design review, documentation and developer onboarding.
+/// `ARCDesignSystemDocumentation` provides a detailed, handoff-ready catalog
+/// of all design tokens with their names, values, and live visual examples.
+/// This view is specifically formatted for design handoffs, developer onboarding,
+/// and maintaining a single source of truth for your design system.
+///
+/// ## Overview
+///
+/// The documentation is organized into five main sections:
+/// - **Colors**: All semantic colors with swatches and names
+/// - **Typography**: Font samples with the quick brown fox pangram
+/// - **Spacing**: Visual bars showing actual spacing values
+/// - **Corner Radius**: Rounded rectangles demonstrating each radius
+/// - **Animations**: Live animated examples of timing presets
+///
+/// Each token is displayed with:
+/// - Its programmatic name (e.g., `arcFontTitleLarge`)
+/// - Its computed value at current Dynamic Type setting
+/// - A live visual preview
+///
+/// ## Usage
+///
+/// Use this view for design documentation and handoffs:
+///
+/// ```swift
+/// #Preview {
+///     ARCDesignSystemDocumentation()
+/// }
+/// ```
+///
+/// Integrate it into a style guide section of your app:
+///
+/// ```swift
+/// NavigationLink("Design System Docs") {
+///     ARCDesignSystemDocumentation()
+/// }
+/// ```
+///
+/// ## Design Handoff
+///
+/// This view serves as a living style guide that stays synchronized with
+/// your code. Share it with designers and stakeholders to:
+/// - Verify design implementation accuracy
+/// - Document spacing and typography decisions
+/// - Demonstrate responsive behavior with Dynamic Type
+/// - Maintain design-development alignment
+///
+/// ## Platform Compatibility
+///
+/// Available on iOS 15.0+ and macOS 12.0+. All values are calculated
+/// dynamically based on the current platform and accessibility settings.
+///
+/// - Note: For a simpler overview, see ``ARCDesignSystemPreview``.
+///   For interactive testing, see ``ARCDesignSystemInteractivePreview``.
 @available(iOS 15.0, *)
 public struct ARCDesignSystemDocumentation: View {
-    
+    /// Creates a new ARC Design System documentation catalog.
     public init() {}
-    
+
     public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: .arcSpacingXLarge) {
-                
                 // =====================================================
                 // MARK: - Colors
+
                 // =====================================================
                 ARCDocSection(title: "🎨 Colors") {
                     ARCDocColorRow(name: "Background Primary", color: ARCColorHelper.backgroundPrimary)
@@ -33,9 +83,10 @@ public struct ARCDesignSystemDocumentation: View {
                     ARCDocColorRow(name: "Highlight", color: ARCColorHelper.highlight)
                     ARCDocColorRow(name: "Shadow Medium", color: ARCColorHelper.shadowMedium)
                 }
-                
+
                 // =====================================================
                 // MARK: - Typography
+
                 // =====================================================
                 ARCDocSection(title: "🔠 Typography") {
                     ARCDocFontRow(name: "arcFontTitleLarge", font: .arcFontTitleLarge)
@@ -46,9 +97,10 @@ public struct ARCDesignSystemDocumentation: View {
                     ARCDocFontRow(name: "arcFontBodySmall", font: .arcFontBodySmall)
                     ARCDocFontRow(name: "arcFontLabelSmall", font: .arcFontLabelSmall)
                 }
-                
+
                 // =====================================================
                 // MARK: - Spacing
+
                 // =====================================================
                 ARCDocSection(title: "📏 Spacing") {
                     ARCDocSpacingRow(name: "arcSpacingXSmall", value: .arcSpacingXSmall)
@@ -58,9 +110,10 @@ public struct ARCDesignSystemDocumentation: View {
                     ARCDocSpacingRow(name: "arcSpacingXLarge", value: .arcSpacingXLarge)
                     ARCDocSpacingRow(name: "arcSpacingXXLarge", value: .arcSpacingXXLarge)
                 }
-                
+
                 // =====================================================
                 // MARK: - Corner Radius
+
                 // =====================================================
                 ARCDocSection(title: "🟢 Corner Radius") {
                     ARCDocRadiusRow(name: "arcCornerRadiusSmall", value: .arcCornerRadiusSmall)
@@ -68,9 +121,10 @@ public struct ARCDesignSystemDocumentation: View {
                     ARCDocRadiusRow(name: "arcCornerRadiusLarge", value: .arcCornerRadiusLarge)
                     ARCDocRadiusRow(name: "arcCornerRadiusXLarge", value: .arcCornerRadiusXLarge)
                 }
-                
+
                 // =====================================================
                 // MARK: - Animations
+
                 // =====================================================
                 ARCDocSection(title: "⚡ Animations") {
                     ARCDocAnimationRow(name: "arcAnimationBase", animation: .arcAnimationBase)
@@ -87,25 +141,26 @@ public struct ARCDesignSystemDocumentation: View {
 //
 // =====================================================
 // MARK: - Documentation Components
+
 // =====================================================
 //
 
-@available(iOS 15.0, *)
+@available(iOS 17.0, macOS 12.0, *)
 private struct ARCDocSection<Content: View>: View {
     let title: String
     let content: Content
-    
+
     init(title: String, @ViewBuilder content: () -> Content) {
         self.title = title
         self.content = content()
     }
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingMedium) {
             Text(title)
                 .font(.arcFontTitleMedium)
                 .foregroundStyle(ARCColorHelper.textPrimary)
-            
+
             VStack(alignment: .leading, spacing: .arcSpacingSmall) {
                 content
             }
@@ -116,11 +171,11 @@ private struct ARCDocSection<Content: View>: View {
     }
 }
 
-@available(iOS 15.0, *)
+@available(iOS 17.0, macOS 12.0, *)
 private struct ARCDocColorRow: View {
     let name: String
     let color: Color
-    
+
     var body: some View {
         HStack(spacing: .arcSpacingMedium) {
             RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
@@ -130,7 +185,7 @@ private struct ARCDocColorRow: View {
                     RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
                         .stroke(ARCColorHelper.shadowMedium.opacity(0.2), lineWidth: 0.5)
                 )
-            
+
             VStack(alignment: .leading, spacing: 2) {
                 Text(name)
                     .font(.arcFontBodyMedium)
@@ -144,11 +199,11 @@ private struct ARCDocColorRow: View {
     }
 }
 
-@available(iOS 15.0, *)
+@available(iOS 17.0, macOS 12.0, *)
 private struct ARCDocFontRow: View {
     let name: String
     let font: Font
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(name)
@@ -161,11 +216,11 @@ private struct ARCDocFontRow: View {
     }
 }
 
-@available(iOS 15.0, *)
+@available(iOS 17.0, macOS 12.0, *)
 private struct ARCDocSpacingRow: View {
     let name: String
     let value: CGFloat
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingSmall) {
             Text("\(name) — \(Int(value))pt")
@@ -180,11 +235,11 @@ private struct ARCDocSpacingRow: View {
     }
 }
 
-@available(iOS 15.0, *)
+@available(iOS 17.0, macOS 12.0, *)
 private struct ARCDocRadiusRow: View {
     let name: String
     let value: CGFloat
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingSmall) {
             Text("\(name) — \(Int(value))pt")
@@ -197,13 +252,13 @@ private struct ARCDocRadiusRow: View {
     }
 }
 
-@available(iOS 15.0, *)
+@available(iOS 17.0, macOS 12.0, *)
 private struct ARCDocAnimationRow: View {
     let name: String
     let animation: Animation
-    
+
     @State private var isAnimating = false
-    
+
     var body: some View {
         HStack(spacing: .arcSpacingMedium) {
             Circle()
@@ -212,7 +267,7 @@ private struct ARCDocAnimationRow: View {
                 .offset(x: isAnimating ? 80 : 0)
                 .animation(animation.repeatForever(autoreverses: true), value: isAnimating)
                 .onAppear { isAnimating = true }
-            
+
             Text(name)
                 .font(.arcFontBodySmall)
                 .foregroundStyle(ARCColorHelper.textSecondary)
@@ -224,23 +279,18 @@ private struct ARCDocAnimationRow: View {
 //
 // =====================================================
 // MARK: - Preview
+
 // =====================================================
 //
 
+@available(iOS 17.0, macOS 12.0, *)
 #Preview("ARC Design System Documentation (Dark)") {
-    if #available(iOS 15.0, *) {
-        ARCDesignSystemDocumentation()
-            .preferredColorScheme(.dark)
-    } else {
-        // Fallback on earlier versions
-    }
+    ARCDesignSystemDocumentation()
+        .preferredColorScheme(.dark)
 }
 
+@available(iOS 17.0, macOS 12.0, *)
 #Preview("ARC Design System Documentation (Light)") {
-    if #available(iOS 15.0, *) {
-        ARCDesignSystemDocumentation()
-            .preferredColorScheme(.light)
-    } else {
-        // Fallback on earlier versions
-    }
+    ARCDesignSystemDocumentation()
+        .preferredColorScheme(.light)
 }
