@@ -81,7 +81,7 @@ public struct ARCDesignSystemInteractivePreview: View {
             HStack(spacing: .arcSpacingLarge) {
                 VStack(alignment: .leading) {
                     Text("Color Scheme")
-                        .font(.arcFontBodySmall)
+                        .font(.arcFontFootnote)
                         .foregroundStyle(ARCColorHelper.textPrimary)
 
                     Picker("Color Scheme", selection: $colorScheme) {
@@ -94,7 +94,7 @@ public struct ARCDesignSystemInteractivePreview: View {
 
                 VStack(alignment: .leading) {
                     Text("Dynamic Type")
-                        .font(.arcFontBodySmall)
+                        .font(.arcFontFootnote)
                         .foregroundStyle(ARCColorHelper.textPrimary)
 
                     Picker("Dynamic Type", selection: $textScale) {

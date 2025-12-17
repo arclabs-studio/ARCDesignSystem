@@ -11,11 +11,11 @@ import Testing
 
 @Suite("Color Tokens Tests")
 struct ColorTokensTests {
-    @Test("Highlight color is yellow")
-    func highlightColorIsYellow() {
-        let color = Color.arcHighlight
+    @Test("Accent color uses system accent")
+    func accentColorUsesSystemAccent() {
+        let color = Color.arcAccent
 
-        #expect(color == Color.yellow, "Highlight should be yellow")
+        #expect(color == Color.accentColor, "Accent should use system accent color")
     }
 
     @Test("Shadow light color has correct opacity")
