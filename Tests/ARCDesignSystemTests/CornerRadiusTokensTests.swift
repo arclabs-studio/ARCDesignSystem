@@ -9,7 +9,6 @@ import Foundation
 import Testing
 @testable import ARCDesignSystem
 
-
 @Suite("Corner Radius Tokens Tests")
 struct CornerRadiusTokensTests {
     @Test("Small corner radius has correct base value")

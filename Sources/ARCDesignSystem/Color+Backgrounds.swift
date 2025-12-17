@@ -46,7 +46,7 @@ import AppKit
 /// ```
 ///
 /// - Note: All colors automatically respect the system's light/dark mode setting.
-public extension Color {
+extension Color {
     /// Primary background color.
     ///
     /// The main background color for screens and views. Automatically adapts
@@ -56,7 +56,7 @@ public extension Color {
     /// - Maps to `NSColor.windowBackgroundColor` on macOS
     ///
     /// - Returns: A platform-appropriate adaptive background color.
-    static var arcBackgroundPrimary: Color {
+    public static var arcBackgroundPrimary: Color {
         #if canImport(UIKit)
         return Color(UIColor.systemBackground)
         #elseif canImport(AppKit)
@@ -75,7 +75,7 @@ public extension Color {
     /// - Maps to `NSColor.controlBackgroundColor` on macOS
     ///
     /// - Returns: A platform-appropriate elevated background color.
-    static var arcBackgroundSecondary: Color {
+    public static var arcBackgroundSecondary: Color {
         #if canImport(UIKit)
         return Color(UIColor.secondarySystemBackground)
         #elseif canImport(AppKit)
@@ -94,7 +94,7 @@ public extension Color {
     /// - Maps to `NSColor.underPageBackgroundColor` on macOS
     ///
     /// - Returns: A platform-appropriate subtle background color.
-    static var arcBackgroundTertiary: Color {
+    public static var arcBackgroundTertiary: Color {
         #if canImport(UIKit)
         return Color(UIColor.tertiarySystemBackground)
         #elseif canImport(AppKit)
@@ -110,7 +110,7 @@ public extension Color {
     /// Automatically inverts between light and dark mode.
     ///
     /// - Returns: SwiftUI's semantic `.primary` color.
-    static let arcTextPrimary = Color.primary
+    public static let arcTextPrimary = Color.primary
 
     /// Secondary text color.
     ///
@@ -118,7 +118,7 @@ public extension Color {
     /// Provides reduced contrast compared to primary text.
     ///
     /// - Returns: SwiftUI's semantic `.secondary` color.
-    static let arcTextSecondary = Color.secondary
+    public static let arcTextSecondary = Color.secondary
 
     /// Highlight/accent color.
     ///
@@ -126,5 +126,5 @@ public extension Color {
     /// Currently set to yellow; customize this for your brand identity.
     ///
     /// - Returns: Yellow color (customize to match your brand).
-    static let arcHighlight = Color.yellow
+    public static let arcHighlight = Color.yellow
 }

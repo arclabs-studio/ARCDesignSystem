@@ -42,20 +42,20 @@ import SwiftUI
 ///
 /// - Note: All fonts support Dynamic Type and will scale according to
 ///   the user's accessibility preferences.
-public extension Font {
+extension Font {
     /// Small title font (Title 3, semibold, rounded).
     ///
     /// Use for subsection headers, card titles, or tertiary headings.
     ///
     /// - Returns: A semibold rounded Title 3 font that scales with Dynamic Type.
-    static let arcFontTitleSmall = Font.system(.title3, design: .rounded).weight(.semibold)
+    public static let arcFontTitleSmall = Font.system(.title3, design: .rounded).weight(.semibold)
 
     /// Medium title font (Title 2, semibold, rounded).
     ///
     /// Ideal for section headers, modal titles, or prominent labels.
     ///
     /// - Returns: A semibold rounded Title 2 font that scales with Dynamic Type.
-    static let arcFontTitleMedium = Font.system(.title2, design: .rounded).weight(.semibold)
+    public static let arcFontTitleMedium = Font.system(.title2, design: .rounded).weight(.semibold)
 
     /// Large title font (Large Title, bold, rounded).
     ///
@@ -63,14 +63,14 @@ public extension Font {
     /// and high-impact statements.
     ///
     /// - Returns: A bold rounded Large Title font that scales with Dynamic Type.
-    static let arcFontTitleLarge = Font.system(.largeTitle, design: .rounded).weight(.bold)
+    public static let arcFontTitleLarge = Font.system(.largeTitle, design: .rounded).weight(.bold)
 
     /// Small body font (Footnote, regular, rounded).
     ///
     /// Supporting text, explanations, footnotes, or metadata.
     ///
     /// - Returns: A regular rounded Footnote font that scales with Dynamic Type.
-    static let arcFontBodySmall = Font.system(.footnote, design: .rounded)
+    public static let arcFontBodySmall = Font.system(.footnote, design: .rounded)
 
     /// Medium body font (Callout, regular, rounded).
     ///
@@ -78,19 +78,19 @@ public extension Font {
     /// than standard body but less than headings.
     ///
     /// - Returns: A regular rounded Callout font that scales with Dynamic Type.
-    static let arcFontBodyMedium = Font.system(.callout, design: .rounded)
+    public static let arcFontBodyMedium = Font.system(.callout, design: .rounded)
 
     /// Large body font (Body, regular, rounded).
     ///
     /// Primary content text for paragraphs, descriptions, and main copy.
     ///
     /// - Returns: A regular rounded Body font that scales with Dynamic Type.
-    static let arcFontBodyLarge = Font.system(.body, design: .rounded)
+    public static let arcFontBodyLarge = Font.system(.body, design: .rounded)
 
     /// Small label font (Caption, regular, rounded).
     ///
     /// Minimal text elements like timestamps, fine print, or auxiliary labels.
     ///
     /// - Returns: A regular rounded Caption font that scales with Dynamic Type.
-    static let arcFontLabelSmall = Font.system(.caption, design: .rounded)
+    public static let arcFontLabelSmall = Font.system(.caption, design: .rounded)
 }
