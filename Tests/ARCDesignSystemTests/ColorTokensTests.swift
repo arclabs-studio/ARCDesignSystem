@@ -41,5 +41,4 @@ struct ColorTokensTests {
 
         #expect(color == expected, "Shadow strong should be black with 25% opacity")
     }
-
 }

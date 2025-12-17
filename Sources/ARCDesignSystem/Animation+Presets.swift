@@ -31,14 +31,14 @@ import SwiftUI
 ///
 /// - Note: Use animations consistently throughout your app to maintain
 ///   a unified feel. Prefer `.arcAnimationBase` for most interactions.
-public extension Animation {
+extension Animation {
     /// Base animation preset (0.25s ease-in-out).
     ///
     /// Standard animation for most UI transitions, state changes,
     /// and interactive elements. This is the default choice.
     ///
     /// - Returns: Ease-in-out animation with 0.25 second duration.
-    static let arcAnimationBase = Animation.easeInOut(duration: 0.25)
+    public static let arcAnimationBase = Animation.easeInOut(duration: 0.25)
 
     /// Smooth animation preset (0.35s ease-in-out).
     ///
@@ -46,7 +46,7 @@ public extension Animation {
     /// or when you want to draw attention to the movement.
     ///
     /// - Returns: Ease-in-out animation with 0.35 second duration.
-    static let arcAnimationSmooth = Animation.easeInOut(duration: 0.35)
+    public static let arcAnimationSmooth = Animation.easeInOut(duration: 0.35)
 
     /// Quick spring animation preset.
     ///
@@ -54,5 +54,5 @@ public extension Animation {
     /// and immediate user feedback.
     ///
     /// - Returns: Spring animation with 0.25s response and 0.8 damping.
-    static let arcAnimationQuick = Animation.spring(response: 0.25, dampingFraction: 0.8)
+    public static let arcAnimationQuick = Animation.spring(response: 0.25, dampingFraction: 0.8)
 }
