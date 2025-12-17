@@ -9,13 +9,13 @@ let package = Package(
         .iOS(.v17),
         .macOS(.v12),
         .tvOS(.v14),
-        .watchOS(.v7),
+        .watchOS(.v7)
     ],
     products: [
         .library(
             name: "ARCDesignSystem",
             targets: ["ARCDesignSystem"]
-        ),
+        )
     ],
     dependencies: [],
     targets: [
@@ -27,6 +27,6 @@ let package = Package(
             name: "ARCDesignSystemTests",
             dependencies: ["ARCDesignSystem"],
             path: "Tests"
-        ),
+        )
     ]
 )
