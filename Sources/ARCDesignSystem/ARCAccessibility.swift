@@ -145,11 +145,9 @@ public enum ARCAccessibility {
 ///
 /// Automatically adjusts appearance based on system accessibility settings.
 public struct ARCAccessibilityModifier: ViewModifier {
-    @Environment(\.accessibilityDifferentiateWithoutColor)
-    private var differentiateWithoutColor
+    @Environment(\.accessibilityDifferentiateWithoutColor) private var differentiateWithoutColor
 
-    @Environment(\.colorSchemeContrast)
-    private var contrast
+    @Environment(\.colorSchemeContrast) private var contrast
 
     public func body(content: Content) -> some View {
         content
