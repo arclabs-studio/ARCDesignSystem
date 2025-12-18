@@ -42,16 +42,21 @@ All design tokens use a consistent pattern: static properties on Swift type exte
 
 ```
 Sources/ARCDesignSystem/
-├── ARCLayoutScale.swift       # Dynamic Type scale factor (0.9-1.7)
-├── ARCAccessibility.swift     # Accessibility utilities and environment keys
-├── CGFloat+Spacing.swift      # .arcSpacingXSmall through .arcSpacingXXLarge
-├── CGFloat+CornerRadius.swift # .arcCornerRadiusSmall through .arcCornerRadiusXLarge
-├── EdgeInsets+Padding.swift   # .arcPaddingCard, .arcPaddingSection, etc.
-├── Color+Backgrounds.swift    # .arcBackgroundPrimary, .arcTextPrimary, etc.
-├── Color+Shadows.swift        # .arcShadowLight, .arcShadowMedium, .arcShadowStrong
-├── Font+Typography.swift      # .arcFontTitleLarge, .arcFontBody, etc.
-├── Animation+Presets.swift    # .arcAnimationBase, .arcAnimationSmooth, .arcAnimationQuick
-└── Previews/                  # Documentation and interactive previews
+├── Core/
+│   └── ARCLayoutScale.swift       # Dynamic Type scale factor (0.9-1.7)
+├── Tokens/
+│   ├── Animation+Presets.swift    # .arcAnimationBase, .arcAnimationSmooth, .arcAnimationQuick
+│   ├── CGFloat+CornerRadius.swift # .arcCornerRadiusSmall through .arcCornerRadiusXLarge
+│   ├── CGFloat+Spacing.swift      # .arcSpacingXSmall through .arcSpacingXXLarge
+│   ├── Color+Backgrounds.swift    # .arcBackgroundPrimary, .arcTextPrimary, etc.
+│   ├── Color+Shadows.swift        # .arcShadowLight, .arcShadowMedium, .arcShadowStrong
+│   ├── EdgeInsets+Padding.swift   # .arcPaddingCard, .arcPaddingSection, etc.
+│   └── Font+Typography.swift      # .arcFontTitleLarge, .arcFontBody, etc.
+├── Accessibility/
+│   └── ARCAccessibility.swift     # Accessibility utilities and environment keys
+└── Previews/
+    ├── Helpers/                   # Cross-platform color helpers
+    └── Views/                     # Documentation and interactive previews
 ```
 
 ### Token Naming Convention
