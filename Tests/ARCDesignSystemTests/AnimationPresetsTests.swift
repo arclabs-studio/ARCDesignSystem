@@ -41,7 +41,7 @@ struct AnimationPresetsTests {
         let animations = [
             Animation.arcAnimationBase,
             Animation.arcAnimationSmooth,
-            Animation.arcAnimationQuick,
+            Animation.arcAnimationQuick
         ]
 
         #expect(animations.count == 3, "Should have 3 animation presets")

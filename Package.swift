@@ -7,20 +7,17 @@ let package = Package(
     name: "ARCDesignSystem",
     platforms: [
         .iOS(.v17),
-        .macOS(.v12),
-        .tvOS(.v14),
-        .watchOS(.v7),
+        .macOS(.v14),
+        .tvOS(.v17),
+        .watchOS(.v10)
     ],
     products: [
         .library(
             name: "ARCDesignSystem",
             targets: ["ARCDesignSystem"]
-        ),
+        )
     ],
-    dependencies: [
-        .package(url: "https://github.com/arclabs-studio/ARCAgentsDocs.git", from: "1.0.0"),
-        .package(url: "https://github.com/arclabs-studio/ARCDevTools.git", from: "1.1.4"),
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "ARCDesignSystem",
@@ -30,6 +27,6 @@ let package = Package(
             name: "ARCDesignSystemTests",
             dependencies: ["ARCDesignSystem"],
             path: "Tests"
-        ),
+        )
     ]
 )

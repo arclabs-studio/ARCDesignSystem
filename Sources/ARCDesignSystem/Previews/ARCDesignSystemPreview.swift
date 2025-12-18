@@ -62,17 +62,20 @@ public struct ARCDesignSystemPreview: View {
                 // =====================================================
                 VStack(alignment: .leading, spacing: .arcSpacingMedium) {
                     Text("Typography")
-                        .font(.arcFontTitleMedium)
+                        .font(.arcFontTitle2)
                         .padding(.bottom, .arcSpacingSmall)
 
                     Group {
                         Text("Title Large").font(.arcFontTitleLarge)
-                        Text("Title Medium").font(.arcFontTitleMedium)
-                        Text("Title Small").font(.arcFontTitleSmall)
-                        Text("Body Large").font(.arcFontBodyLarge)
-                        Text("Body Medium").font(.arcFontBodyMedium)
-                        Text("Body Small").font(.arcFontBodySmall)
-                        Text("Label Small").font(.arcFontLabelSmall)
+                        Text("Title 1").font(.arcFontTitle1)
+                        Text("Title 2").font(.arcFontTitle2)
+                        Text("Title 3").font(.arcFontTitle3)
+                        Text("Headline").font(.arcFontHeadline)
+                        Text("Subheadline").font(.arcFontSubheadline)
+                        Text("Body").font(.arcFontBody)
+                        Text("Callout").font(.arcFontCallout)
+                        Text("Footnote").font(.arcFontFootnote)
+                        Text("Caption 1").font(.arcFontCaption1)
                     }
                     .foregroundStyle(ARCColorHelper.textPrimary)
                 }
@@ -86,7 +89,7 @@ public struct ARCDesignSystemPreview: View {
                 // =====================================================
                 VStack(alignment: .leading, spacing: .arcSpacingMedium) {
                     Text("Spacing Scale")
-                        .font(.arcFontTitleMedium)
+                        .font(.arcFontTitle2)
                         .padding(.bottom, .arcSpacingSmall)
 
                     ARCSpacingDemoRow(label: "XSmall", value: .arcSpacingXSmall)
@@ -106,7 +109,7 @@ public struct ARCDesignSystemPreview: View {
                 // =====================================================
                 VStack(alignment: .leading, spacing: .arcSpacingMedium) {
                     Text("Color Palette")
-                        .font(.arcFontTitleMedium)
+                        .font(.arcFontTitle2)
                         .padding(.bottom, .arcSpacingSmall)
 
                     ARCColorSwatch(name: "Background Primary", color: ARCColorHelper.backgroundPrimary)
@@ -126,7 +129,7 @@ public struct ARCDesignSystemPreview: View {
                 // =====================================================
                 VStack(alignment: .leading, spacing: .arcSpacingMedium) {
                     Text("Corner Radius")
-                        .font(.arcFontTitleMedium)
+                        .font(.arcFontTitle2)
                         .padding(.bottom, .arcSpacingSmall)
 
                     ARCRadiusDemo(radius: .arcCornerRadiusSmall, label: "Small")
@@ -157,7 +160,7 @@ private struct ARCSpacingDemoRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("\(label) — \(Int(value))pt")
-                .font(.arcFontBodySmall)
+                .font(.arcFontFootnote)
                 .foregroundStyle(ARCColorHelper.textSecondary)
 
             Rectangle()
@@ -185,7 +188,7 @@ private struct ARCColorSwatch: View {
                 )
 
             Text(name)
-                .font(.arcFontBodyMedium)
+                .font(.arcFontCallout)
                 .foregroundStyle(ARCColorHelper.textPrimary)
 
             Spacer()
@@ -201,7 +204,7 @@ private struct ARCRadiusDemo: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingSmall) {
             Text("\(label) — \(Int(radius))pt")
-                .font(.arcFontBodySmall)
+                .font(.arcFontFootnote)
                 .foregroundStyle(ARCColorHelper.textSecondary)
             RoundedRectangle(cornerRadius: radius)
                 .fill(ARCColorHelper.highlight.opacity(0.8))

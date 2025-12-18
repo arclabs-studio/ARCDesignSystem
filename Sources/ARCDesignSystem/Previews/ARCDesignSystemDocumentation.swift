@@ -90,12 +90,16 @@ public struct ARCDesignSystemDocumentation: View {
                 // =====================================================
                 ARCDocSection(title: "🔠 Typography") {
                     ARCDocFontRow(name: "arcFontTitleLarge", font: .arcFontTitleLarge)
-                    ARCDocFontRow(name: "arcFontTitleMedium", font: .arcFontTitleMedium)
-                    ARCDocFontRow(name: "arcFontTitleSmall", font: .arcFontTitleSmall)
-                    ARCDocFontRow(name: "arcFontBodyLarge", font: .arcFontBodyLarge)
-                    ARCDocFontRow(name: "arcFontBodyMedium", font: .arcFontBodyMedium)
-                    ARCDocFontRow(name: "arcFontBodySmall", font: .arcFontBodySmall)
-                    ARCDocFontRow(name: "arcFontLabelSmall", font: .arcFontLabelSmall)
+                    ARCDocFontRow(name: "arcFontTitle1", font: .arcFontTitle1)
+                    ARCDocFontRow(name: "arcFontTitle2", font: .arcFontTitle2)
+                    ARCDocFontRow(name: "arcFontTitle3", font: .arcFontTitle3)
+                    ARCDocFontRow(name: "arcFontHeadline", font: .arcFontHeadline)
+                    ARCDocFontRow(name: "arcFontSubheadline", font: .arcFontSubheadline)
+                    ARCDocFontRow(name: "arcFontBody", font: .arcFontBody)
+                    ARCDocFontRow(name: "arcFontCallout", font: .arcFontCallout)
+                    ARCDocFontRow(name: "arcFontFootnote", font: .arcFontFootnote)
+                    ARCDocFontRow(name: "arcFontCaption1", font: .arcFontCaption1)
+                    ARCDocFontRow(name: "arcFontCaption2", font: .arcFontCaption2)
                 }
 
                 // =====================================================
@@ -158,7 +162,7 @@ private struct ARCDocSection<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingMedium) {
             Text(title)
-                .font(.arcFontTitleMedium)
+                .font(.arcFontTitle2)
                 .foregroundStyle(ARCColorHelper.textPrimary)
 
             VStack(alignment: .leading, spacing: .arcSpacingSmall) {
@@ -188,10 +192,10 @@ private struct ARCDocColorRow: View {
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(name)
-                    .font(.arcFontBodyMedium)
+                    .font(.arcFontCallout)
                     .foregroundStyle(ARCColorHelper.textPrimary)
                 Text("Preview")
-                    .font(.arcFontBodySmall)
+                    .font(.arcFontFootnote)
                     .foregroundStyle(ARCColorHelper.textSecondary)
             }
             Spacer()
@@ -207,7 +211,7 @@ private struct ARCDocFontRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(name)
-                .font(.arcFontBodySmall)
+                .font(.arcFontFootnote)
                 .foregroundStyle(ARCColorHelper.textSecondary)
             Text("The quick brown fox jumps over the lazy dog.")
                 .font(font)
@@ -224,7 +228,7 @@ private struct ARCDocSpacingRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingSmall) {
             Text("\(name) — \(Int(value))pt")
-                .font(.arcFontBodySmall)
+                .font(.arcFontFootnote)
                 .foregroundStyle(ARCColorHelper.textSecondary)
             Rectangle()
                 .fill(ARCColorHelper.highlight.opacity(0.8))
@@ -243,7 +247,7 @@ private struct ARCDocRadiusRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingSmall) {
             Text("\(name) — \(Int(value))pt")
-                .font(.arcFontBodySmall)
+                .font(.arcFontFootnote)
                 .foregroundStyle(ARCColorHelper.textSecondary)
             RoundedRectangle(cornerRadius: value)
                 .fill(ARCColorHelper.highlight.opacity(0.8))
@@ -269,7 +273,7 @@ private struct ARCDocAnimationRow: View {
                 .onAppear { isAnimating = true }
 
             Text(name)
-                .font(.arcFontBodySmall)
+                .font(.arcFontFootnote)
                 .foregroundStyle(ARCColorHelper.textSecondary)
         }
         .frame(height: 40)

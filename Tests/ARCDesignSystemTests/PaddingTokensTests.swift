@@ -67,7 +67,7 @@ struct PaddingTokensTests {
             EdgeInsets.arcPaddingCard,
             EdgeInsets.arcPaddingHorizontal,
             EdgeInsets.arcPaddingSection,
-            EdgeInsets.arcPaddingCompact,
+            EdgeInsets.arcPaddingCompact
         ]
 
         for padding in paddings {

@@ -35,14 +35,14 @@ import SwiftUI
 ///
 /// - Note: All padding values automatically adjust based on the user's
 ///   Dynamic Type preference via ``ARCLayoutScale/arcScaleFactor``.
-public extension EdgeInsets {
+extension EdgeInsets {
     /// Standard card padding (16pt on all sides).
     ///
     /// Use for cards, containers, and general content blocks that need balanced
     /// internal spacing on all edges.
     ///
     /// - Returns: EdgeInsets with 16pt (scaled) on all sides.
-    static var arcPaddingCard: EdgeInsets {
+    public static var arcPaddingCard: EdgeInsets {
         let scaleFactor = ARCLayoutScale.arcScaleFactor
         return EdgeInsets(
             top: 16 * scaleFactor,
@@ -58,7 +58,7 @@ public extension EdgeInsets {
     /// without vertical spacing.
     ///
     /// - Returns: EdgeInsets with 16pt (scaled) on leading/trailing edges only.
-    static var arcPaddingHorizontal: EdgeInsets {
+    public static var arcPaddingHorizontal: EdgeInsets {
         let scaleFactor = ARCLayoutScale.arcScaleFactor
         return EdgeInsets(
             top: 0,
@@ -74,7 +74,7 @@ public extension EdgeInsets {
     /// generous vertical breathing room.
     ///
     /// - Returns: EdgeInsets with 24pt (scaled) vertical and 16pt (scaled) horizontal.
-    static var arcPaddingSection: EdgeInsets {
+    public static var arcPaddingSection: EdgeInsets {
         let scaleFactor = ARCLayoutScale.arcScaleFactor
         return EdgeInsets(
             top: 24 * scaleFactor,
@@ -90,7 +90,7 @@ public extension EdgeInsets {
     /// that need minimal internal spacing.
     ///
     /// - Returns: EdgeInsets with 8pt (scaled) vertical and 12pt (scaled) horizontal.
-    static var arcPaddingCompact: EdgeInsets {
+    public static var arcPaddingCompact: EdgeInsets {
         let scaleFactor = ARCLayoutScale.arcScaleFactor
         return EdgeInsets(
             top: 8 * scaleFactor,

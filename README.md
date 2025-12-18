@@ -1,81 +1,57 @@
-# 🧩 ARCDesignSystem
+# ARCDesignSystem
 
-Un **design system modular** para SwiftUI, pensado para escalar productos de ARC Labs manteniendo consistencia visual en todo el ecosistema Apple.
+A modular SwiftUI design system for ARC Labs Studio applications, providing adaptive design tokens that scale with Dynamic Type across all Apple platforms.
 
 ![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)
-![Platform](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS-blue.svg)
+![Platforms](https://img.shields.io/badge/platforms-iOS%2017%20%7C%20macOS%2014%20%7C%20tvOS%2017%20%7C%20watchOS%2010-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)
-![Xcode](https://img.shields.io/badge/Xcode-15%2B-blue.svg)
 
----
+## Features
 
-## ¿Qué es ARCDesignSystem?
+- ✅ **Adaptive Spacing** - Tokens that scale with Dynamic Type preferences
+- ✅ **Typography System** - HIG-compliant fonts with automatic scaling
+- ✅ **Semantic Colors** - Platform-adaptive background, text, and accent colors
+- ✅ **Corner Radii** - Consistent, scalable corner radius tokens
+- ✅ **Animation Presets** - Smooth, accessible animation configurations
+- ✅ **Accessibility Support** - Built-in helpers for high contrast, reduced motion, and more
+- ✅ **Cross-Platform** - iOS, macOS, tvOS, and watchOS support
+- ✅ **SwiftUI Previews** - Interactive documentation and visual catalogs
 
-`ARCDesignSystem` concentra los **tokens de diseño compartidos** (espaciados, tipografías, colores, radios de esquina, animaciones y padding) y ofrece utilidades multiplataforma para integrarlos en proyectos SwiftUI. Todo el contenido respeta las guías de interfaz humana de Apple y se adapta automáticamente a Dynamic Type cuando está disponible.
+## Requirements
 
----
+- iOS 17.0+ / macOS 14.0+ / tvOS 17.0+ / watchOS 10.0+
+- Swift 6.0+
+- Xcode 16.0+
 
-## Características clave
+## Installation
 
-- Tokens adaptativos que escalan según la preferencia tipográfica del usuario (`DynamicTypeSize`).
-- Integración multiplataforma (iOS, macOS, tvOS, watchOS) con helpers que abstraen UIKit/AppKit.
-- Previews listas para usar: documentación viva, galería visual e iteración interactiva.
-- Arquitectura simple pensada para extender colores, fuentes o componentes propios.
-- Código documentado que acelera el onboarding del equipo de diseño y desarrollo.
+### Swift Package Manager
 
----
-
-## Estructura del paquete
-
-```
-Sources/
-  ARCDesignSystem/
-    ARCDesignSystem.swift                 // Tokens centrales: spacing, fonts, colors, radius, animations
-    Previews/
-      ARCDesignSystemPreview.swift        // Catálogo visual de tokens
-      ARCDesignSystemInteractivePreview.swift
-      ARCDesignSystemDocumentation.swift
-      Helpers/ARCColor+Helpers.swift      // Helper multiplataforma de colores
-```
-
-- `ARCLayoutScale` calcula el factor de escala según Dynamic Type (UIKit) o usa un valor neutro en macOS.
-- Las extensiones sobre `CGFloat`, `EdgeInsets`, `Color`, `Font` y `Animation` publican los tokens.
-- `ARCColorHelper` devuelve `Color` seguros en cualquiera de las plataformas soportadas.
-
----
-
-## Instalación con Swift Package Manager
-
-1. En Xcode, ve a **File › Add Packages...** y pega la URL del repositorio.
-2. Selecciona la versión mínima deseada (`0.1.0` o superior) y añade el paquete al target correspondiente.
-
-O bien, agrega la dependencia directamente en `Package.swift`:
+Add the package to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/carlosrasensio/ARCDesignSystem.git", from: "0.1.0")
+    .package(url: "https://github.com/arclabs-studio/ARCDesignSystem", from: "1.0.0")
 ]
 ```
 
----
+Or in Xcode: **File → Add Packages...** and enter the repository URL.
 
-## Uso rápido
-
-Importa el módulo y utiliza los tokens para construir vistas consistentes:
+## Quick Start
 
 ```swift
 import SwiftUI
 import ARCDesignSystem
 
-struct ARCExampleCard: View {
+struct ContentCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingMedium) {
-            Text("Estado de cuenta")
-                .font(.arcFontTitleSmall)
+            Text("Account Balance")
+                .font(.arcFontTitle3)
                 .foregroundStyle(.arcTextPrimary)
 
-            Text("Saldo disponible")
-                .font(.arcFontBodySmall)
+            Text("Available funds")
+                .font(.arcFontFootnote)
                 .foregroundStyle(.arcTextSecondary)
 
             Text("$1,245.30")
@@ -86,127 +62,200 @@ struct ARCExampleCard: View {
         .background(.arcBackgroundSecondary)
         .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
         .shadow(color: .arcShadowMedium, radius: 8, x: 0, y: 4)
-        .animation(.arcAnimationBase, value: UUID())
     }
 }
 ```
 
-- Los espaciados (`.arcSpacing*`) y paddings (`.arcPadding*`) ya consideran Dynamic Type.
-- Las tipografías usan `Font.system` con diseño `rounded` y pesos predefinidos para títulos y contenidos.
-- Las paletas `.arcBackground*` y `.arcText*` se adaptan a esquemas claro/oscuro.
+## Token Reference
 
----
+### Spacing
 
-## Catálogo y previews incluidos
+| Token | Base Value | Description |
+|-------|-----------|-------------|
+| `.arcSpacingXSmall` | 4pt | Minimal gaps, tight layouts |
+| `.arcSpacingSmall` | 8pt | Compact spacing, list items |
+| `.arcSpacingMedium` | 12pt | Standard element spacing |
+| `.arcSpacingLarge` | 16pt | Section spacing, card padding |
+| `.arcSpacingXLarge` | 24pt | Large gaps between sections |
+| `.arcSpacingXXLarge` | 32pt | Maximum spacing, major separators |
 
-El paquete expone tres vistas pensadas para documentación y validación visual (requieren iOS 17+ o macOS 12+):
+### Typography
+
+| Token | Style | Weight |
+|-------|-------|--------|
+| `.arcFontTitleLarge` | Large Title | Bold |
+| `.arcFontTitle1` | Title | Regular |
+| `.arcFontTitle2` | Title 2 | Regular |
+| `.arcFontTitle3` | Title 3 | Regular |
+| `.arcFontHeadline` | Headline | Semibold |
+| `.arcFontSubheadline` | Subheadline | Regular |
+| `.arcFontBody` | Body | Regular |
+| `.arcFontCallout` | Callout | Regular |
+| `.arcFontFootnote` | Footnote | Regular |
+| `.arcFontCaption1` | Caption | Regular |
+| `.arcFontCaption2` | Caption 2 | Regular |
+
+### Colors
+
+**Backgrounds**
+- `.arcBackgroundPrimary` - Main screen background
+- `.arcBackgroundSecondary` - Cards, elevated surfaces
+- `.arcBackgroundTertiary` - Grouped content, sidebars
+
+**Text**
+- `.arcTextPrimary` - Primary content
+- `.arcTextSecondary` - Supporting text
+- `.arcTextTertiary` - Less prominent content
+- `.arcTextDisabled` - Unavailable content
+
+**Interactive**
+- `.arcAccent` - System accent color
+- `.arcLink` - Hyperlink text
+- `.arcPlaceholder` - Input placeholder text
+
+**Separators**
+- `.arcSeparator` - Standard dividers
+- `.arcSeparatorOpaque` - Opaque dividers
+
+**Shadows**
+- `.arcShadowLight` - Subtle elevation (8% opacity)
+- `.arcShadowMedium` - Standard elevation (15% opacity)
+- `.arcShadowStrong` - Prominent elevation (25% opacity)
+
+### Corner Radius
+
+| Token | Base Value |
+|-------|-----------|
+| `.arcCornerRadiusSmall` | 6.4pt |
+| `.arcCornerRadiusMedium` | 12.8pt |
+| `.arcCornerRadiusLarge` | 19.2pt |
+| `.arcCornerRadiusXLarge` | 25.6pt |
+
+### Animations
+
+| Token | Description |
+|-------|-------------|
+| `.arcAnimationBase` | Standard ease-in-out (0.25s) |
+| `.arcAnimationSmooth` | Longer ease-in-out (0.35s) |
+| `.arcAnimationQuick` | Spring animation (0.25s response) |
+
+### Padding Presets
+
+| Token | Description |
+|-------|-------------|
+| `.arcPaddingCard` | Standard card padding |
+| `.arcPaddingSection` | Section container padding |
+| `.arcPaddingCompact` | Compact element padding |
+| `.arcPaddingHorizontal` | Horizontal-only padding |
+
+## Accessibility
+
+ARCDesignSystem includes `ARCAccessibility` utilities:
 
 ```swift
-import ARCDesignSystem
+// Check system accessibility settings
+if ARCAccessibility.prefersReducedMotion {
+    // Use simpler animations
+}
 
-#Preview {
-    ARCDesignSystemPreview()
+if ARCAccessibility.prefersHighContrast {
+    // Use stronger borders and colors
+}
+
+// SwiftUI environment integration
+WindowGroup {
+    ContentView()
+        .arcAccessibility()
 }
 ```
 
-- `ARCDesignSystemPreview`: muestra los tokens principales en una galería navegable.
-- `ARCDesignSystemInteractivePreview`: permite probar cambios de esquema de color y Dynamic Type en tiempo real.
-- `ARCDesignSystemDocumentation`: catálogo tipo handoff con secciones de colores, tipografías, espaciados, radios y animaciones.
+## Previews
 
-Puedes añadir estas vistas como previews en Xcode, integrarlas en un target de demo o incorporarlas a tus herramientas internas de diseño.
+The package includes interactive previews for documentation:
 
----
+```swift
+#Preview {
+    ARCDesignSystemPreview()           // Visual token catalog
+}
 
-## Tokens disponibles
+#Preview {
+    ARCDesignSystemInteractivePreview() // Interactive testing
+}
 
-**Espaciado** (`CGFloat`)
+#Preview {
+    ARCDesignSystemDocumentation()     // Full documentation
+}
+```
 
-| Token | Valor base |
-| --- | --- |
-| `arcSpacingXSmall` | 4 pt |
-| `arcSpacingSmall` | 8 pt |
-| `arcSpacingMedium` | 12 pt |
-| `arcSpacingLarge` | 16 pt |
-| `arcSpacingXLarge` | 24 pt |
-| `arcSpacingXXLarge` | 32 pt |
+## Project Structure
 
-**Corner radius** (`CGFloat`)
+```
+Sources/ARCDesignSystem/
+├── ARCLayoutScale.swift         # Dynamic Type scale factor
+├── ARCAccessibility.swift       # Accessibility utilities
+├── CGFloat+Spacing.swift        # Spacing tokens
+├── CGFloat+CornerRadius.swift   # Corner radius tokens
+├── EdgeInsets+Padding.swift     # Padding presets
+├── Color+Backgrounds.swift      # Semantic colors
+├── Color+Shadows.swift          # Shadow colors
+├── Font+Typography.swift        # Typography tokens
+├── Animation+Presets.swift      # Animation presets
+└── Previews/                    # Documentation views
+    ├── ARCDesignSystemPreview.swift
+    ├── ARCDesignSystemInteractivePreview.swift
+    ├── ARCDesignSystemDocumentation.swift
+    └── Helpers/ARCColor+Helpers.swift
+```
 
-| Token | Valor base |
-| --- | --- |
-| `arcCornerRadiusSmall` | 6.4 pt |
-| `arcCornerRadiusMedium` | 12.8 pt |
-| `arcCornerRadiusLarge` | 19.2 pt |
-| `arcCornerRadiusXLarge` | 25.6 pt |
+## Development
 
-**Tipografías** (`Font`)
+### Setup
 
-| Token | Base | Peso |
-| --- | --- | --- |
-| `arcFontTitleLarge` | Large Title (`rounded`) | Bold |
-| `arcFontTitleMedium` | Title2 (`rounded`) | Semibold |
-| `arcFontTitleSmall` | Title3 (`rounded`) | Semibold |
-| `arcFontBodyLarge` | Body (`rounded`) | Regular |
-| `arcFontBodyMedium` | Callout (`rounded`) | Regular |
-| `arcFontBodySmall` | Footnote (`rounded`) | Regular |
-| `arcFontLabelSmall` | Caption (`rounded`) | Regular |
+```bash
+# Clone the repository
+git clone https://github.com/arclabs-studio/ARCDesignSystem.git
+cd ARCDesignSystem
 
-**Colores** (`Color`)
+# Initialize submodules
+git submodule update --init --recursive
 
-| Token | Descripción |
-| --- | --- |
-| `arcBackgroundPrimary` | Fondo base dinámico |
-| `arcBackgroundSecondary` | Fondo para tarjetas/contenedores |
-| `arcBackgroundTertiary` | Fondo sutil de secciones |
-| `arcTextPrimary` | Texto principal |
-| `arcTextSecondary` | Texto secundario/captions |
-| `arcHighlight` | Color de acento |
-| `arcShadowLight` / `arcShadowMedium` / `arcShadowStrong` | Niveles de sombra |
+# Run setup
+./ARCDevTools/arcdevtools-setup
+```
 
-**Animaciones** (`Animation`)
+### Commands
 
-| Token | Descripción |
-| --- | --- |
-| `arcAnimationBase` | `easeInOut` de 0.25 s |
-| `arcAnimationSmooth` | `easeInOut` de 0.35 s |
-| `arcAnimationQuick` | `spring` con respuesta 0.25 s y amortiguación 0.8 |
+```bash
+make lint      # Run SwiftLint
+make format    # Preview formatting changes
+make fix       # Apply SwiftFormat
+make clean     # Clean build artifacts
+```
 
-Los valores se escalan con `ARCLayoutScale.arcScaleFactor` de acuerdo con la preferencia de tamaño de texto del usuario cuando la plataforma lo soporta (UIKit).
+### Testing
 
----
+```bash
+swift test
+```
 
-## Extender o personalizar
+## Documentation
 
-1. **Nuevos tokens**: crea extensiones propias en tu proyecto o contribuye al paquete.
+- See inline DocC documentation for all public APIs
+- Run previews in Xcode for visual documentation
+- See [CHANGELOG.md](CHANGELOG.md) for version history
 
-   ```swift
-   public extension Font {
-       static let arcFontDisplay = Font.system(.largeTitle, design: .serif).weight(.bold)
-   }
-   ```
+## Contributing
 
-2. **Soporte de marca**: agrega colores adicionales en `Color` o dentro de `ARCColorHelper` para garantizar compatibilidad multiplataforma.
-3. **Componentes**: utiliza los tokens como base para botones, tarjetas o listados y mantén las dependencias en `SwiftUI`.
-4. **Documentación interna**: crea vistas similares a las previews existentes para tus componentes custom y compártelas con el equipo.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/new-token`)
+3. Run `make fix` and `make lint` before committing
+4. Run `swift test` to ensure all tests pass
+5. Create a Pull Request
 
----
+## License
 
-## Compatibilidad y requisitos
+MIT License - see [LICENSE](LICENSE) for details.
 
-- Swift 6.0 o superior
-- Xcode 15 o superior
-- iOS 17, macOS 12, tvOS 15 y watchOS 9 (o versiones posteriores con disponibilidad equivalente)
-- SwiftUI como framework principal
+## Author
 
----
-
-## Contribuciones
-
-Las contribuciones son bienvenidas. Abre un issue o pull request describiendo el caso de uso, los tokens necesarios y captura de previews si aplica.
-
----
-
-## Licencia
-
-Este proyecto se distribuye bajo la licencia [MIT](LICENSE).
-
+**ARC Labs Studio**
