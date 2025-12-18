@@ -135,6 +135,51 @@ public struct ARCDesignSystemDocumentation: View {
                     ARCDocAnimationRow(name: "arcAnimationSmooth", animation: .arcAnimationSmooth)
                     ARCDocAnimationRow(name: "arcAnimationQuick", animation: .arcAnimationQuick)
                 }
+
+                // =====================================================
+                // MARK: - Symbol Effects
+
+                // =====================================================
+                if #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) {
+                    ARCDocSection(title: "🎬 Symbol Effects") {
+                        ARCDocSymbolEffectRow(
+                            name: ".inProgress",
+                            description: "Continuous breathing for active states",
+                            symbolName: "record.circle.fill",
+                            effect: .inProgress
+                        )
+                        ARCDocSymbolEffectRow(
+                            name: ".syncing",
+                            description: "Rotating for sync/loading",
+                            symbolName: "arrow.triangle.2.circlepath",
+                            effect: .syncing
+                        )
+                        ARCDocSymbolEffectRow(
+                            name: ".searching",
+                            description: "Variable color for discovery",
+                            symbolName: "wifi",
+                            effect: .searching
+                        )
+                        ARCDocSymbolEffectRow(
+                            name: ".success",
+                            description: "Bounce for confirmation",
+                            symbolName: "checkmark.circle.fill",
+                            effect: .success
+                        )
+                        ARCDocSymbolEffectRow(
+                            name: ".error",
+                            description: "Wiggle for errors",
+                            symbolName: "xmark.circle.fill",
+                            effect: .error
+                        )
+                        ARCDocSymbolEffectRow(
+                            name: ".addItem",
+                            description: "Double bounce for additions",
+                            symbolName: "cart.badge.plus",
+                            effect: .addItem
+                        )
+                    }
+                }
             }
             .padding(.arcPaddingSection)
         }
@@ -277,6 +322,67 @@ private struct ARCDocAnimationRow: View {
                 .foregroundStyle(ARCColorHelper.textSecondary)
         }
         .frame(height: 40)
+    }
+}
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+private struct ARCDocSymbolEffectRow: View {
+    let name: String
+    let description: String
+    let symbolName: String
+    let effect: ARCSymbolEffect
+
+    @State private var isActive = true
+    @State private var discreteTrigger = 0
+
+    var body: some View {
+        HStack(spacing: .arcSpacingMedium) {
+            symbolView
+                .frame(width: 32, height: 32)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(name)
+                    .font(.arcFontCallout)
+                    .foregroundStyle(ARCColorHelper.textPrimary)
+
+                Text(description)
+                    .font(.arcFontFootnote)
+                    .foregroundStyle(ARCColorHelper.textSecondary)
+            }
+
+            Spacer()
+
+            controlView
+        }
+        .frame(minHeight: 44)
+    }
+
+    @ViewBuilder private var symbolView: some View {
+        if effect.isIndefinite {
+            Image(systemName: symbolName)
+                .font(.system(size: 24))
+                .foregroundStyle(ARCColorHelper.highlight)
+                .arcSymbolEffect(effect, isActive: isActive)
+        } else {
+            Image(systemName: symbolName)
+                .font(.system(size: 24))
+                .foregroundStyle(ARCColorHelper.highlight)
+                .arcSymbolEffect(effect, value: discreteTrigger)
+        }
+    }
+
+    @ViewBuilder private var controlView: some View {
+        if effect.isIndefinite {
+            Toggle("", isOn: $isActive)
+                .labelsHidden()
+                .toggleStyle(.switch)
+        } else {
+            Button("Tap") {
+                discreteTrigger += 1
+            }
+            .buttonStyle(.bordered)
+            .font(.arcFontFootnote)
+        }
     }
 }
 
