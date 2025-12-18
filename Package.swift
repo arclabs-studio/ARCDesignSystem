@@ -7,9 +7,9 @@ let package = Package(
     name: "ARCDesignSystem",
     platforms: [
         .iOS(.v17),
-        .macOS(.v12),
-        .tvOS(.v14),
-        .watchOS(.v7)
+        .macOS(.v14),
+        .tvOS(.v17),
+        .watchOS(.v10)
     ],
     products: [
         .library(

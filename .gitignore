@@ -16,8 +16,5 @@ xcuserdata/
 /Pods
 /Carthage
 
-# ARCDevTools - Local generated files (not versioned)
-# Run 'swift run arc-setup' to regenerate them
-.swiftlint.yml
-.swiftformat
-Makefile
+# ARCDevTools - Configuration files are versioned for CI/CD
+# Run './ARCDevTools/arcdevtools-setup' to update them
