@@ -158,7 +158,7 @@ public struct ARCAccessibilityModifier: ViewModifier {
 // MARK: - Environment Keys
 
 private struct ARCHighContrastKey: EnvironmentKey {
-    static let defaultValue: Bool = false
+    static let defaultValue = false
 }
 
 extension EnvironmentValues {
