@@ -1,0 +1,73 @@
+name: Enforce Git Flow
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - develop
+
+jobs:
+  validate-branch-rules:
+    name: Validate Branch Rules
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate branch targeting
+        run: |
+          TARGET="${{ github.base_ref }}"
+          SOURCE="${{ github.head_ref }}"
+
+          echo "Validating branch rules..."
+          echo "Source branch: $SOURCE"
+          echo "Target branch: $TARGET"
+          echo ""
+
+          # Rule 1: feature/* branches must target develop
+          if [[ $SOURCE == feature/* ]] && [[ $TARGET != "develop" ]]; then
+            echo "ERROR: Feature branches must target 'develop'"
+            echo "   Branch: $SOURCE"
+            echo "   Target: $TARGET"
+            exit 1
+          fi
+
+          # Rule 2: hotfix/* branches must target main
+          if [[ $SOURCE == hotfix/* ]] && [[ $TARGET != "main" ]]; then
+            echo "ERROR: Hotfix branches must target 'main'"
+            echo "   Branch: $SOURCE"
+            echo "   Target: $TARGET"
+            exit 1
+          fi
+
+          # Rule 3: Only develop or hotfix/* can target main
+          if [[ $TARGET == "main" ]]; then
+            if [[ $SOURCE != "develop" ]] && [[ $SOURCE != hotfix/* ]]; then
+              echo "ERROR: Only 'develop' or 'hotfix/*' branches can target 'main'"
+              echo "   Branch: $SOURCE"
+              exit 1
+            fi
+          fi
+
+          echo "Branch targeting is correct"
+
+      - name: Validate branch naming
+        run: |
+          SOURCE="${{ github.head_ref }}"
+
+          echo "Validating branch naming convention..."
+
+          # Check if branch follows naming convention
+          if [[ $SOURCE =~ ^(feature|hotfix|bugfix|release)/.+ ]]; then
+            echo "Branch name follows convention: $SOURCE"
+          elif [[ $SOURCE == "develop" ]] || [[ $SOURCE == "main" ]]; then
+            echo "Main branch: $SOURCE"
+          else
+            echo "WARNING: Branch name doesn't follow convention"
+            echo "   Branch: $SOURCE"
+            echo "   Expected: feature/*, hotfix/*, bugfix/*, release/*"
+          fi
