@@ -43,7 +43,7 @@ import SwiftUI
 ///     .arcContentTransition(.smooth)
 /// ```
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-public extension View {
+extension View {
     // MARK: - Indefinite Effects
 
     /// Applies an indefinite symbol effect that animates while active.
@@ -63,19 +63,19 @@ public extension View {
     ///
     /// - Note: Respects "Reduce Motion" accessibility setting automatically.
     @ViewBuilder
-    func arcSymbolEffect(
+    public func arcSymbolEffect(
         _ effect: ARCSymbolEffect,
         isActive: Bool
     ) -> some View {
         switch effect {
         case .inProgress:
-            self.modifier(ARCPulsingEffectModifier(isActive: isActive))
+            modifier(ARCPulsingEffectModifier(isActive: isActive))
         case .hover:
-            self.modifier(ARCScaleUpEffectModifier(isActive: isActive))
+            modifier(ARCScaleUpEffectModifier(isActive: isActive))
         case .syncing:
-            self.modifier(ARCVariableColorSyncEffectModifier(isActive: isActive))
+            modifier(ARCVariableColorSyncEffectModifier(isActive: isActive))
         case .searching:
-            self.modifier(ARCVariableColorEffectModifier(isActive: isActive))
+            modifier(ARCVariableColorEffectModifier(isActive: isActive))
         default:
             self
         }
@@ -100,19 +100,19 @@ public extension View {
     ///
     /// - Note: Respects "Reduce Motion" accessibility setting automatically.
     @ViewBuilder
-    func arcSymbolEffect<T: Equatable>(
+    public func arcSymbolEffect(
         _ effect: ARCSymbolEffect,
-        value: T
+        value: some Equatable
     ) -> some View {
         switch effect {
         case .success:
-            self.modifier(ARCBounceEffectModifier(trigger: value))
+            modifier(ARCBounceEffectModifier(trigger: value))
         case .addItem:
-            self.modifier(ARCBounceDownEffectModifier(trigger: value))
+            modifier(ARCBounceDownEffectModifier(trigger: value))
         case .error:
-            self.modifier(ARCBounceEffectModifier(trigger: value))
+            modifier(ARCBounceEffectModifier(trigger: value))
         case .update:
-            self.modifier(ARCPulseEffectModifier(trigger: value))
+            modifier(ARCPulseEffectModifier(trigger: value))
         default:
             self
         }
@@ -135,14 +135,14 @@ public extension View {
     ///
     /// - Note: Respects "Reduce Motion" accessibility setting automatically.
     @ViewBuilder
-    func arcContentTransition(_ effect: ARCSymbolEffect) -> some View {
+    public func arcContentTransition(_ effect: ARCSymbolEffect) -> some View {
         switch effect {
         case .smooth:
-            self.modifier(ARCReplaceTransitionModifier())
+            modifier(ARCReplaceTransitionModifier())
         case .upward:
-            self.modifier(ARCUpwardTransitionModifier())
+            modifier(ARCUpwardTransitionModifier())
         case .layered:
-            self.modifier(ARCLayeredTransitionModifier())
+            modifier(ARCLayeredTransitionModifier())
         default:
             self
         }
@@ -167,10 +167,10 @@ public extension View {
     ///
     /// - Note: Respects "Reduce Motion" accessibility setting automatically.
     @ViewBuilder
-    func arcTransition(_ effect: ARCSymbolEffect) -> some View {
+    public func arcTransition(_ effect: ARCSymbolEffect) -> some View {
         switch effect {
         case .appear:
-            self.modifier(ARCAppearTransitionModifier())
+            modifier(ARCAppearTransitionModifier())
         default:
             self
         }
@@ -338,31 +338,31 @@ private struct ARCAppearTransitionModifier: ViewModifier {
 // MARK: - Symbol Effect Options Extensions
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-public extension SymbolEffectOptions {
+extension SymbolEffectOptions {
     // MARK: - ARC Speed Presets
 
     /// Very slow animation speed (0.5x).
     ///
     /// Use for calming, ambient effects or when you want to minimize distraction.
-    static var arcSpeedVerySlow: SymbolEffectOptions { .speed(0.5) }
+    public static var arcSpeedVerySlow: SymbolEffectOptions { .speed(0.5) }
 
     /// Slow animation speed (0.75x).
     ///
     /// Use for gentle transitions or extended processes.
-    static var arcSpeedSlow: SymbolEffectOptions { .speed(0.75) }
+    public static var arcSpeedSlow: SymbolEffectOptions { .speed(0.75) }
 
     /// Normal animation speed (1.0x).
     ///
     /// The default speed for most symbol effects.
-    static var arcSpeedNormal: SymbolEffectOptions { .speed(1.0) }
+    public static var arcSpeedNormal: SymbolEffectOptions { .speed(1.0) }
 
     /// Fast animation speed (1.5x).
     ///
     /// Use for snappy feedback that responds to user actions.
-    static var arcSpeedFast: SymbolEffectOptions { .speed(1.5) }
+    public static var arcSpeedFast: SymbolEffectOptions { .speed(1.5) }
 
     /// Very fast animation speed (2.0x).
     ///
     /// Use for immediate, quick feedback moments.
-    static var arcSpeedVeryFast: SymbolEffectOptions { .speed(2.0) }
+    public static var arcSpeedVeryFast: SymbolEffectOptions { .speed(2.0) }
 }

@@ -169,9 +169,9 @@ extension ARCSymbolEffect {
     public var isIndefinite: Bool {
         switch self {
         case .inProgress, .hover, .syncing, .searching:
-            return true
+            true
         default:
-            return false
+            false
         }
     }
 
@@ -179,9 +179,9 @@ extension ARCSymbolEffect {
     public var isDiscrete: Bool {
         switch self {
         case .success, .addItem, .error, .update:
-            return true
+            true
         default:
-            return false
+            false
         }
     }
 
@@ -189,9 +189,9 @@ extension ARCSymbolEffect {
     public var isContentTransition: Bool {
         switch self {
         case .smooth, .upward, .layered:
-            return true
+            true
         default:
-            return false
+            false
         }
     }
 
@@ -199,9 +199,9 @@ extension ARCSymbolEffect {
     public var isTransition: Bool {
         switch self {
         case .appear:
-            return true
+            true
         default:
-            return false
+            false
         }
     }
 }

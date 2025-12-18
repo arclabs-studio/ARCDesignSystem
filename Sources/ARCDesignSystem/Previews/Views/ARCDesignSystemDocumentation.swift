@@ -357,8 +357,7 @@ private struct ARCDocSymbolEffectRow: View {
         .frame(minHeight: 44)
     }
 
-    @ViewBuilder
-    private var symbolView: some View {
+    @ViewBuilder private var symbolView: some View {
         if effect.isIndefinite {
             Image(systemName: symbolName)
                 .font(.system(size: 24))
@@ -372,8 +371,7 @@ private struct ARCDocSymbolEffectRow: View {
         }
     }
 
-    @ViewBuilder
-    private var controlView: some View {
+    @ViewBuilder private var controlView: some View {
         if effect.isIndefinite {
             Toggle("", isOn: $isActive)
                 .labelsHidden()

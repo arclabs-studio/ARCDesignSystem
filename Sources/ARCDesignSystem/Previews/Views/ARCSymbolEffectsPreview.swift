@@ -280,25 +280,25 @@ private struct ARCContentTransitionSection: View {
 
         var symbolName: String {
             switch self {
-            case .offline: return "wifi.slash"
-            case .connecting: return "wifi.exclamationmark"
-            case .connected: return "wifi"
+            case .offline: "wifi.slash"
+            case .connecting: "wifi.exclamationmark"
+            case .connected: "wifi"
             }
         }
 
         var displayName: String {
             switch self {
-            case .offline: return "Offline"
-            case .connecting: return "Connecting"
-            case .connected: return "Connected"
+            case .offline: "Offline"
+            case .connecting: "Connecting"
+            case .connected: "Connected"
             }
         }
 
         var color: Color {
             switch self {
-            case .offline: return .red
-            case .connecting: return .orange
-            case .connected: return .green
+            case .offline: .red
+            case .connecting: .orange
+            case .connected: .green
             }
         }
 
