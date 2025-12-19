@@ -11,58 +11,34 @@ import Testing
 
 @Suite("Spacing Tokens Tests")
 struct SpacingTokensTests {
-    @Test("XSmall spacing has correct base value")
-    func xSmallSpacingHasCorrectBaseValue() {
-        let spacing = CGFloat.arcSpacingXSmall
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedValue = 4 * scaleFactor
-
-        #expect(spacing == expectedValue, "XSmall spacing should be 4pt × scale factor")
+    @Test("XSmall spacing has correct value")
+    func xSmallSpacingHasCorrectValue() {
+        #expect(CGFloat.arcSpacingXSmall == 4, "XSmall spacing should be 4pt")
     }
 
-    @Test("Small spacing has correct base value")
-    func smallSpacingHasCorrectBaseValue() {
-        let spacing = CGFloat.arcSpacingSmall
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedValue = 8 * scaleFactor
-
-        #expect(spacing == expectedValue, "Small spacing should be 8pt × scale factor")
+    @Test("Small spacing has correct value")
+    func smallSpacingHasCorrectValue() {
+        #expect(CGFloat.arcSpacingSmall == 8, "Small spacing should be 8pt")
     }
 
-    @Test("Medium spacing has correct base value")
-    func mediumSpacingHasCorrectBaseValue() {
-        let spacing = CGFloat.arcSpacingMedium
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedValue = 12 * scaleFactor
-
-        #expect(spacing == expectedValue, "Medium spacing should be 12pt × scale factor")
+    @Test("Medium spacing has correct value")
+    func mediumSpacingHasCorrectValue() {
+        #expect(CGFloat.arcSpacingMedium == 12, "Medium spacing should be 12pt")
     }
 
-    @Test("Large spacing has correct base value")
-    func largeSpacingHasCorrectBaseValue() {
-        let spacing = CGFloat.arcSpacingLarge
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedValue = 16 * scaleFactor
-
-        #expect(spacing == expectedValue, "Large spacing should be 16pt × scale factor")
+    @Test("Large spacing has correct value")
+    func largeSpacingHasCorrectValue() {
+        #expect(CGFloat.arcSpacingLarge == 16, "Large spacing should be 16pt")
     }
 
-    @Test("XLarge spacing has correct base value")
-    func xLargeSpacingHasCorrectBaseValue() {
-        let spacing = CGFloat.arcSpacingXLarge
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedValue = 24 * scaleFactor
-
-        #expect(spacing == expectedValue, "XLarge spacing should be 24pt × scale factor")
+    @Test("XLarge spacing has correct value")
+    func xLargeSpacingHasCorrectValue() {
+        #expect(CGFloat.arcSpacingXLarge == 24, "XLarge spacing should be 24pt")
     }
 
-    @Test("XXLarge spacing has correct base value")
-    func xxLargeSpacingHasCorrectBaseValue() {
-        let spacing = CGFloat.arcSpacingXXLarge
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedValue = 32 * scaleFactor
-
-        #expect(spacing == expectedValue, "XXLarge spacing should be 32pt × scale factor")
+    @Test("XXLarge spacing has correct value")
+    func xxLargeSpacingHasCorrectValue() {
+        #expect(CGFloat.arcSpacingXXLarge == 32, "XXLarge spacing should be 32pt")
     }
 
     @Test("Spacing tokens are in ascending order")

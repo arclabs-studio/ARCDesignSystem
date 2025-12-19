@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-ARCDesignSystem is a modular SwiftUI design system for ARC Labs Studio. It provides design tokens (spacing, typography, colors, corner radii, animations, padding) that scale adaptively with Dynamic Type across all Apple platforms (iOS 17+, macOS 14+, tvOS 17+, watchOS 10+).
+ARCDesignSystem is a minimal, modern SwiftUI design system for ARC Labs Studio. It provides **only what SwiftUI doesn't offer natively** - no redundant wrappers for built-in APIs.
+
+**Philosophy:** Use Apple's native APIs directly. ARC tokens complement, not replace, SwiftUI.
 
 ## Build & Development Commands
 
@@ -36,36 +38,79 @@ make clean
 
 ## Architecture
 
-### Token System
+### What We Provide
 
-All design tokens use a consistent pattern: static properties on Swift type extensions that scale with `ARCLayoutScale.arcScaleFactor` (which responds to Dynamic Type on UIKit platforms, returns 1.0 on macOS).
+| Category | Why Not Native | ARC Tokens |
+|----------|---------------|------------|
+| **Spacing** | SwiftUI has no spacing tokens | `.arcSpacingXSmall` through `.arcSpacingXXLarge` |
+| **Corner Radius** | SwiftUI has no radius tokens | `.arcCornerRadiusSmall` through `.arcCornerRadiusXLarge` |
+| **Backgrounds** | Need cross-platform (UIKit/AppKit) | `.arcBackgroundPrimary/Secondary/Tertiary` |
+| **Extended Text** | SwiftUI only has primary/secondary | `.arcTextTertiary`, `.arcTextQuaternary`, `.arcTextDisabled` |
+| **Symbol Effects** | Simplify SF Symbols API | `.arcSymbolEffect(.syncing)`, etc. |
+| **Materials** | Convenience wrappers | `.arcMaterialBackground()` |
+| **Liquid Glass** | iOS 26+ helpers | `.arcGlass()` (commented, awaiting SDK) |
+
+### What We DON'T Provide (Use SwiftUI Directly)
+
+| Instead of | Use Native SwiftUI |
+|------------|-------------------|
+| Typography tokens | `.body`, `.title`, `.headline`, etc. |
+| Primary/Secondary text | `.primary`, `.secondary` |
+| Accent colors | `.tint`, `.accentColor` |
+| Animations | `.spring()`, `.smooth`, `.snappy` |
+| Accessibility checks | `@Environment(\.accessibilityReduceMotion)` |
+| Dynamic Type scaling | `@ScaledMetric` property wrapper |
+
+### Project Structure
 
 ```
 Sources/ARCDesignSystem/
-├── Core/
-│   └── ARCLayoutScale.swift       # Dynamic Type scale factor (0.9-1.7)
 ├── Tokens/
-│   ├── Animation+Presets.swift    # .arcAnimationBase, .arcAnimationSmooth, .arcAnimationQuick
-│   ├── CGFloat+CornerRadius.swift # .arcCornerRadiusSmall through .arcCornerRadiusXLarge
-│   ├── CGFloat+Spacing.swift      # .arcSpacingXSmall through .arcSpacingXXLarge
-│   ├── Color+Backgrounds.swift    # .arcBackgroundPrimary, .arcTextPrimary, etc.
-│   ├── Color+Shadows.swift        # .arcShadowLight, .arcShadowMedium, .arcShadowStrong
-│   ├── EdgeInsets+Padding.swift   # .arcPaddingCard, .arcPaddingSection, etc.
-│   └── Font+Typography.swift      # .arcFontTitleLarge, .arcFontBody, etc.
-├── Accessibility/
-│   └── ARCAccessibility.swift     # Accessibility utilities and environment keys
+│   ├── CGFloat+Spacing.swift        # Base spacing constants
+│   ├── CGFloat+CornerRadius.swift   # Fixed corner radii
+│   ├── EdgeInsets+Padding.swift     # Padding presets
+│   ├── Color+Semantic.swift         # Semantic colors
+│   └── Color+Shadows.swift          # Shadow colors
+│
+├── Effects/
+│   ├── ARCSymbolEffect.swift        # Symbol effect presets
+│   ├── ARCSymbolAnimation.swift     # Symbol animations
+│   ├── Glass+Effects.swift          # Liquid Glass (iOS 26+)
+│   ├── Material+Effects.swift       # Material helpers
+│   └── Vibrancy+Effects.swift       # Vibrancy helpers
+│
+├── Helpers/
+│   └── ScaledValue.swift            # @ScaledMetric documentation
+│
 └── Previews/
-    ├── Helpers/                   # Cross-platform color helpers
-    └── Views/                     # Documentation and interactive previews
+    ├── Views/
+    │   ├── ARCDesignSystemPreview.swift
+    │   └── ARCSymbolEffectsPreview.swift
+    └── Helpers/
+        └── ARCColor+Helpers.swift   # Cross-platform color helpers
 ```
 
 ### Token Naming Convention
 
-All public tokens use the `arc` prefix: `.arcSpacingMedium`, `.arcCornerRadiusLarge`, `.arcFontBody`.
+All public tokens use the `arc` prefix: `.arcSpacingMedium`, `.arcCornerRadiusLarge`, `.arcBackgroundSecondary`.
 
-### Cross-Platform Support
+### Dynamic Type Support
 
-Uses `#if canImport(UIKit)` and `#if canImport(AppKit)` conditionals to abstract platform differences. `ARCColorHelper` in `Previews/Helpers/` provides unified color access across UIKit and AppKit.
+Spacing tokens are **base values**. For Dynamic Type scaling, use `@ScaledMetric`:
+
+```swift
+struct MyView: View {
+    @ScaledMetric(relativeTo: .body) var spacing = CGFloat.arcSpacingMedium
+
+    var body: some View {
+        VStack(spacing: spacing) {
+            // Content scales with user's Dynamic Type setting
+        }
+    }
+}
+```
+
+Corner radii do **not** scale (following Apple convention).
 
 ## Dependencies
 
@@ -86,31 +131,63 @@ This project follows ARC Labs Studio conventions from `ARCDevTools/ARCKnowledge/
 
 Tests are in `Tests/ARCDesignSystemTests/`. Each token category has its own test file:
 
-- `ARCLayoutScaleTests.swift` - Scale factor validation
-- `SpacingTokensTests.swift` - All spacing token validation
-- `CornerRadiusTokensTests.swift` - Corner radius token validation
-- `PaddingTokensTests.swift` - Padding preset validation
-- `ColorTokensTests.swift` - Color token and shadow validation
-- `AnimationPresetsTests.swift` - Animation preset validation
-- `TypographyTokensTests.swift` - Typography token validation
-- `AccessibilityTests.swift` - Accessibility utilities validation
+- `SpacingTokensTests.swift` - Spacing token values
+- `CornerRadiusTokensTests.swift` - Corner radius values
+- `PaddingTokensTests.swift` - Padding preset values
+- `ColorTokensTests.swift` - Color accessibility
+- `SymbolEffectTests.swift` - Symbol effect categorization
 
-Tests verify exact token values and scaling relationships. Target: 100% coverage.
+Tests verify exact token values and relationships. Target: 100% coverage.
 
 ## Key Design Decisions
 
-1. **Extension-based API**: Tokens are static properties on SwiftUI types (CGFloat, Color, Font, Animation, EdgeInsets) for ergonomic usage.
+1. **Minimal footprint**: Only provide what SwiftUI lacks natively. No 1:1 wrappers.
 
-2. **Dynamic Type scaling**: All spacing and corner radii scale with the user's preferred text size for accessibility.
+2. **Base values, not computed**: Spacing/padding are constants. Use `@ScaledMetric` in views for scaling.
 
-3. **Platform-native colors**: Background and text colors use `UIColor`/`NSColor` system colors for automatic light/dark mode and accessibility support.
+3. **Platform-native colors**: Background colors use `UIColor`/`NSColor` system colors for automatic light/dark mode.
 
-4. **No external dependencies**: Zero third-party dependencies for maximum compatibility and minimal footprint.
+4. **No external dependencies**: Zero third-party dependencies for maximum compatibility.
 
-5. **Deprecated aliases**: Legacy token names (e.g., `arcFontTitleSmall`) are maintained with `@available(*, deprecated)` for backwards compatibility.
+5. **iOS 26+ ready**: Liquid Glass helpers prepared but commented out until SDK is available.
+
+6. **Breaking changes**: v2.0 removed deprecated aliases. No legacy support - clean API.
 
 ## Limitations
 
-- Font tokens do not scale with ARCLayoutScale (they use SwiftUI's built-in Dynamic Type)
-- Animation tokens are not parameterizable (fixed durations)
-- Color tokens cannot be customized at runtime (use SwiftUI asset catalogs for theming)
+- Liquid Glass (`arcGlass`) requires iOS 26 SDK (implementation commented until available)
+- Symbol effects require iOS 17+
+- No runtime color customization (use asset catalogs for theming)
+
+## Common Patterns
+
+### Card with Dynamic Type Support
+```swift
+struct Card: View {
+    @ScaledMetric var padding = CGFloat.arcSpacingLarge
+    @ScaledMetric var spacing = CGFloat.arcSpacingMedium
+
+    var body: some View {
+        VStack(spacing: spacing) {
+            Text("Title").font(.headline)
+            Text("Body").font(.body)
+        }
+        .padding(padding)
+        .background(.arcBackgroundSecondary)
+        .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
+    }
+}
+```
+
+### Symbol with Effect
+```swift
+Image(systemName: "arrow.triangle.2.circlepath")
+    .arcSymbolEffect(.syncing, isActive: isSyncing)
+```
+
+### Material Background
+```swift
+Text("Overlay")
+    .padding()
+    .arcMaterialBackground(.arcRegular)
+```

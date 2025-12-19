@@ -11,15 +11,6 @@ import Testing
 
 @Suite("Color Tokens Tests")
 struct ColorTokensTests {
-    // MARK: - Accent Colors
-
-    @Test("Accent color uses system accent")
-    func accentColorUsesSystemAccent() {
-        let color = Color.arcAccent
-
-        #expect(color == Color.accentColor, "Accent should use system accent color")
-    }
-
     // MARK: - Shadow Colors
 
     @Test("Shadow light color has correct opacity")
@@ -51,7 +42,6 @@ struct ColorTokensTests {
     @Test("Primary background color is accessible")
     func primaryBackgroundColorIsAccessible() {
         let color = Color.arcBackgroundPrimary
-        // Color should be non-nil and accessible
         #expect(color.description.isEmpty == false)
     }
 
@@ -67,19 +57,7 @@ struct ColorTokensTests {
         #expect(color.description.isEmpty == false)
     }
 
-    // MARK: - Text Colors
-
-    @Test("Primary text color uses SwiftUI primary")
-    func primaryTextColorUsesPrimary() {
-        let color = Color.arcTextPrimary
-        #expect(color == Color.primary)
-    }
-
-    @Test("Secondary text color uses SwiftUI secondary")
-    func secondaryTextColorUsesSecondary() {
-        let color = Color.arcTextSecondary
-        #expect(color == Color.secondary)
-    }
+    // MARK: - Extended Text Colors
 
     @Test("Tertiary text color is accessible")
     func tertiaryTextColorIsAccessible() {
@@ -125,12 +103,5 @@ struct ColorTokensTests {
     func opaqueSeparatorColorIsAccessible() {
         let color = Color.arcSeparatorOpaque
         #expect(color.description.isEmpty == false)
-    }
-
-    // MARK: - Legacy Aliases
-
-    @Test("Legacy highlight alias matches accent")
-    func legacyHighlightMatchesAccent() {
-        #expect(Color.arcHighlight == Color.arcAccent)
     }
 }

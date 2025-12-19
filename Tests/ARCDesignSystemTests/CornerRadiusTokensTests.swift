@@ -11,40 +11,24 @@ import Testing
 
 @Suite("Corner Radius Tokens Tests")
 struct CornerRadiusTokensTests {
-    @Test("Small corner radius has correct base value")
-    func smallCornerRadiusHasCorrectBaseValue() {
-        let radius = CGFloat.arcCornerRadiusSmall
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedValue = 8 * scaleFactor * 0.8
-
-        #expect(radius == expectedValue, "Small corner radius should be 8pt × scale × 0.8")
+    @Test("Small corner radius has correct value")
+    func smallCornerRadiusHasCorrectValue() {
+        #expect(CGFloat.arcCornerRadiusSmall == 8, "Small corner radius should be 8pt")
     }
 
-    @Test("Medium corner radius has correct base value")
-    func mediumCornerRadiusHasCorrectBaseValue() {
-        let radius = CGFloat.arcCornerRadiusMedium
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedValue = 16 * scaleFactor * 0.8
-
-        #expect(radius == expectedValue, "Medium corner radius should be 16pt × scale × 0.8")
+    @Test("Medium corner radius has correct value")
+    func mediumCornerRadiusHasCorrectValue() {
+        #expect(CGFloat.arcCornerRadiusMedium == 16, "Medium corner radius should be 16pt")
     }
 
-    @Test("Large corner radius has correct base value")
-    func largeCornerRadiusHasCorrectBaseValue() {
-        let radius = CGFloat.arcCornerRadiusLarge
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedValue = 24 * scaleFactor * 0.8
-
-        #expect(radius == expectedValue, "Large corner radius should be 24pt × scale × 0.8")
+    @Test("Large corner radius has correct value")
+    func largeCornerRadiusHasCorrectValue() {
+        #expect(CGFloat.arcCornerRadiusLarge == 24, "Large corner radius should be 24pt")
     }
 
-    @Test("XLarge corner radius has correct base value")
-    func xLargeCornerRadiusHasCorrectBaseValue() {
-        let radius = CGFloat.arcCornerRadiusXLarge
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedValue = 32 * scaleFactor * 0.8
-
-        #expect(radius == expectedValue, "XLarge corner radius should be 32pt × scale × 0.8")
+    @Test("XLarge corner radius has correct value")
+    func xLargeCornerRadiusHasCorrectValue() {
+        #expect(CGFloat.arcCornerRadiusXLarge == 32, "XLarge corner radius should be 32pt")
     }
 
     @Test("Corner radius tokens are in ascending order")

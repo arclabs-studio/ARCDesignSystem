@@ -232,8 +232,8 @@ private struct ARCDiscreteEffectsSection: View {
 
                         if cartCount > 0 {
                             Text("\(cartCount)")
-                                .font(.arcFontTitle1)
-                                .foregroundStyle(ARCColorHelper.textSecondary)
+                                .font(.title)
+                                .foregroundStyle(.secondary)
                         }
                     }
 
@@ -368,8 +368,8 @@ private struct ARCContentTransitionSection: View {
                             .arcContentTransition(.layered)
 
                         Text(networkStatus.displayName)
-                            .font(.arcFontCallout)
-                            .foregroundStyle(ARCColorHelper.textSecondary)
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
                     }
 
                     Button("Change Status") {
@@ -418,7 +418,7 @@ private struct ARCTransitionEffectsSection: View {
                     .frame(height: 70)
 
                     Button(showWelcome ? "Hide" : "Show") {
-                        withAnimation(.arcAnimationSmooth) {
+                        withAnimation(.smooth) {
                             showWelcome.toggle()
                         }
                     }
@@ -446,7 +446,7 @@ private struct ARCTransitionEffectsSection: View {
                     .frame(height: 70)
 
                     Button(showNotification ? "Read" : "New Alert") {
-                        withAnimation(.arcAnimationQuick) {
+                        withAnimation(.snappy) {
                             showNotification.toggle()
                         }
                     }
@@ -466,14 +466,14 @@ private struct ARCTransitionEffectsSection: View {
                                 .arcTransition(.appear)
                                 .onAppear {
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                        withAnimation(.arcAnimationSmooth) {
+                                        withAnimation(.smooth) {
                                             showSuccess = false
                                         }
                                     }
                                 }
                         } else {
                             Button("Save") {
-                                withAnimation(.arcAnimationSmooth) {
+                                withAnimation(.smooth) {
                                     showSuccess = true
                                 }
                             }
@@ -499,12 +499,12 @@ private struct ARCEffectSectionHeader: View {
     var body: some View {
         VStack(spacing: .arcSpacingSmall) {
             Text(title)
-                .font(.arcFontTitle1)
-                .foregroundStyle(ARCColorHelper.textPrimary)
+                .font(.title)
+                .foregroundStyle(.primary)
 
             Text(subtitle)
-                .font(.arcFontCallout)
-                .foregroundStyle(ARCColorHelper.textSecondary)
+                .font(.callout)
+                .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity)
@@ -524,16 +524,16 @@ private struct ARCEffectCard<Content: View>: View {
             // Header
             HStack {
                 Image(systemName: systemImage)
-                    .foregroundStyle(ARCColorHelper.highlight)
+                    .foregroundStyle(ARCColorHelper.accent)
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)
-                        .font(.arcFontHeadline)
-                        .foregroundStyle(ARCColorHelper.textPrimary)
+                        .font(.headline)
+                        .foregroundStyle(.primary)
 
                     Text(description)
-                        .font(.arcFontFootnote)
-                        .foregroundStyle(ARCColorHelper.textSecondary)
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
                 }
 
                 Spacer()

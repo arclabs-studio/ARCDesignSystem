@@ -7,57 +7,53 @@
 
 import SwiftUI
 
-/// Adaptive corner radius tokens for the ARC Design System.
+/// Corner radius tokens for the ARC Design System.
 ///
 /// These corner radius values ensure consistent roundness across all UI elements
-/// while maintaining Apple's Human Interface Guidelines. All values scale with
-/// Dynamic Type (multiplied by 0.8 to avoid excessive roundness at large text sizes).
+/// following Apple Human Interface Guidelines. Values are fixed and do not scale
+/// with Dynamic Type (corner radius scaling is not an Apple practice).
 ///
 /// ## Available Corner Radius Tokens
 ///
-/// | Token | Base Value | Use Case |
-/// |-------|------------|----------|
-/// | ``arcCornerRadiusSmall`` | 6.4pt | Buttons, small cards, tags |
-/// | ``arcCornerRadiusMedium`` | 12.8pt | Cards, containers, modals |
-/// | ``arcCornerRadiusLarge`` | 19.2pt | Large cards, hero sections |
-/// | ``arcCornerRadiusXLarge`` | 25.6pt | Full-screen cards, sheets |
+/// | Token | Value | Use Case |
+/// |-------|-------|----------|
+/// | ``arcCornerRadiusSmall`` | 8pt | Buttons, small cards, tags |
+/// | ``arcCornerRadiusMedium`` | 16pt | Cards, containers, modals |
+/// | ``arcCornerRadiusLarge`` | 24pt | Large cards, hero sections |
+/// | ``arcCornerRadiusXLarge`` | 32pt | Full-screen cards, sheets |
 ///
 /// ## Example Usage
 ///
 /// ```swift
 /// RoundedRectangle(cornerRadius: .arcCornerRadiusMedium)
-///     .fill(.arcBackgroundSecondary)
+///     .fill(.regularMaterial)
 ///     .frame(width: 200, height: 100)
 /// ```
 ///
-/// - Note: Corner radius values are scaled by Dynamic Type × 0.8 to maintain
-///   reasonable roundness even with large accessibility text sizes.
+/// With clip shape:
+///
+/// ```swift
+/// Image("hero")
+///     .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusLarge))
+/// ```
 extension CGFloat {
-    /// Small corner radius token (6.4pt base).
+    /// Small corner radius token (8pt).
     ///
     /// Suitable for small elements like buttons, tags, badges, or compact cards.
-    ///
-    /// - Returns: 8pt × scale factor × 0.8.
-    public static var arcCornerRadiusSmall: CGFloat { 8 * ARCLayoutScale.arcScaleFactor * 0.8 }
+    public static let arcCornerRadiusSmall: CGFloat = 8
 
-    /// Medium corner radius token (12.8pt base).
+    /// Medium corner radius token (16pt).
     ///
     /// Standard corner radius for cards, containers, input fields, and modals.
-    ///
-    /// - Returns: 16pt × scale factor × 0.8.
-    public static var arcCornerRadiusMedium: CGFloat { 16 * ARCLayoutScale.arcScaleFactor * 0.8 }
+    public static let arcCornerRadiusMedium: CGFloat = 16
 
-    /// Large corner radius token (19.2pt base).
+    /// Large corner radius token (24pt).
     ///
     /// Creates prominent rounded corners for large cards, hero sections, or featured content.
-    ///
-    /// - Returns: 24pt × scale factor × 0.8.
-    public static var arcCornerRadiusLarge: CGFloat { 24 * ARCLayoutScale.arcScaleFactor * 0.8 }
+    public static let arcCornerRadiusLarge: CGFloat = 24
 
-    /// Extra large corner radius token (25.6pt base).
+    /// Extra large corner radius token (32pt).
     ///
     /// Maximum roundness for full-screen cards, bottom sheets, or immersive UI elements.
-    ///
-    /// - Returns: 32pt × scale factor × 0.8.
-    public static var arcCornerRadiusXLarge: CGFloat { 32 * ARCLayoutScale.arcScaleFactor * 0.8 }
+    public static let arcCornerRadiusXLarge: CGFloat = 32
 }
