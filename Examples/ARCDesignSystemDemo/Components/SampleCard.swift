@@ -2,7 +2,7 @@
 //  SampleCard.swift
 //  ARCDesignSystemDemo
 //
-//  Created by ARC Labs on 12/19/25.
+//  Created by ARC Labs Studio on 12/19/25.
 //
 
 import ARCDesignSystem
@@ -10,7 +10,7 @@ import SwiftUI
 
 /// A sample card component demonstrating ARC Design System tokens.
 ///
-/// This component showcases how to combine typography, spacing, colors,
+/// This component showcases how to combine spacing, colors,
 /// and corner radius tokens to create a cohesive card design.
 struct SampleCard: View {
     let title: String
@@ -23,24 +23,24 @@ struct SampleCard: View {
             // Icon
             Image(systemName: imageName)
                 .font(.system(size: 32))
-                .foregroundStyle(Color.arcAccent)
+                .foregroundStyle(.tint)
                 .frame(width: 56, height: 56)
-                .background(Color.arcAccent.opacity(0.15))
+                .background(Color.accentColor.opacity(0.15))
                 .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
 
             // Content
             VStack(alignment: .leading, spacing: .arcSpacingXSmall) {
                 Text(title)
-                    .font(.arcFontHeadline)
-                    .foregroundStyle(Color.arcTextPrimary)
+                    .font(.headline)
+                    .foregroundStyle(.primary)
 
                 Text(subtitle)
-                    .font(.arcFontSubheadline)
-                    .foregroundStyle(Color.arcAccent)
+                    .font(.subheadline)
+                    .foregroundStyle(.tint)
 
                 Text(description)
-                    .font(.arcFontFootnote)
-                    .foregroundStyle(Color.arcTextSecondary)
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
                     .lineLimit(2)
             }
 

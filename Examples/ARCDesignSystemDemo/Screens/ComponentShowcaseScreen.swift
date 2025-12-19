@@ -2,7 +2,7 @@
 //  ComponentShowcaseScreen.swift
 //  ARCDesignSystemDemo
 //
-//  Created by ARC Labs on 12/19/25.
+//  Created by ARC Labs Studio on 12/19/25.
 //
 
 import ARCDesignSystem
@@ -21,14 +21,14 @@ struct ComponentShowcaseScreen: View {
                     SampleCard(
                         title: "Welcome to ARC",
                         subtitle: "Design System Demo",
-                        description: "This card demonstrates typography, spacing, and color tokens.",
+                        description: "This card demonstrates spacing, and color tokens.",
                         imageName: "star.fill"
                     )
 
                     SampleCard(
                         title: "Accessibility First",
                         subtitle: "Dynamic Type Support",
-                        description: "All components scale beautifully with system accessibility settings.",
+                        description: "All components scale with system accessibility settings.",
                         imageName: "accessibility"
                     )
                 }
@@ -66,8 +66,8 @@ struct ComponentShowcaseScreen: View {
     ) -> some View {
         VStack(alignment: .leading, spacing: .arcSpacingMedium) {
             Text(title)
-                .font(.arcFontTitle2)
-                .foregroundStyle(Color.arcTextPrimary)
+                .font(.title2.bold())
+                .foregroundStyle(.primary)
 
             content()
         }

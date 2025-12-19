@@ -2,7 +2,7 @@
 //  SampleButtonRow.swift
 //  ARCDesignSystemDemo
 //
-//  Created by ARC Labs on 12/19/25.
+//  Created by ARC Labs Studio on 12/19/25.
 //
 
 import ARCDesignSystem
@@ -10,7 +10,7 @@ import SwiftUI
 
 /// A row of sample buttons demonstrating different button styles.
 ///
-/// Shows primary, secondary, and destructive button styles
+/// Shows primary, secondary, and tertiary button styles
 /// using ARC Design System tokens.
 struct SampleButtonRow: View {
     var body: some View {
@@ -20,11 +20,11 @@ struct SampleButtonRow: View {
                 // Action
             } label: {
                 Label("Primary Action", systemImage: "checkmark.circle.fill")
-                    .font(.arcFontHeadline)
+                    .font(.headline)
                     .foregroundStyle(.white)
                     .padding(.arcPaddingCompact)
                     .frame(maxWidth: .infinity)
-                    .background(Color.arcAccent)
+                    .background(Color.accentColor)
                     .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
             }
 
@@ -34,11 +34,11 @@ struct SampleButtonRow: View {
                     // Action
                 } label: {
                     Text("Secondary")
-                        .font(.arcFontBody)
-                        .foregroundStyle(Color.arcAccent)
+                        .font(.body)
+                        .foregroundStyle(.tint)
                         .padding(.arcPaddingCompact)
                         .frame(maxWidth: .infinity)
-                        .background(Color.arcAccent.opacity(0.15))
+                        .background(Color.accentColor.opacity(0.15))
                         .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
                 }
 
@@ -46,8 +46,8 @@ struct SampleButtonRow: View {
                     // Action
                 } label: {
                     Text("Tertiary")
-                        .font(.arcFontBody)
-                        .foregroundStyle(Color.arcTextPrimary)
+                        .font(.body)
+                        .foregroundStyle(.primary)
                         .padding(.arcPaddingCompact)
                         .frame(maxWidth: .infinity)
                         .background(Color.arcBackgroundTertiary)
@@ -79,9 +79,9 @@ struct SampleButtonRow: View {
                 Image(systemName: systemName)
                     .font(.system(size: 20))
                 Text(label)
-                    .font(.arcFontCaption1)
+                    .font(.caption)
             }
-            .foregroundStyle(Color.arcTextSecondary)
+            .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
     }
