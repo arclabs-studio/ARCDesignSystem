@@ -2,8 +2,100 @@
 
 All notable changes to ARCDesignSystem will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [2.0.0] - 2025-12-19
+
+### Added
+
+- **Material Effects** (`Material+Effects.swift`)
+  - `.arcUltraThin`, `.arcThin`, `.arcRegular`, `.arcThick`, `.arcUltraThick`, `.arcBar` material presets
+  - `.arcMaterialBackground(_:cornerRadius:)` modifier for convenient material application
+
+- **Vibrancy Effects** (`Vibrancy+Effects.swift`)
+  - `.arcVibrancyLabel()`, `.arcVibrancySecondary()`, `.arcVibrancyTertiary()`, `.arcVibrancyQuaternary()` modifiers
+
+- **Liquid Glass Helpers** (`Glass+Effects.swift`)
+  - Prepared for iOS 26+ SDK (implementation commented out until SDK availability)
+  - `.arcGlass()`, `.arcGlassProminent()`, `.arcBackgroundExtension()` modifiers
+
+- **ScaledValue Documentation** (`ScaledValue.swift`)
+  - Documentation anchor for `@ScaledMetric` usage patterns
+
+- **Demo App** (`Examples/ARCDesignSystemDemo/`)
+  - Complete showcase app demonstrating all design tokens
+  - Token Catalog with interactive displays
+  - Component Showcase with real-world UI examples
+  - Interactive Playground for materials and vibrancy
+  - Accessibility Testing with `@ScaledMetric` demo
+
+### Changed
+
+- **Spacing Tokens**: Now provide base values only; use `@ScaledMetric` for Dynamic Type scaling
+- **Corner Radius Tokens**: Fixed values (no longer scale with Dynamic Type, following Apple conventions)
+- **Padding Presets**: Base values without automatic scaling
+- **Color Tokens**: Reduced to semantic colors not available in native SwiftUI
+- **File Organization**: Reorganized into `Tokens/`, `Effects/`, `Helpers/`, `Previews/` structure
+
+### Removed
+
+- **Typography Tokens** (`Font+Typography.swift`)
+  - Use SwiftUI native: `.body`, `.title`, `.headline`, `.caption`, etc.
+
+- **Animation Presets** (`Animation+Presets.swift`)
+  - Use SwiftUI native: `.spring()`, `.smooth`, `.snappy`, `.easeInOut`
+
+- **Layout Scale** (`ARCLayoutScale.swift`)
+  - Use SwiftUI native: `@ScaledMetric` property wrapper
+
+- **Accessibility Utilities** (`ARCAccessibility.swift`)
+  - Use SwiftUI native: `@Environment(\.accessibilityReduceMotion)`, `@Environment(\.colorSchemeContrast)`, etc.
+
+- **Redundant Colors**
+  - `Color.arcTextPrimary` → Use `.primary`
+  - `Color.arcTextSecondary` → Use `.secondary`
+  - `Color.arcAccent` → Use `.tint` or `.accentColor`
+
+- **Deprecated Preview Files**
+  - `ARCDesignSystemDocumentation.swift`
+  - `ARCDesignSystemInteractivePreview.swift`
+
+### Breaking Changes
+
+This is a major version with intentional breaking changes to align with Apple's native APIs:
+
+```swift
+// Typography: Use SwiftUI native fonts
+.font(.arcFontTitle1)       →  .font(.title)
+.font(.arcFontBody)         →  .font(.body)
+.font(.arcFontHeadline)     →  .font(.headline)
+
+// Text Colors: Use SwiftUI native styles
+.foregroundStyle(.arcTextPrimary)    →  .foregroundStyle(.primary)
+.foregroundStyle(.arcTextSecondary)  →  .foregroundStyle(.secondary)
+
+// Accent Colors: Use SwiftUI native
+.foregroundStyle(.arcAccent)  →  .foregroundStyle(.tint)
+
+// Animations: Use SwiftUI native
+withAnimation(.arcAnimationSmooth)  →  withAnimation(.smooth)
+withAnimation(.arcAnimationQuick)   →  withAnimation(.snappy)
+
+// Accessibility: Use SwiftUI Environment
+ARCAccessibility.prefersReducedMotion  →  @Environment(\.accessibilityReduceMotion)
+ARCAccessibility.prefersHighContrast   →  @Environment(\.colorSchemeContrast)
+
+// Dynamic Type: Use @ScaledMetric
+// Before: Automatic scaling
+VStack(spacing: .arcSpacingMedium) { }
+
+// After: Explicit scaling
+@ScaledMetric var spacing = CGFloat.arcSpacingMedium
+VStack(spacing: spacing) { }
+```
+
+---
 
 ## [1.0.0] - 2025-12-16
 

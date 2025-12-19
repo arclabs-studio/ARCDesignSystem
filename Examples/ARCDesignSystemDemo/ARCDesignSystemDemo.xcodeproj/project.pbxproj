@@ -421,6 +421,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		A3000001000000000000000C /* ARCDesignSystem */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = AC0000010000000000000001 /* XCLocalSwiftPackageReference "../.." */;
 			productName = ARCDesignSystem;
 		};
 /* End XCSwiftPackageProductDependency section */

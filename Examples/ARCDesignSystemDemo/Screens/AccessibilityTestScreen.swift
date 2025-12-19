@@ -2,7 +2,7 @@
 //  AccessibilityTestScreen.swift
 //  ARCDesignSystemDemo
 //
-//  Created by ARC Labs on 12/19/25.
+//  Created by ARC Labs Studio on 12/19/25.
 //
 
 import ARCDesignSystem
@@ -47,8 +47,8 @@ struct AccessibilityTestScreen: View {
     private var sizeSelector: some View {
         VStack(alignment: .leading, spacing: .arcSpacingSmall) {
             Text("Dynamic Type Size")
-                .font(.arcFontHeadline)
-                .foregroundStyle(Color.arcTextPrimary)
+                .font(.headline)
+                .foregroundStyle(.primary)
 
             Picker("Size", selection: $selectedSize) {
                 ForEach(sizes, id: \.self) { size in
@@ -72,61 +72,43 @@ struct AccessibilityTestScreen: View {
             // Typography sample
             VStack(alignment: .leading, spacing: .arcSpacingMedium) {
                 Text("Typography Scale")
-                    .font(.arcFontTitle2)
+                    .font(.title2.bold())
 
                 Text("Title Large")
-                    .font(.arcFontTitleLarge)
+                    .font(.largeTitle)
                 Text("Body text that demonstrates how the design system adapts to different accessibility settings.")
-                    .font(.arcFontBody)
+                    .font(.body)
                 Text("Caption text for secondary information")
-                    .font(.arcFontCaption1)
-                    .foregroundStyle(Color.arcTextSecondary)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
             .padding(.arcPaddingCard)
             .background(Color.arcBackgroundSecondary)
             .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
 
-            // Spacing sample
-            VStack(alignment: .leading, spacing: .arcSpacingMedium) {
-                Text("Spacing Scale")
-                    .font(.arcFontTitle2)
-
-                HStack(spacing: .arcSpacingSmall) {
-                    ForEach(0 ..< 5) { _ in
-                        RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
-                            .fill(Color.arcAccent)
-                            .frame(width: .arcSpacingLarge, height: .arcSpacingLarge)
-                    }
-                }
-
-                Text("Elements above use arcSpacingSmall between items and arcSpacingLarge for size.")
-                    .font(.arcFontFootnote)
-                    .foregroundStyle(Color.arcTextSecondary)
-            }
-            .padding(.arcPaddingCard)
-            .background(Color.arcBackgroundSecondary)
-            .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
+            // Spacing sample with @ScaledMetric demo
+            ScaledSpacingDemo()
 
             // Interactive sample
             VStack(alignment: .leading, spacing: .arcSpacingMedium) {
                 Text("Interactive Elements")
-                    .font(.arcFontTitle2)
+                    .font(.title2.bold())
 
                 Button {
                     // Action
                 } label: {
                     Text("Primary Action")
-                        .font(.arcFontHeadline)
+                        .font(.headline)
                         .foregroundStyle(.white)
                         .padding(.arcPaddingCompact)
                         .frame(maxWidth: .infinity)
-                        .background(Color.arcAccent)
+                        .background(Color.accentColor)
                         .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
                 }
 
-                Text("Buttons should remain tappable at all sizes with adequate touch targets.")
-                    .font(.arcFontFootnote)
-                    .foregroundStyle(Color.arcTextSecondary)
+                Text("Buttons remain tappable at all sizes with adequate touch targets.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
             }
             .padding(.arcPaddingCard)
             .background(Color.arcBackgroundSecondary)
@@ -153,6 +135,42 @@ struct AccessibilityTestScreen: View {
         case .accessibility5: "A5"
         @unknown default: "Unknown"
         }
+    }
+}
+
+// MARK: - Scaled Spacing Demo
+
+/// Demonstrates @ScaledMetric for Dynamic Type scaling
+private struct ScaledSpacingDemo: View {
+    @ScaledMetric(relativeTo: .body)
+    var scaledSpacing = CGFloat.arcSpacingLarge
+    @ScaledMetric(relativeTo: .body)
+    var scaledSize = CGFloat.arcSpacingLarge
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: .arcSpacingMedium) {
+            Text("@ScaledMetric Demo")
+                .font(.title2.bold())
+
+            Text("These squares use @ScaledMetric to scale with Dynamic Type:")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+
+            HStack(spacing: scaledSpacing) {
+                ForEach(0 ..< 4, id: \.self) { _ in
+                    RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
+                        .fill(Color.accentColor)
+                        .frame(width: scaledSize, height: scaledSize)
+                }
+            }
+
+            Text("Spacing: \(Int(scaledSpacing))pt (base: 16pt)")
+                .font(.caption.monospaced())
+                .foregroundStyle(.tertiary)
+        }
+        .padding(.arcPaddingCard)
+        .background(Color.arcBackgroundSecondary)
+        .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
     }
 }
 

@@ -2,7 +2,7 @@
 //  SampleList.swift
 //  ARCDesignSystemDemo
 //
-//  Created by ARC Labs on 12/19/25.
+//  Created by ARC Labs Studio on 12/19/25.
 //
 
 import ARCDesignSystem
@@ -49,20 +49,20 @@ struct SampleList: View {
             // Icon
             Image(systemName: icon)
                 .font(.system(size: 18))
-                .foregroundStyle(Color.arcAccent)
+                .foregroundStyle(.tint)
                 .frame(width: 32, height: 32)
-                .background(Color.arcAccent.opacity(0.15))
+                .background(Color.accentColor.opacity(0.15))
                 .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusSmall))
 
             // Content
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
-                    .font(.arcFontBody)
-                    .foregroundStyle(Color.arcTextPrimary)
+                    .font(.body)
+                    .foregroundStyle(.primary)
 
                 Text(subtitle)
-                    .font(.arcFontCaption1)
-                    .foregroundStyle(Color.arcTextSecondary)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
 
             Spacer()
@@ -70,7 +70,7 @@ struct SampleList: View {
             // Chevron
             Image(systemName: "chevron.right")
                 .font(.system(size: 14, weight: .semibold))
-                .foregroundStyle(Color.arcTextSecondary.opacity(0.5))
+                .foregroundStyle(.secondary.opacity(0.5))
         }
         .padding(.horizontal, .arcSpacingMedium)
         .padding(.vertical, .arcSpacingSmall)

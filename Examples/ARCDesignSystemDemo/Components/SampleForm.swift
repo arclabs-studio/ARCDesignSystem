@@ -2,7 +2,7 @@
 //  SampleForm.swift
 //  ARCDesignSystemDemo
 //
-//  Created by ARC Labs on 12/19/25.
+//  Created by ARC Labs Studio on 12/19/25.
 //
 
 import ARCDesignSystem
@@ -33,11 +33,11 @@ struct SampleForm: View {
             HStack {
                 VStack(alignment: .leading, spacing: .arcSpacingXSmall) {
                     Text("Notifications")
-                        .font(.arcFontBody)
-                        .foregroundStyle(Color.arcTextPrimary)
+                        .font(.body)
+                        .foregroundStyle(.primary)
                     Text("Receive push notifications")
-                        .font(.arcFontCaption1)
-                        .foregroundStyle(Color.arcTextSecondary)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
 
                 Spacer()
@@ -52,8 +52,8 @@ struct SampleForm: View {
             // Segmented picker
             VStack(alignment: .leading, spacing: .arcSpacingSmall) {
                 Text("Theme")
-                    .font(.arcFontBody)
-                    .foregroundStyle(Color.arcTextPrimary)
+                    .font(.body)
+                    .foregroundStyle(.primary)
 
                 Picker("Theme", selection: $selectedTheme) {
                     Text("System").tag(0)
@@ -78,11 +78,11 @@ struct SampleForm: View {
     ) -> some View {
         VStack(alignment: .leading, spacing: .arcSpacingXSmall) {
             Text(label)
-                .font(.arcFontFootnote)
-                .foregroundStyle(Color.arcTextSecondary)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
 
             TextField(placeholder, text: text)
-                .font(.arcFontBody)
+                .font(.body)
                 .padding(.arcPaddingCompact)
                 .background(Color.arcBackgroundTertiary)
                 .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusSmall))

@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  ARCDesignSystemDemo
 //
-//  Created by ARC Labs on 12/19/25.
+//  Created by ARC Labs Studio on 12/19/25.
 //
 
 import ARCDesignSystem
