@@ -1,21 +1,28 @@
 # ARCDesignSystem
 
-A modular SwiftUI design system for ARC Labs Studio applications, providing adaptive design tokens that scale with Dynamic Type across all Apple platforms.
+A modern, minimal SwiftUI design system for ARC Labs Studio applications. Built on Apple's native APIs with zero redundancy.
 
 ![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)
 ![Platforms](https://img.shields.io/badge/platforms-iOS%2017%20%7C%20macOS%2014%20%7C%20tvOS%2017%20%7C%20watchOS%2010-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-## Features
+## Philosophy
 
-- ✅ **Adaptive Spacing** - Tokens that scale with Dynamic Type preferences
-- ✅ **Typography System** - HIG-compliant fonts with automatic scaling
-- ✅ **Semantic Colors** - Platform-adaptive background, text, and accent colors
-- ✅ **Corner Radii** - Consistent, scalable corner radius tokens
-- ✅ **Animation Presets** - Smooth, accessible animation configurations
-- ✅ **Accessibility Support** - Built-in helpers for high contrast, reduced motion, and more
-- ✅ **Cross-Platform** - iOS, macOS, tvOS, and watchOS support
-- ✅ **SwiftUI Previews** - Interactive documentation and visual catalogs
+ARCDesignSystem provides **only what SwiftUI doesn't offer natively**:
+
+- **Spacing & Corner Radius Tokens** - Consistent base values for use with `@ScaledMetric`
+- **Semantic Background Colors** - Cross-platform background colors (UIKit/AppKit unified)
+- **Extended Text Colors** - Tertiary, quaternary, and disabled text colors not in SwiftUI
+- **Symbol Effects** - Preset configurations for SF Symbols animations
+- **Material & Vibrancy Helpers** - Convenient wrappers for iOS 15+ materials
+- **Liquid Glass Helpers** - Ready for iOS 26+ (currently behind `#if swift(>=6.0)`)
+
+**What we DON'T provide** (use SwiftUI directly):
+- Typography → Use `.body`, `.title`, `.headline`, etc.
+- Primary/Secondary text → Use `.primary`, `.secondary`
+- Accent colors → Use `.tint` or `.accentColor`
+- Animations → Use `.spring()`, `.smooth`, `.snappy`
+- Accessibility → Use `@Environment(\.accessibilityReduceMotion)`, etc.
 
 ## Requirements
 
@@ -27,11 +34,9 @@ A modular SwiftUI design system for ARC Labs Studio applications, providing adap
 
 ### Swift Package Manager
 
-Add the package to your `Package.swift`:
-
 ```swift
 dependencies: [
-    .package(url: "https://github.com/arclabs-studio/ARCDesignSystem", from: "1.0.0")
+    .package(url: "https://github.com/arclabs-studio/ARCDesignSystem", from: "2.0.0")
 ]
 ```
 
@@ -44,22 +49,25 @@ import SwiftUI
 import ARCDesignSystem
 
 struct ContentCard: View {
+    // Use @ScaledMetric for Dynamic Type scaling
+    @ScaledMetric(relativeTo: .body) var cardPadding = CGFloat.arcSpacingLarge
+    @ScaledMetric(relativeTo: .body) var spacing = CGFloat.arcSpacingMedium
+
     var body: some View {
-        VStack(alignment: .leading, spacing: .arcSpacingMedium) {
+        VStack(alignment: .leading, spacing: spacing) {
             Text("Account Balance")
-                .font(.arcFontTitle3)
-                .foregroundStyle(.arcTextPrimary)
+                .font(.title3)                    // Native SwiftUI
+                .foregroundStyle(.primary)        // Native SwiftUI
 
             Text("Available funds")
-                .font(.arcFontFootnote)
-                .foregroundStyle(.arcTextSecondary)
+                .font(.footnote)
+                .foregroundStyle(.secondary)      // Native SwiftUI
 
             Text("$1,245.30")
-                .font(.arcFontTitleLarge)
-                .foregroundStyle(.arcTextPrimary)
+                .font(.largeTitle.bold())
         }
-        .padding(.arcPaddingCard)
-        .background(.arcBackgroundSecondary)
+        .padding(cardPadding)
+        .background(.arcBackgroundSecondary)      // ARC token
         .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
         .shadow(color: .arcShadowMedium, radius: 8, x: 0, y: 4)
     }
@@ -68,143 +76,234 @@ struct ContentCard: View {
 
 ## Token Reference
 
-### Spacing
+### Spacing (Base Values)
 
-| Token | Base Value | Description |
-|-------|-----------|-------------|
-| `.arcSpacingXSmall` | 4pt | Minimal gaps, tight layouts |
-| `.arcSpacingSmall` | 8pt | Compact spacing, list items |
-| `.arcSpacingMedium` | 12pt | Standard element spacing |
-| `.arcSpacingLarge` | 16pt | Section spacing, card padding |
-| `.arcSpacingXLarge` | 24pt | Large gaps between sections |
-| `.arcSpacingXXLarge` | 32pt | Maximum spacing, major separators |
+Use with `@ScaledMetric` in your views for Dynamic Type support:
 
-### Typography
+| Token | Value | Usage |
+|-------|-------|-------|
+| `.arcSpacingXSmall` | 4pt | Minimal gaps |
+| `.arcSpacingSmall` | 8pt | Compact spacing |
+| `.arcSpacingMedium` | 12pt | Standard spacing |
+| `.arcSpacingLarge` | 16pt | Section spacing |
+| `.arcSpacingXLarge` | 24pt | Large gaps |
+| `.arcSpacingXXLarge` | 32pt | Major separators |
 
-| Token | Style | Weight |
-|-------|-------|--------|
-| `.arcFontTitleLarge` | Large Title | Bold |
-| `.arcFontTitle1` | Title | Regular |
-| `.arcFontTitle2` | Title 2 | Regular |
-| `.arcFontTitle3` | Title 3 | Regular |
-| `.arcFontHeadline` | Headline | Semibold |
-| `.arcFontSubheadline` | Subheadline | Regular |
-| `.arcFontBody` | Body | Regular |
-| `.arcFontCallout` | Callout | Regular |
-| `.arcFontFootnote` | Footnote | Regular |
-| `.arcFontCaption1` | Caption | Regular |
-| `.arcFontCaption2` | Caption 2 | Regular |
+```swift
+struct MyView: View {
+    @ScaledMetric(relativeTo: .body) var spacing = CGFloat.arcSpacingMedium
+
+    var body: some View {
+        VStack(spacing: spacing) {
+            // Content scales with Dynamic Type
+        }
+    }
+}
+```
+
+### Corner Radius (Fixed Values)
+
+Corner radii don't scale with Dynamic Type (Apple convention):
+
+| Token | Value |
+|-------|-------|
+| `.arcCornerRadiusSmall` | 8pt |
+| `.arcCornerRadiusMedium` | 16pt |
+| `.arcCornerRadiusLarge` | 24pt |
+| `.arcCornerRadiusXLarge` | 32pt |
+
+### Padding Presets
+
+| Token | Values |
+|-------|--------|
+| `.arcPaddingCard` | 16pt all sides |
+| `.arcPaddingSection` | 24pt vertical, 16pt horizontal |
+| `.arcPaddingCompact` | 8pt vertical, 12pt horizontal |
+| `.arcPaddingHorizontal` | 16pt leading/trailing only |
 
 ### Colors
 
-**Backgrounds**
+**Backgrounds** (cross-platform unified):
 - `.arcBackgroundPrimary` - Main screen background
 - `.arcBackgroundSecondary` - Cards, elevated surfaces
 - `.arcBackgroundTertiary` - Grouped content, sidebars
 
-**Text**
-- `.arcTextPrimary` - Primary content
-- `.arcTextSecondary` - Supporting text
+**Extended Text** (not available natively):
 - `.arcTextTertiary` - Less prominent content
+- `.arcTextQuaternary` - Watermarks, minimal emphasis
 - `.arcTextDisabled` - Unavailable content
 
-**Interactive**
-- `.arcAccent` - System accent color
+**Interactive**:
 - `.arcLink` - Hyperlink text
 - `.arcPlaceholder` - Input placeholder text
 
-**Separators**
+**Separators**:
 - `.arcSeparator` - Standard dividers
 - `.arcSeparatorOpaque` - Opaque dividers
 
-**Shadows**
-- `.arcShadowLight` - Subtle elevation (8% opacity)
-- `.arcShadowMedium` - Standard elevation (15% opacity)
-- `.arcShadowStrong` - Prominent elevation (25% opacity)
+**Shadows**:
+- `.arcShadowLight` - 8% opacity
+- `.arcShadowMedium` - 15% opacity
+- `.arcShadowStrong` - 25% opacity
 
-### Corner Radius
-
-| Token | Base Value |
-|-------|-----------|
-| `.arcCornerRadiusSmall` | 6.4pt |
-| `.arcCornerRadiusMedium` | 12.8pt |
-| `.arcCornerRadiusLarge` | 19.2pt |
-| `.arcCornerRadiusXLarge` | 25.6pt |
-
-### Animations
-
-| Token | Description |
-|-------|-------------|
-| `.arcAnimationBase` | Standard ease-in-out (0.25s) |
-| `.arcAnimationSmooth` | Longer ease-in-out (0.35s) |
-| `.arcAnimationQuick` | Spring animation (0.25s response) |
-
-### Padding Presets
-
-| Token | Description |
-|-------|-------------|
-| `.arcPaddingCard` | Standard card padding |
-| `.arcPaddingSection` | Section container padding |
-| `.arcPaddingCompact` | Compact element padding |
-| `.arcPaddingHorizontal` | Horizontal-only padding |
-
-## Accessibility
-
-ARCDesignSystem includes `ARCAccessibility` utilities:
+### Symbol Effects
 
 ```swift
-// Check system accessibility settings
-if ARCAccessibility.prefersReducedMotion {
-    // Use simpler animations
-}
+// Indefinite effects (continuous)
+Image(systemName: "arrow.triangle.2.circlepath")
+    .arcSymbolEffect(.syncing, isActive: isSyncing)
 
-if ARCAccessibility.prefersHighContrast {
-    // Use stronger borders and colors
-}
+// Discrete effects (one-shot)
+Image(systemName: "checkmark.circle")
+    .arcSymbolEffect(.success, value: triggerCount)
 
-// SwiftUI environment integration
-WindowGroup {
-    ContentView()
-        .arcAccessibility()
+// Content transitions
+Image(systemName: isDark ? "moon" : "sun.max")
+    .arcContentTransition(.smooth)
+
+// Appear/disappear transitions
+if showIcon {
+    Image(systemName: "star")
+        .arcTransition(.appear)
 }
 ```
 
-## Previews
-
-The package includes interactive previews for documentation:
+### Materials (iOS 15+)
 
 ```swift
-#Preview {
-    ARCDesignSystemPreview()           // Visual token catalog
-}
+// Material background with corner radius
+Text("Floating Card")
+    .padding()
+    .arcMaterialBackground(.arcRegular, cornerRadius: .arcCornerRadiusMedium)
 
-#Preview {
-    ARCDesignSystemInteractivePreview() // Interactive testing
-}
+// Available materials:
+// .arcUltraThin, .arcThin, .arcRegular, .arcThick, .arcUltraThick, .arcBar
+```
 
-#Preview {
-    ARCDesignSystemDocumentation()     // Full documentation
+### Vibrancy
+
+```swift
+// Apply vibrancy to text over materials
+VStack {
+    Text("Primary").arcVibrancyLabel()
+    Text("Secondary").arcVibrancySecondary()
+    Text("Tertiary").arcVibrancyTertiary()
+    Text("Quaternary").arcVibrancyQuaternary()
 }
+.background(.regularMaterial)
+```
+
+### Liquid Glass (iOS 26+)
+
+> **Note:** Liquid Glass requires iOS 26 SDK. The implementation is prepared but commented
+> out until the SDK is publicly available. See `Glass+Effects.swift` for the planned API.
+
+```swift
+// Coming with iOS 26 SDK:
+// if #available(iOS 26.0, *) {
+//     Text("Glass Card")
+//         .padding()
+//         .arcGlass(cornerRadius: .arcCornerRadiusLarge, tint: .blue, interactive: true)
+// }
 ```
 
 ## Project Structure
 
 ```
 Sources/ARCDesignSystem/
-├── ARCLayoutScale.swift         # Dynamic Type scale factor
-├── ARCAccessibility.swift       # Accessibility utilities
-├── CGFloat+Spacing.swift        # Spacing tokens
-├── CGFloat+CornerRadius.swift   # Corner radius tokens
-├── EdgeInsets+Padding.swift     # Padding presets
-├── Color+Backgrounds.swift      # Semantic colors
-├── Color+Shadows.swift          # Shadow colors
-├── Font+Typography.swift        # Typography tokens
-├── Animation+Presets.swift      # Animation presets
-└── Previews/                    # Documentation views
-    ├── ARCDesignSystemPreview.swift
-    ├── ARCDesignSystemInteractivePreview.swift
-    ├── ARCDesignSystemDocumentation.swift
-    └── Helpers/ARCColor+Helpers.swift
+├── Tokens/
+│   ├── CGFloat+Spacing.swift        # Base spacing values
+│   ├── CGFloat+CornerRadius.swift   # Fixed corner radii
+│   ├── EdgeInsets+Padding.swift     # Padding presets
+│   ├── Color+Semantic.swift         # Semantic colors
+│   └── Color+Shadows.swift          # Shadow colors
+│
+├── Effects/
+│   ├── ARCSymbolEffect.swift        # Symbol effect presets
+│   ├── ARCSymbolAnimation.swift     # Symbol animations
+│   ├── Glass+Effects.swift          # Liquid Glass (iOS 26+)
+│   ├── Material+Effects.swift       # Material helpers
+│   └── Vibrancy+Effects.swift       # Vibrancy helpers
+│
+├── Helpers/
+│   └── ScaledValue.swift            # @ScaledMetric documentation
+│
+└── Previews/
+    ├── Views/
+    │   ├── ARCDesignSystemPreview.swift
+    │   └── ARCSymbolEffectsPreview.swift
+    └── Helpers/
+        └── ARCColor+Helpers.swift   # Cross-platform helpers
+```
+
+## Migration from v1.x
+
+This is a **breaking change** release. Here's how to migrate:
+
+### Typography
+```swift
+// Before
+.font(.arcFontTitle1)
+.font(.arcFontBody)
+
+// After - Use SwiftUI native
+.font(.title)
+.font(.body)
+```
+
+### Text Colors
+```swift
+// Before
+.foregroundStyle(.arcTextPrimary)
+.foregroundStyle(.arcTextSecondary)
+
+// After - Use SwiftUI native
+.foregroundStyle(.primary)
+.foregroundStyle(.secondary)
+```
+
+### Accent Colors
+```swift
+// Before
+.foregroundStyle(.arcAccent)
+
+// After - Use SwiftUI native
+.foregroundStyle(.tint)
+// or
+.tint(.blue)
+```
+
+### Animations
+```swift
+// Before
+withAnimation(.arcAnimationSmooth) { }
+
+// After - Use SwiftUI native
+withAnimation(.smooth) { }
+withAnimation(.spring()) { }
+withAnimation(.snappy) { }
+```
+
+### Accessibility
+```swift
+// Before
+ARCAccessibility.prefersReducedMotion
+ARCAccessibility.prefersHighContrast
+
+// After - Use SwiftUI native
+@Environment(\.accessibilityReduceMotion) var reduceMotion
+@Environment(\.colorSchemeContrast) var contrast
+@Environment(\.dynamicTypeSize) var typeSize
+```
+
+### Dynamic Type Scaling
+```swift
+// Before - Automatic scaling via ARCLayoutScale
+VStack(spacing: .arcSpacingMedium) { }
+
+// After - Explicit scaling via @ScaledMetric
+@ScaledMetric var spacing = CGFloat.arcSpacingMedium
+VStack(spacing: spacing) { }
 ```
 
 ## Development
@@ -212,45 +311,21 @@ Sources/ARCDesignSystem/
 ### Setup
 
 ```bash
-# Clone the repository
 git clone https://github.com/arclabs-studio/ARCDesignSystem.git
 cd ARCDesignSystem
-
-# Initialize submodules
 git submodule update --init --recursive
-
-# Run setup
 ./ARCDevTools/arcdevtools-setup
 ```
 
 ### Commands
 
 ```bash
+swift build    # Build package
+swift test     # Run tests
 make lint      # Run SwiftLint
-make format    # Preview formatting changes
+make format    # Preview formatting
 make fix       # Apply SwiftFormat
-make clean     # Clean build artifacts
 ```
-
-### Testing
-
-```bash
-swift test
-```
-
-## Documentation
-
-- See inline DocC documentation for all public APIs
-- Run previews in Xcode for visual documentation
-- See [CHANGELOG.md](CHANGELOG.md) for version history
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-token`)
-3. Run `make fix` and `make lint` before committing
-4. Run `swift test` to ensure all tests pass
-5. Create a Pull Request
 
 ## License
 

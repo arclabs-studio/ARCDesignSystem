@@ -14,51 +14,41 @@ struct PaddingTokensTests {
     @Test("Card padding has correct values")
     func cardPaddingHasCorrectValues() {
         let padding = EdgeInsets.arcPaddingCard
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedValue = 16 * scaleFactor
 
-        #expect(padding.top == expectedValue)
-        #expect(padding.leading == expectedValue)
-        #expect(padding.bottom == expectedValue)
-        #expect(padding.trailing == expectedValue)
+        #expect(padding.top == 16)
+        #expect(padding.leading == 16)
+        #expect(padding.bottom == 16)
+        #expect(padding.trailing == 16)
     }
 
     @Test("Horizontal padding has correct values")
     func horizontalPaddingHasCorrectValues() {
         let padding = EdgeInsets.arcPaddingHorizontal
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedHorizontal = 16 * scaleFactor
 
         #expect(padding.top == 0)
-        #expect(padding.leading == expectedHorizontal)
+        #expect(padding.leading == 16)
         #expect(padding.bottom == 0)
-        #expect(padding.trailing == expectedHorizontal)
+        #expect(padding.trailing == 16)
     }
 
     @Test("Section padding has correct values")
     func sectionPaddingHasCorrectValues() {
         let padding = EdgeInsets.arcPaddingSection
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedVertical = 24 * scaleFactor
-        let expectedHorizontal = 16 * scaleFactor
 
-        #expect(padding.top == expectedVertical)
-        #expect(padding.leading == expectedHorizontal)
-        #expect(padding.bottom == expectedVertical)
-        #expect(padding.trailing == expectedHorizontal)
+        #expect(padding.top == 24)
+        #expect(padding.leading == 16)
+        #expect(padding.bottom == 24)
+        #expect(padding.trailing == 16)
     }
 
     @Test("Compact padding has correct values")
     func compactPaddingHasCorrectValues() {
         let padding = EdgeInsets.arcPaddingCompact
-        let scaleFactor = ARCLayoutScale.arcScaleFactor
-        let expectedVertical = 8 * scaleFactor
-        let expectedHorizontal = 12 * scaleFactor
 
-        #expect(padding.top == expectedVertical)
-        #expect(padding.leading == expectedHorizontal)
-        #expect(padding.bottom == expectedVertical)
-        #expect(padding.trailing == expectedHorizontal)
+        #expect(padding.top == 8)
+        #expect(padding.leading == 12)
+        #expect(padding.bottom == 8)
+        #expect(padding.trailing == 12)
     }
 
     @Test("All padding values are non-negative")

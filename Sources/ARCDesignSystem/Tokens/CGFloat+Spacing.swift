@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-/// Adaptive spacing tokens for the ARC Design System.
+/// Base spacing tokens for the ARC Design System.
 ///
 /// These spacing values provide a consistent vertical and horizontal rhythm throughout
-/// your application. All values automatically scale based on the user's Dynamic Type
-/// settings via ``ARCLayoutScale/arcScaleFactor``.
+/// your application. Values are base constants - use `@ScaledMetric` in your views
+/// for Dynamic Type support.
 ///
 /// ## Available Spacing Tokens
 ///
-/// | Token | Base Value | Use Case |
-/// |-------|------------|----------|
+/// | Token | Value | Use Case |
+/// |-------|-------|----------|
 /// | ``arcSpacingXSmall`` | 4pt | Minimal gaps, tight layouts |
 /// | ``arcSpacingSmall`` | 8pt | Compact spacing, list items |
 /// | ``arcSpacingMedium`` | 12pt | Standard element spacing |
@@ -26,56 +26,61 @@ import SwiftUI
 ///
 /// ## Example Usage
 ///
+/// For Dynamic Type support, use `@ScaledMetric`:
+///
+/// ```swift
+/// struct CardView: View {
+///     @ScaledMetric(relativeTo: .body) var padding = CGFloat.arcSpacingLarge
+///     @ScaledMetric(relativeTo: .body) var spacing = CGFloat.arcSpacingMedium
+///
+///     var body: some View {
+///         VStack(spacing: spacing) {
+///             Text("Title")
+///             Text("Subtitle")
+///         }
+///         .padding(padding)
+///     }
+/// }
+/// ```
+///
+/// For fixed spacing (rare cases):
+///
 /// ```swift
 /// VStack(spacing: .arcSpacingMedium) {
 ///     Text("Title")
 ///     Text("Subtitle")
 /// }
-/// .padding(.arcSpacingLarge)
 /// ```
 ///
-/// - Note: All spacing values scale proportionally with Dynamic Type to maintain
-///   consistent visual hierarchy across accessibility settings.
+/// - Note: Use `@ScaledMetric` to ensure spacing scales with Dynamic Type.
 extension CGFloat {
-    /// Extra small spacing token (4pt base).
+    /// Extra small spacing token (4pt).
     ///
     /// Use for minimal gaps between tightly related elements or when space is limited.
-    ///
-    /// - Returns: 4pt multiplied by the current Dynamic Type scale factor.
-    public static var arcSpacingXSmall: CGFloat { 4 * ARCLayoutScale.arcScaleFactor }
+    public static let arcSpacingXSmall: CGFloat = 4
 
-    /// Small spacing token (8pt base).
+    /// Small spacing token (8pt).
     ///
     /// Ideal for compact layouts, list item spacing, or spacing between related elements.
-    ///
-    /// - Returns: 8pt multiplied by the current Dynamic Type scale factor.
-    public static var arcSpacingSmall: CGFloat { 8 * ARCLayoutScale.arcScaleFactor }
+    public static let arcSpacingSmall: CGFloat = 8
 
-    /// Medium spacing token (12pt base).
+    /// Medium spacing token (12pt).
     ///
     /// Standard spacing for most UI elements. Use as the default gap between components.
-    ///
-    /// - Returns: 12pt multiplied by the current Dynamic Type scale factor.
-    public static var arcSpacingMedium: CGFloat { 12 * ARCLayoutScale.arcScaleFactor }
+    public static let arcSpacingMedium: CGFloat = 12
 
-    /// Large spacing token (16pt base).
+    /// Large spacing token (16pt).
     ///
     /// Use for section spacing, card padding, or creating clear visual separation.
-    ///
-    /// - Returns: 16pt multiplied by the current Dynamic Type scale factor.
-    public static var arcSpacingLarge: CGFloat { 16 * ARCLayoutScale.arcScaleFactor }
+    public static let arcSpacingLarge: CGFloat = 16
 
-    /// Extra large spacing token (24pt base).
+    /// Extra large spacing token (24pt).
     ///
     /// Creates significant visual separation between major sections or content blocks.
-    ///
-    /// - Returns: 24pt multiplied by the current Dynamic Type scale factor.
-    public static var arcSpacingXLarge: CGFloat { 24 * ARCLayoutScale.arcScaleFactor }
+    public static let arcSpacingXLarge: CGFloat = 24
 
-    /// Extra extra large spacing token (32pt base).
+    /// Extra extra large spacing token (32pt).
     ///
     /// Maximum spacing for major visual separators or hero sections.
-    ///
-    /// - Returns: 32pt multiplied by the current Dynamic Type scale factor.
-    public static var arcSpacingXXLarge: CGFloat { 32 * ARCLayoutScale.arcScaleFactor }
+    public static let arcSpacingXXLarge: CGFloat = 32
 }
