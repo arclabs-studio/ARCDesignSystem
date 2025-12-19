@@ -195,15 +195,16 @@ VStack {
 
 ### Liquid Glass (iOS 26+)
 
-```swift
-if #available(iOS 26.0, *) {
-    Text("Glass Card")
-        .padding()
-        .arcGlass(cornerRadius: .arcCornerRadiusLarge, tint: .blue, interactive: true)
+> **Note:** Liquid Glass requires iOS 26 SDK. The implementation is prepared but commented
+> out until the SDK is publicly available. See `Glass+Effects.swift` for the planned API.
 
-    Image("hero")
-        .arcBackgroundExtension()
-}
+```swift
+// Coming with iOS 26 SDK:
+// if #available(iOS 26.0, *) {
+//     Text("Glass Card")
+//         .padding()
+//         .arcGlass(cornerRadius: .arcCornerRadiusLarge, tint: .blue, interactive: true)
+// }
 ```
 
 ## Project Structure

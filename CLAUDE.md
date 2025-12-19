@@ -48,7 +48,7 @@ make clean
 | **Extended Text** | SwiftUI only has primary/secondary | `.arcTextTertiary`, `.arcTextQuaternary`, `.arcTextDisabled` |
 | **Symbol Effects** | Simplify SF Symbols API | `.arcSymbolEffect(.syncing)`, etc. |
 | **Materials** | Convenience wrappers | `.arcMaterialBackground()` |
-| **Liquid Glass** | iOS 26+ helpers | `.arcGlass()` (behind Swift 6 check) |
+| **Liquid Glass** | iOS 26+ helpers | `.arcGlass()` (commented, awaiting SDK) |
 
 ### What We DON'T Provide (Use SwiftUI Directly)
 
@@ -149,13 +149,13 @@ Tests verify exact token values and relationships. Target: 100% coverage.
 
 4. **No external dependencies**: Zero third-party dependencies for maximum compatibility.
 
-5. **iOS 26+ ready**: Liquid Glass helpers behind `#if swift(>=6.0)` for future compatibility.
+5. **iOS 26+ ready**: Liquid Glass helpers prepared but commented out until SDK is available.
 
 6. **Breaking changes**: v2.0 removed deprecated aliases. No legacy support - clean API.
 
 ## Limitations
 
-- Liquid Glass (`arcGlass`) only compiles with Swift 6.0+ SDKs
+- Liquid Glass (`arcGlass`) requires iOS 26 SDK (implementation commented until available)
 - Symbol effects require iOS 17+
 - No runtime color customization (use asset catalogs for theming)
 
