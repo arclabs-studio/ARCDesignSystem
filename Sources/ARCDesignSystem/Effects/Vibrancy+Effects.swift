@@ -9,17 +9,44 @@ import SwiftUI
 
 // MARK: - Vibrancy Effects
 
-// Vibrancy effects make text and symbols appear vibrant when placed over
-// materials, creating a sense of depth and helping content blend naturally
-// with the underlying material.
-//
-// Vibrancy Levels:
-// - arcVibrancyLabel() → .primary (main content, titles)
-// - arcVibrancySecondary() → .secondary (supporting text)
-// - arcVibrancyTertiary() → .tertiary (subtle hints)
-// - arcVibrancyQuaternary() → .quaternary (minimal emphasis)
-//
-// Note: Vibrancy only works when content is placed over materials.
+/// Vibrancy effects make text and symbols appear vibrant when placed over
+/// materials, creating a sense of depth and helping content blend naturally
+/// with the underlying material.
+///
+/// ## Vibrancy Levels
+///
+/// | Level | Modifier | Use Case |
+/// |-------|----------|----------|
+/// | Label | `arcVibrancyLabel()` | Main content, titles |
+/// | Secondary | `arcVibrancySecondary()` | Supporting text, subtitles |
+/// | Tertiary | `arcVibrancyTertiary()` | Hints, timestamps, metadata |
+/// | Quaternary | `arcVibrancyQuaternary()` | Watermarks, decorative elements |
+///
+/// ## Material Compatibility (Apple HIG)
+///
+/// | Material | Label | Secondary | Tertiary | Quaternary |
+/// |----------|-------|-----------|----------|------------|
+/// | `.ultraThick` | ✅ | ✅ | ✅ | ✅ |
+/// | `.thick` | ✅ | ✅ | ✅ | ✅ |
+/// | `.regular` | ✅ | ✅ | ✅ | ✅ |
+/// | `.thin` | ✅ | ✅ | ✅ | ⚠️ Low contrast |
+/// | `.ultraThin` | ✅ | ✅ | ✅ | ⚠️ Low contrast |
+///
+/// - Important: **Avoid using quaternary vibrancy on thin and ultraThin materials**
+///   because the contrast is too low for comfortable reading (Apple HIG).
+///
+/// ## Example Usage
+///
+/// ```swift
+/// VStack {
+///     Text("Title").arcVibrancyLabel()
+///     Text("Subtitle").arcVibrancySecondary()
+///     Text("Details").arcVibrancyTertiary()
+/// }
+/// .background(.regularMaterial)
+/// ```
+///
+/// - Note: Vibrancy only has visible effect when content is placed over materials.
 
 extension View {
     /// Applies primary vibrancy effect (label level).
@@ -72,11 +99,24 @@ extension View {
     /// Use for the least prominent content like watermarks,
     /// decorative elements, or very subtle indicators.
     ///
+    /// - Warning: **Avoid using on `.thin` and `.ultraThin` materials.**
+    ///   According to Apple's Human Interface Guidelines, the contrast
+    ///   between quaternary text and thin/ultraThin materials is too low
+    ///   for comfortable reading. Use on `.regular`, `.thick`, or
+    ///   `.ultraThick` materials only.
+    ///
     /// - Returns: A view with quaternary foreground style.
     ///
     /// ```swift
+    /// // ✅ Good: quaternary on regular material
     /// Text("Watermark")
     ///     .arcVibrancyQuaternary()
+    ///     .background(.regularMaterial)
+    ///
+    /// // ⚠️ Avoid: quaternary on thin material (low contrast)
+    /// Text("Watermark")
+    ///     .arcVibrancyQuaternary()
+    ///     .background(.thinMaterial)
     /// ```
     public func arcVibrancyQuaternary() -> some View {
         foregroundStyle(.quaternary)

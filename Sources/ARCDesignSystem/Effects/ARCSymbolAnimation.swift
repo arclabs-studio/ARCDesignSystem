@@ -76,6 +76,10 @@ extension View {
             modifier(ARCVariableColorSyncEffectModifier(isActive: isActive))
         case .searching:
             modifier(ARCVariableColorEffectModifier(isActive: isActive))
+        case .breathing:
+            modifier(ARCBreathingEffectModifier(isActive: isActive))
+        case .spinning:
+            modifier(ARCRotateEffectModifier(isActive: isActive))
         default:
             self
         }
@@ -231,6 +235,44 @@ private struct ARCVariableColorEffectModifier: ViewModifier {
             content
         } else {
             content.symbolEffect(.variableColor.iterative.reversing, isActive: isActive)
+        }
+    }
+}
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+private struct ARCBreathingEffectModifier: ViewModifier {
+    let isActive: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    func body(content: Content) -> some View {
+        if reduceMotion {
+            content
+        } else {
+            if #available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, *) {
+                content.symbolEffect(.breathe, isActive: isActive)
+            } else {
+                // Fallback to pulse effect on iOS 17
+                content.symbolEffect(.pulse, isActive: isActive)
+            }
+        }
+    }
+}
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+private struct ARCRotateEffectModifier: ViewModifier {
+    let isActive: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    func body(content: Content) -> some View {
+        if reduceMotion {
+            content
+        } else {
+            if #available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, *) {
+                content.symbolEffect(.rotate, isActive: isActive)
+            } else {
+                // Fallback to variable color effect on iOS 17
+                content.symbolEffect(.variableColor.cumulative, isActive: isActive)
+            }
         }
     }
 }

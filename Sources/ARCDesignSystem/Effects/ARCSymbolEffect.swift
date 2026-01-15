@@ -90,6 +90,24 @@ public enum ARCSymbolEffect: CaseIterable, Sendable {
     /// - Example: Network scanning, Bluetooth discovery
     case searching
 
+    /// Indicates a live or active session.
+    ///
+    /// A smooth breathing animation that conveys ongoing activity with a living quality.
+    /// Use for recording sessions, live broadcasts, or meditation/mindfulness features.
+    ///
+    /// - Note: Requires iOS 18+, macOS 15+, tvOS 18+, or watchOS 11+.
+    /// - Example: Live recording indicator, active meditation session
+    case breathing
+
+    /// Indicates continuous rotation or spinning.
+    ///
+    /// A rotation animation that imitates real-world spinning objects.
+    /// Ideal for fan controls, loading spinners, or refresh indicators.
+    ///
+    /// - Note: Requires iOS 18+, macOS 15+, tvOS 18+, or watchOS 11+.
+    /// - Example: Fan speed control, processing indicator
+    case spinning
+
     // MARK: - Discrete Effects
 
     /// Confirms a successful action.
@@ -168,7 +186,7 @@ extension ARCSymbolEffect {
     /// Whether this effect is indefinite (continuous) or discrete (one-shot).
     public var isIndefinite: Bool {
         switch self {
-        case .inProgress, .hover, .syncing, .searching:
+        case .inProgress, .hover, .syncing, .searching, .breathing, .spinning:
             true
         default:
             false
