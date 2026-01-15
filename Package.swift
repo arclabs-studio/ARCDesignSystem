@@ -24,7 +24,10 @@ let package = Package(
     targets: [
         .target(
             name: "ARCDesignSystem",
-            path: "Sources"
+            path: "Sources",
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency")
+            ]
         ),
         .testTarget(
             name: "ARCDesignSystemTests",

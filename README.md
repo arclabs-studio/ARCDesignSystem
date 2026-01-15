@@ -1,48 +1,73 @@
-# ARCDesignSystem
-
-A modern, minimal SwiftUI design system for ARC Labs Studio applications. Built on Apple's native APIs with zero redundancy.
+# 🎨 ARCDesignSystem
 
 ![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)
 ![Platforms](https://img.shields.io/badge/platforms-iOS%2017%20%7C%20macOS%2014%20%7C%20tvOS%2017%20%7C%20watchOS%2010-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
 
-## Philosophy
+**A modern, minimal SwiftUI design system for ARC Labs Studio applications.**
 
-ARCDesignSystem provides **only what SwiftUI doesn't offer natively**:
+Spacing Tokens • Semantic Colors • Symbol Effects • Material Helpers • Dynamic Type Ready
 
-- **Spacing & Corner Radius Tokens** - Consistent base values for use with `@ScaledMetric`
-- **Semantic Background Colors** - Cross-platform background colors (UIKit/AppKit unified)
-- **Extended Text Colors** - Tertiary, quaternary, and disabled text colors not in SwiftUI
-- **Symbol Effects** - Preset configurations for SF Symbols animations
-- **Material & Vibrancy Helpers** - Convenient wrappers for iOS 15+ materials
-- **Liquid Glass Helpers** - Ready for iOS 26+ (currently behind `#if swift(>=6.0)`)
+---
 
-**What we DON'T provide** (use SwiftUI directly):
-- Typography → Use `.body`, `.title`, `.headline`, etc.
-- Primary/Secondary text → Use `.primary`, `.secondary`
-- Accent colors → Use `.tint` or `.accentColor`
-- Animations → Use `.spring()`, `.smooth`, `.snappy`
-- Accessibility → Use `@Environment(\.accessibilityReduceMotion)`, etc.
+## 🎯 Overview
 
-## Requirements
+ARCDesignSystem provides **only what SwiftUI doesn't offer natively**. It follows Apple's design philosophy: use native APIs directly, and extend only where gaps exist.
 
-- iOS 17.0+ / macOS 14.0+ / tvOS 17.0+ / watchOS 10.0+
-- Swift 6.0+
-- Xcode 16.0+
+### Key Features
 
-## Installation
+- ✅ **Spacing & Corner Radius Tokens** - Consistent base values for use with `@ScaledMetric`
+- ✅ **Semantic Background Colors** - Cross-platform background colors (UIKit/AppKit unified)
+- ✅ **Extended Text Colors** - Tertiary, quaternary, and disabled text colors not in SwiftUI
+- ✅ **Symbol Effects** - Preset configurations for SF Symbols animations
+- ✅ **Material & Vibrancy Helpers** - Convenient wrappers for iOS 15+ materials
+- ✅ **Liquid Glass Ready** - Prepared for iOS 26+ (awaiting SDK release)
+
+### What We DON'T Provide (Use SwiftUI Directly)
+
+| Instead of | Use Native SwiftUI |
+|------------|-------------------|
+| Typography | `.body`, `.title`, `.headline`, etc. |
+| Primary/Secondary text | `.primary`, `.secondary` |
+| Accent colors | `.tint` or `.accentColor` |
+| Animations | `.spring()`, `.smooth`, `.snappy` |
+| Accessibility | `@Environment(\.accessibilityReduceMotion)`, etc. |
+
+---
+
+## 📋 Requirements
+
+- **Swift:** 6.0+
+- **Platforms:** iOS 17.0+ / macOS 14.0+ / tvOS 17.0+ / watchOS 10.0+
+- **Xcode:** 16.0+
+
+---
+
+## 🚀 Installation
 
 ### Swift Package Manager
 
+#### For Swift Packages
+
 ```swift
+// Package.swift
 dependencies: [
     .package(url: "https://github.com/arclabs-studio/ARCDesignSystem", from: "2.0.0")
 ]
 ```
 
-Or in Xcode: **File → Add Packages...** and enter the repository URL.
+#### For Xcode Projects
 
-## Quick Start
+1. **File → Add Package Dependencies**
+2. Enter: `https://github.com/arclabs-studio/ARCDesignSystem`
+3. Select version: `2.0.0` or later
+
+---
+
+## 📖 Usage
+
+### Quick Start
 
 ```swift
 import SwiftUI
@@ -74,9 +99,7 @@ struct ContentCard: View {
 }
 ```
 
-## Token Reference
-
-### Spacing (Base Values)
+### Spacing Tokens
 
 Use with `@ScaledMetric` in your views for Dynamic Type support:
 
@@ -89,19 +112,7 @@ Use with `@ScaledMetric` in your views for Dynamic Type support:
 | `.arcSpacingXLarge` | 24pt | Large gaps |
 | `.arcSpacingXXLarge` | 32pt | Major separators |
 
-```swift
-struct MyView: View {
-    @ScaledMetric(relativeTo: .body) var spacing = CGFloat.arcSpacingMedium
-
-    var body: some View {
-        VStack(spacing: spacing) {
-            // Content scales with Dynamic Type
-        }
-    }
-}
-```
-
-### Corner Radius (Fixed Values)
+### Corner Radius Tokens
 
 Corner radii don't scale with Dynamic Type (Apple convention):
 
@@ -111,40 +122,6 @@ Corner radii don't scale with Dynamic Type (Apple convention):
 | `.arcCornerRadiusMedium` | 16pt |
 | `.arcCornerRadiusLarge` | 24pt |
 | `.arcCornerRadiusXLarge` | 32pt |
-
-### Padding Presets
-
-| Token | Values |
-|-------|--------|
-| `.arcPaddingCard` | 16pt all sides |
-| `.arcPaddingSection` | 24pt vertical, 16pt horizontal |
-| `.arcPaddingCompact` | 8pt vertical, 12pt horizontal |
-| `.arcPaddingHorizontal` | 16pt leading/trailing only |
-
-### Colors
-
-**Backgrounds** (cross-platform unified):
-- `.arcBackgroundPrimary` - Main screen background
-- `.arcBackgroundSecondary` - Cards, elevated surfaces
-- `.arcBackgroundTertiary` - Grouped content, sidebars
-
-**Extended Text** (not available natively):
-- `.arcTextTertiary` - Less prominent content
-- `.arcTextQuaternary` - Watermarks, minimal emphasis
-- `.arcTextDisabled` - Unavailable content
-
-**Interactive**:
-- `.arcLink` - Hyperlink text
-- `.arcPlaceholder` - Input placeholder text
-
-**Separators**:
-- `.arcSeparator` - Standard dividers
-- `.arcSeparatorOpaque` - Opaque dividers
-
-**Shadows**:
-- `.arcShadowLight` - 8% opacity
-- `.arcShadowMedium` - 15% opacity
-- `.arcShadowStrong` - 25% opacity
 
 ### Symbol Effects
 
@@ -160,15 +137,9 @@ Image(systemName: "checkmark.circle")
 // Content transitions
 Image(systemName: isDark ? "moon" : "sun.max")
     .arcContentTransition(.smooth)
-
-// Appear/disappear transitions
-if showIcon {
-    Image(systemName: "star")
-        .arcTransition(.appear)
-}
 ```
 
-### Materials (iOS 15+)
+### Materials
 
 ```swift
 // Material background with corner radius
@@ -180,34 +151,9 @@ Text("Floating Card")
 // .arcUltraThin, .arcThin, .arcRegular, .arcThick, .arcUltraThick, .arcBar
 ```
 
-### Vibrancy
+---
 
-```swift
-// Apply vibrancy to text over materials
-VStack {
-    Text("Primary").arcVibrancyLabel()
-    Text("Secondary").arcVibrancySecondary()
-    Text("Tertiary").arcVibrancyTertiary()
-    Text("Quaternary").arcVibrancyQuaternary()
-}
-.background(.regularMaterial)
-```
-
-### Liquid Glass (iOS 26+)
-
-> **Note:** Liquid Glass requires iOS 26 SDK. The implementation is prepared but commented
-> out until the SDK is publicly available. See `Glass+Effects.swift` for the planned API.
-
-```swift
-// Coming with iOS 26 SDK:
-// if #available(iOS 26.0, *) {
-//     Text("Glass Card")
-//         .padding()
-//         .arcGlass(cornerRadius: .arcCornerRadiusLarge, tint: .blue, interactive: true)
-// }
-```
-
-## Project Structure
+## 🏗️ Project Structure
 
 ```
 Sources/ARCDesignSystem/
@@ -215,6 +161,7 @@ Sources/ARCDesignSystem/
 │   ├── CGFloat+Spacing.swift        # Base spacing values
 │   ├── CGFloat+CornerRadius.swift   # Fixed corner radii
 │   ├── EdgeInsets+Padding.swift     # Padding presets
+│   ├── Color+Branding.swift         # ARC Labs Studio brand colors
 │   ├── Color+Semantic.swift         # Semantic colors
 │   └── Color+Shadows.swift          # Shadow colors
 │
@@ -225,112 +172,126 @@ Sources/ARCDesignSystem/
 │   ├── Material+Effects.swift       # Material helpers
 │   └── Vibrancy+Effects.swift       # Vibrancy helpers
 │
-├── Helpers/
-│   └── ScaledValue.swift            # @ScaledMetric documentation
+├── Documentation.docc/              # DocC documentation
 │
 └── Previews/
-    ├── Views/
-    │   ├── ARCDesignSystemPreview.swift
-    │   └── ARCSymbolEffectsPreview.swift
-    └── Helpers/
-        └── ARCColor+Helpers.swift   # Cross-platform helpers
+    └── Views/
+        ├── ARCDesignSystemPreview.swift
+        └── ARCSymbolEffectsPreview.swift
 ```
 
-## Migration from v1.x
+---
 
-This is a **breaking change** release. Here's how to migrate:
+## 🧪 Testing
 
-### Typography
-```swift
-// Before
-.font(.arcFontTitle1)
-.font(.arcFontBody)
+```bash
+# Run all tests
+swift test
 
-// After - Use SwiftUI native
-.font(.title)
-.font(.body)
+# Run specific test suite
+swift test --filter ARCDesignSystemTests.SpacingTokensTests
 ```
 
-### Text Colors
-```swift
-// Before
-.foregroundStyle(.arcTextPrimary)
-.foregroundStyle(.arcTextSecondary)
+### Coverage
 
-// After - Use SwiftUI native
-.foregroundStyle(.primary)
-.foregroundStyle(.secondary)
+- **Target:** 100% for all token values and relationships
+- **Current:** 85 tests covering spacing, corner radius, padding, colors, and symbol effects
+
+---
+
+## 🛠️ Development
+
+### Prerequisites
+
+```bash
+# Install required tools
+brew install swiftlint swiftformat
 ```
-
-### Accent Colors
-```swift
-// Before
-.foregroundStyle(.arcAccent)
-
-// After - Use SwiftUI native
-.foregroundStyle(.tint)
-// or
-.tint(.blue)
-```
-
-### Animations
-```swift
-// Before
-withAnimation(.arcAnimationSmooth) { }
-
-// After - Use SwiftUI native
-withAnimation(.smooth) { }
-withAnimation(.spring()) { }
-withAnimation(.snappy) { }
-```
-
-### Accessibility
-```swift
-// Before
-ARCAccessibility.prefersReducedMotion
-ARCAccessibility.prefersHighContrast
-
-// After - Use SwiftUI native
-@Environment(\.accessibilityReduceMotion) var reduceMotion
-@Environment(\.colorSchemeContrast) var contrast
-@Environment(\.dynamicTypeSize) var typeSize
-```
-
-### Dynamic Type Scaling
-```swift
-// Before - Automatic scaling via ARCLayoutScale
-VStack(spacing: .arcSpacingMedium) { }
-
-// After - Explicit scaling via @ScaledMetric
-@ScaledMetric var spacing = CGFloat.arcSpacingMedium
-VStack(spacing: spacing) { }
-```
-
-## Development
 
 ### Setup
 
 ```bash
+# Clone the repository
 git clone https://github.com/arclabs-studio/ARCDesignSystem.git
 cd ARCDesignSystem
+
+# Initialize submodules
 git submodule update --init --recursive
+
+# Setup ARCDevTools
 ./ARCDevTools/arcdevtools-setup
+
+# Build the project
+swift build
 ```
 
-### Commands
+### Available Commands
 
 ```bash
-swift build    # Build package
-swift test     # Run tests
-make lint      # Run SwiftLint
-make format    # Preview formatting
-make fix       # Apply SwiftFormat
+make help          # Show all available commands
+make lint          # Run SwiftLint
+make format        # Preview formatting changes
+make fix           # Apply SwiftFormat
+swift test         # Run tests
+make clean         # Remove build artifacts
 ```
 
-## License
+---
 
-MIT License - see [LICENSE](LICENSE) for details.
+## 🤝 Contributing
 
-## Author
+We welcome contributions! Please follow these guidelines:
 
-**ARC Labs Studio**
+1. Fork the repository
+2. Create a feature branch: `feature/your-feature`
+3. Follow [ARCKnowledge](https://github.com/arclabs-studio/ARCKnowledge) standards
+4. Ensure tests pass: `swift test`
+5. Run quality checks: `make lint && make format`
+6. Create a pull request to `develop`
+
+### Commit Messages
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+feat: add new spacing token
+fix: correct corner radius value
+docs: update installation instructions
+```
+
+---
+
+## 📦 Versioning
+
+This project follows [Semantic Versioning](https://semver.org/):
+
+- **MAJOR** - Breaking changes
+- **MINOR** - New features (backwards compatible)
+- **PATCH** - Bug fixes (backwards compatible)
+
+See [CHANGELOG.md](CHANGELOG.md) for version history.
+
+---
+
+## 📄 License
+
+MIT License © 2025 ARC Labs Studio
+
+See [LICENSE](LICENSE) for details.
+
+---
+
+## 🔗 Related Resources
+
+- **[ARCKnowledge](https://github.com/arclabs-studio/ARCKnowledge)** - Development standards and guidelines
+- **[ARCDevTools](https://github.com/arclabs-studio/ARCDevTools)** - Quality tooling and automation
+
+---
+
+<div align="center">
+
+Made with 💛 by ARC Labs Studio
+
+[**GitHub**](https://github.com/arclabs-studio) • [**Issues**](https://github.com/arclabs-studio/ARCDesignSystem/issues)
+
+</div>
