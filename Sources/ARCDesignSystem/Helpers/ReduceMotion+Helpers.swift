@@ -7,49 +7,46 @@
 
 import SwiftUI
 
-/// Accessibility helpers for respecting user motion preferences.
-///
-/// These helpers provide convenient access to the system's "Reduce Motion"
-/// accessibility setting and enable building motion-aware UI components.
-///
-/// ## Overview
-///
-/// Apple's Human Interface Guidelines recommend respecting the user's
-/// motion preferences. When "Reduce Motion" is enabled, apps should:
-///
-/// - Minimize or eliminate animations
-/// - Use cross-fade transitions instead of sliding/zooming
-/// - Avoid parallax effects and screen movement
-///
-/// ## Using the Environment Value
-///
-/// ```swift
-/// struct MyView: View {
-///     @Environment(\.arcReduceMotion) var reduceMotion
-///
-///     var body: some View {
-///         if reduceMotion {
-///             staticContent
-///         } else {
-///             animatedContent
-///         }
-///     }
-/// }
-/// ```
-///
-/// ## Using the View Modifier
-///
-/// ```swift
-/// // Show different content based on motion preference
-/// Image(systemName: "star")
-///     .arcMotionSensitive(
-///         reduced: { $0.opacity(isActive ? 1 : 0.5) },
-///         full: { $0.arcSymbolEffect(.success, value: count) }
-///     )
-/// ```
-///
-/// - Note: The built-in `arcSymbolEffect` modifiers already respect
-///   "Reduce Motion" automatically. These helpers are for custom animations.
+// MARK: - Reduce Motion Helpers
+
+// Accessibility helpers for respecting user motion preferences.
+//
+// These helpers provide convenient access to the system's "Reduce Motion"
+// accessibility setting and enable building motion-aware UI components.
+//
+// Overview:
+//
+// Apple's Human Interface Guidelines recommend respecting the user's
+// motion preferences. When "Reduce Motion" is enabled, apps should:
+//
+// - Minimize or eliminate animations
+// - Use cross-fade transitions instead of sliding/zooming
+// - Avoid parallax effects and screen movement
+//
+// Using the Environment Value:
+//
+//     struct MyView: View {
+//         @Environment(\.arcReduceMotion) var reduceMotion
+//
+//         var body: some View {
+//             if reduceMotion {
+//                 staticContent
+//             } else {
+//                 animatedContent
+//             }
+//         }
+//     }
+//
+// Using the View Modifier:
+//
+//     Image(systemName: "star")
+//         .arcMotionSensitive(
+//             reduced: { $0.opacity(isActive ? 1 : 0.5) },
+//             full: { $0.arcSymbolEffect(.success, value: count) }
+//         )
+//
+// Note: The built-in `arcSymbolEffect` modifiers already respect
+// "Reduce Motion" automatically. These helpers are for custom animations.
 
 // MARK: - Environment Key
 
