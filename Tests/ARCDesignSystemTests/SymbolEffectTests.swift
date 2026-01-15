@@ -56,6 +56,26 @@ struct SymbolEffectTests {
         #expect(effect.isDiscrete == false, "searching should not be discrete")
     }
 
+    @Test("Breathing effect is indefinite")
+    func breathingEffectIsIndefinite() {
+        guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
+            return
+        }
+        let effect = ARCSymbolEffect.breathing
+        #expect(effect.isIndefinite == true, "breathing should be an indefinite effect")
+        #expect(effect.isDiscrete == false, "breathing should not be discrete")
+    }
+
+    @Test("Spinning effect is indefinite")
+    func spinningEffectIsIndefinite() {
+        guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
+            return
+        }
+        let effect = ARCSymbolEffect.spinning
+        #expect(effect.isIndefinite == true, "spinning should be an indefinite effect")
+        #expect(effect.isDiscrete == false, "spinning should not be discrete")
+    }
+
     // MARK: - Discrete Effects
 
     @Test("Success effect is discrete")
@@ -152,7 +172,7 @@ struct SymbolEffectTests {
             return
         }
         let allEffects = ARCSymbolEffect.allCases
-        #expect(allEffects.count == 12, "Should have 12 symbol effect presets")
+        #expect(allEffects.count == 14, "Should have 14 symbol effect presets")
     }
 
     @Test("Effects are correctly categorized as indefinite")
@@ -160,7 +180,7 @@ struct SymbolEffectTests {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
-        let indefiniteEffects: [ARCSymbolEffect] = [.inProgress, .hover, .syncing, .searching]
+        let indefiniteEffects: [ARCSymbolEffect] = [.inProgress, .hover, .syncing, .searching, .breathing, .spinning]
         let nonIndefiniteEffects: [ARCSymbolEffect] = [
             .success, .addItem, .error, .update,
             .smooth, .upward, .layered, .appear
@@ -182,7 +202,7 @@ struct SymbolEffectTests {
         }
         let discreteEffects: [ARCSymbolEffect] = [.success, .addItem, .error, .update]
         let nonDiscreteEffects: [ARCSymbolEffect] = [
-            .inProgress, .hover, .syncing, .searching,
+            .inProgress, .hover, .syncing, .searching, .breathing, .spinning,
             .smooth, .upward, .layered, .appear
         ]
 
@@ -202,7 +222,7 @@ struct SymbolEffectTests {
         }
         let contentTransitionEffects: [ARCSymbolEffect] = [.smooth, .upward, .layered]
         let nonContentTransitionEffects: [ARCSymbolEffect] = [
-            .inProgress, .hover, .syncing, .searching,
+            .inProgress, .hover, .syncing, .searching, .breathing, .spinning,
             .success, .addItem, .error, .update, .appear
         ]
 
