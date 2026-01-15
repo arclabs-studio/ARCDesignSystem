@@ -42,6 +42,7 @@ make clean
 
 | Category | Why Not Native | ARC Tokens |
 |----------|---------------|------------|
+| **Branding** | ARC Labs Studio identity colors | `.arcBrandBurgundy`, `.arcBrandGold`, `.arcBrandBlack` |
 | **Spacing** | SwiftUI has no spacing tokens | `.arcSpacingXSmall` through `.arcSpacingXXLarge` |
 | **Corner Radius** | SwiftUI has no radius tokens | `.arcCornerRadiusSmall` through `.arcCornerRadiusXLarge` |
 | **Backgrounds** | Need cross-platform (UIKit/AppKit) | `.arcBackgroundPrimary/Secondary/Tertiary` |
@@ -69,6 +70,7 @@ Sources/ARCDesignSystem/
 │   ├── CGFloat+Spacing.swift        # Base spacing constants
 │   ├── CGFloat+CornerRadius.swift   # Fixed corner radii
 │   ├── EdgeInsets+Padding.swift     # Padding presets
+│   ├── Color+Branding.swift         # ARC Labs Studio brand colors
 │   ├── Color+Semantic.swift         # Semantic colors
 │   └── Color+Shadows.swift          # Shadow colors
 │
@@ -190,4 +192,19 @@ Image(systemName: "arrow.triangle.2.circlepath")
 Text("Overlay")
     .padding()
     .arcMaterialBackground(.arcRegular)
+```
+
+### Branding Colors
+```swift
+// Set app-wide accent color
+ContentView()
+    .tint(.arcBrandGold)
+
+// Logo or brand accent
+Image("logo")
+    .foregroundStyle(.arcBrandBurgundy)
+
+// Brand-styled button
+Button("Get Started") { }
+    .tint(.arcBrandGold)
 ```
