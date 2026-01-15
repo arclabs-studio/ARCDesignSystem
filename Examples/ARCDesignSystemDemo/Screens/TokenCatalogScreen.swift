@@ -16,6 +16,11 @@ struct TokenCatalogScreen: View {
     var body: some View {
         ScrollView {
             VStack(spacing: .arcSpacingXLarge) {
+                // Branding Colors (Featured)
+                tokenSection(title: "Brand Colors", icon: "paintbrush.fill") {
+                    BrandingColorsView()
+                }
+
                 // Spacing Tokens
                 tokenSection(title: "Spacing", icon: "ruler") {
                     SpacingTokensView()
@@ -239,6 +244,46 @@ private struct MaterialsView: View {
             .padding(.arcSpacingSmall)
             .frame(maxWidth: .infinity)
             .background(material, in: RoundedRectangle(cornerRadius: .arcCornerRadiusSmall))
+    }
+}
+
+// MARK: - Branding Colors View
+
+private struct BrandingColorsView: View {
+    var body: some View {
+        VStack(spacing: .arcSpacingMedium) {
+            Text("ARC Labs Studio official brand colors")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            HStack(spacing: .arcSpacingMedium) {
+                brandColorDemo("Burgundy", color: .arcBrandBurgundy, hex: "#541311")
+                brandColorDemo("Gold", color: .arcBrandGold, hex: "#FFB42E")
+                brandColorDemo("Black", color: .arcBrandBlack, hex: "#000000")
+            }
+        }
+    }
+
+    private func brandColorDemo(_ name: String, color: Color, hex: String) -> some View {
+        VStack(spacing: .arcSpacingXSmall) {
+            RoundedRectangle(cornerRadius: .arcCornerRadiusMedium)
+                .fill(color)
+                .frame(height: 60)
+                .overlay(
+                    RoundedRectangle(cornerRadius: .arcCornerRadiusMedium)
+                        .stroke(Color.arcSeparator, lineWidth: 0.5)
+                )
+
+            Text(name)
+                .font(.caption)
+                .fontWeight(.medium)
+                .foregroundStyle(.primary)
+
+            Text(hex)
+                .font(.caption2.monospaced())
+                .foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity)
     }
 }
 
