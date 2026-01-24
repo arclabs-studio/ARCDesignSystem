@@ -25,6 +25,9 @@ let package = Package(
         .target(
             name: "ARCDesignSystem",
             path: "Sources",
+            resources: [
+                .process("ARCDesignSystem/Resources")
+            ],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency")
             ]
