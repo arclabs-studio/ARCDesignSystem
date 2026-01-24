@@ -12,6 +12,7 @@ import SwiftUI
 ///
 /// Provides access to different sections of the demo:
 /// - Token Catalog: Browse all design tokens
+/// - Brand Assets: View official logos, icons, and typography
 /// - Components: See tokens applied to real UI components
 struct ContentView: View {
     var body: some View {
@@ -22,6 +23,12 @@ struct ContentView: View {
                         TokenCatalogScreen()
                     } label: {
                         Label("Token Catalog", systemImage: "paintpalette")
+                    }
+
+                    NavigationLink {
+                        BrandAssetsScreen()
+                    } label: {
+                        Label("Brand Assets", systemImage: "signature")
                     }
 
                     NavigationLink {
@@ -38,7 +45,7 @@ struct ContentView: View {
                 } header: {
                     Text("Explore")
                 } footer: {
-                    Text("Browse design tokens and see them in action.")
+                    Text("Browse design tokens, brand assets, and see them in action.")
                 }
 
                 Section {
