@@ -16,8 +16,13 @@ import SwiftUI
 ///
 /// The app uses ARC Labs Studio branding colors by default:
 /// - Accent color: `.arcBrandGold`
+/// - Brand font: Radley Sans (registered on launch)
 @main
 struct ARCDesignSystemDemoApp: App {
+    init() {
+        ARCBrandFont.registerFonts()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
