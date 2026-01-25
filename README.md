@@ -17,22 +17,26 @@ ARCDesignSystem provides **only what SwiftUI doesn't offer natively**. It follow
 
 ### Key Features
 
+- ✅ **Brand Identity** - ARC Labs Studio colors (Burgundy, Gold, Black) with Light/Dark/High Contrast
+- ✅ **Brand Typography** - Radley Sans custom font with Dynamic Type support
+- ✅ **WCAG 2.1 AA Compliant** - Contrast validation via `ARCContrastCalculator`
 - ✅ **Spacing & Corner Radius Tokens** - Consistent base values for use with `@ScaledMetric`
+- ✅ **Touch Target Tokens** - Platform-specific minimum sizes (iOS 44pt, visionOS 60pt)
+- ✅ **Accessibility-Aware Animations** - Animations that respect Reduce Motion settings
 - ✅ **Semantic Background Colors** - Cross-platform background colors (UIKit/AppKit unified)
-- ✅ **Extended Text Colors** - Tertiary, quaternary, and disabled text colors not in SwiftUI
+- ✅ **Extended Text Colors** - Tertiary, quaternary, and disabled text colors
 - ✅ **Symbol Effects** - Preset configurations for SF Symbols animations
 - ✅ **Material & Vibrancy Helpers** - Convenient wrappers for iOS 15+ materials
-- ✅ **Liquid Glass Ready** - Prepared for iOS 26+ (awaiting SDK release)
 
 ### What We DON'T Provide (Use SwiftUI Directly)
 
 | Instead of | Use Native SwiftUI |
 |------------|-------------------|
-| Typography | `.body`, `.title`, `.headline`, etc. |
+| System fonts | `.body`, `.title`, `.headline`, etc. |
 | Primary/Secondary text | `.primary`, `.secondary` |
 | Accent colors | `.tint` or `.accentColor` |
-| Animations | `.spring()`, `.smooth`, `.snappy` |
-| Accessibility | `@Environment(\.accessibilityReduceMotion)`, etc. |
+| Basic animations | `.spring()`, `.smooth`, `.snappy` |
+| Environment values | `@Environment(\.accessibilityReduceMotion)` |
 
 ---
 
@@ -99,6 +103,41 @@ struct ContentCard: View {
 }
 ```
 
+### Brand Colors & Typography
+
+```swift
+import ARCDesignSystem
+
+// Register brand font (call once at app launch)
+@main
+struct MyApp: App {
+    init() {
+        ARCBrandFont.registerFonts()
+    }
+    var body: some Scene {
+        WindowGroup { ContentView() }
+    }
+}
+
+// Use brand colors
+Text("Welcome")
+    .foregroundStyle(.arcBrandBurgundy)
+
+Button("Get Started") { }
+    .tint(.arcBrandGold)
+
+// Use brand font with Dynamic Type
+Text("ARC Labs Studio")
+    .font(.arcBrandFont(.title))
+
+// Validate contrast (WCAG 2.1)
+let result = ARCContrastCalculator.validate(
+    foreground: .arcBrandBurgundy,
+    background: .white
+)
+print(result.meetsAA) // true
+```
+
 ### Spacing Tokens
 
 Use with `@ScaledMetric` in your views for Dynamic Type support:
@@ -158,12 +197,26 @@ Text("Floating Card")
 ```
 Sources/ARCDesignSystem/
 ├── Tokens/
-│   ├── CGFloat+Spacing.swift        # Base spacing values
+│   ├── CGFloat+Spacing.swift        # Spacing and touch targets
 │   ├── CGFloat+CornerRadius.swift   # Fixed corner radii
 │   ├── EdgeInsets+Padding.swift     # Padding presets
 │   ├── Color+Branding.swift         # ARC Labs Studio brand colors
 │   ├── Color+Semantic.swift         # Semantic colors
-│   └── Color+Shadows.swift          # Shadow colors
+│   ├── Color+Shadows.swift          # Shadow colors
+│   ├── ARCBrandFont.swift           # Radley Sans font registration
+│   └── ARCBrandAsset.swift          # Brand asset references
+│
+├── Typography/
+│   ├── Font+ARC.swift               # Typography tokens
+│   └── ARCScaledFont.swift          # Dynamic Type scaling
+│
+├── Animation/
+│   └── Animation+ARC.swift          # Accessibility-aware animations
+│
+├── Accessibility/
+│   ├── ARCAccessibility.swift       # Reduce Motion, Contrast helpers
+│   ├── ContrastCalculator.swift     # WCAG contrast validation
+│   └── ReduceMotion+Helpers.swift   # Motion-aware modifiers
 │
 ├── Effects/
 │   ├── ARCSymbolEffect.swift        # Symbol effect presets
@@ -172,12 +225,17 @@ Sources/ARCDesignSystem/
 │   ├── Material+Effects.swift       # Material helpers
 │   └── Vibrancy+Effects.swift       # Vibrancy helpers
 │
+├── Resources/
+│   ├── Colors.xcassets/             # Brand colors (Light/Dark/High Contrast)
+│   └── Fonts/                       # Radley Sans font
+│
 ├── Documentation.docc/              # DocC documentation
 │
-└── Previews/
-    └── Views/
-        ├── ARCDesignSystemPreview.swift
-        └── ARCSymbolEffectsPreview.swift
+└── Previews/Views/
+    ├── ARCColorsPreview.swift       # Color token showcase
+    ├── ARCTypographyPreview.swift   # Typography showcase
+    ├── ARCAnimationsPreview.swift   # Animation showcase
+    └── ARCSymbolEffectsPreview.swift
 ```
 
 ---
@@ -195,7 +253,7 @@ swift test --filter ARCDesignSystemTests.SpacingTokensTests
 ### Coverage
 
 - **Target:** 100% for all token values and relationships
-- **Current:** 85 tests covering spacing, corner radius, padding, colors, and symbol effects
+- **Current:** 77 tests covering spacing, corner radius, padding, colors, contrast validation, and symbol effects
 
 ---
 
