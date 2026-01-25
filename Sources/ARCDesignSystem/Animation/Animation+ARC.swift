@@ -100,7 +100,7 @@ extension Animation {
     /// animation when Reduce Motion is enabled.
     ///
     /// - Note: Check `ARCAccessibility.isReduceMotionEnabled` for the current setting.
-    public static var arcDefault: Animation {
+    @MainActor public static var arcDefault: Animation {
         ARCAccessibility.isReduceMotionEnabled
             ? .linear(duration: 0.1)
             : .arcStandard
@@ -110,7 +110,7 @@ extension Animation {
     ///
     /// Returns `arcSpring` when motion is allowed, or a minimal
     /// animation when Reduce Motion is enabled.
-    public static var arcInteractive: Animation {
+    @MainActor public static var arcInteractive: Animation {
         ARCAccessibility.isReduceMotionEnabled
             ? .linear(duration: 0.05)
             : .arcSpring
@@ -204,6 +204,7 @@ private struct ARCAnimationModifier<V: Equatable>: ViewModifier {
 ///     isExpanded.toggle()
 /// }
 /// ```
+@MainActor
 public func arcWithAnimation<Result>(
     _ animation: Animation? = .arcDefault,
     _ body: () throws -> Result
