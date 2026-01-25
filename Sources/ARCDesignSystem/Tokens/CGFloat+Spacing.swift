@@ -83,4 +83,51 @@ extension CGFloat {
     ///
     /// Maximum spacing for major visual separators or hero sections.
     public static let arcSpacingXXLarge: CGFloat = 32
+
+    // MARK: - Touch Targets (Apple HIG)
+
+    /// Minimum touch target size for iOS (44pt).
+    ///
+    /// Apple Human Interface Guidelines recommend a minimum tappable area of 44×44 points
+    /// for all interactive elements. This ensures comfortable interaction without accidental
+    /// touches on adjacent elements.
+    ///
+    /// - Note: This applies to the interactive area, not the visual size.
+    public static let arcTouchTargetMinimum: CGFloat = 44
+
+    /// Recommended touch target size for iOS (44pt).
+    ///
+    /// Same as minimum for iOS. Use this as the standard size for buttons,
+    /// list rows, and other interactive elements.
+    public static let arcTouchTargetRecommended: CGFloat = 44
+
+    /// Touch target size for visionOS (60pt).
+    ///
+    /// visionOS requires larger touch targets due to the indirect interaction model.
+    /// Use this for visionOS-specific layouts.
+    public static let arcTouchTargetVisionOS: CGFloat = 60
+
+    /// Minimum touch target size for watchOS (38pt).
+    ///
+    /// Watch interfaces can use slightly smaller targets due to the intimate
+    /// interaction model, but 44pt is still recommended when space allows.
+    public static let arcTouchTargetWatchOS: CGFloat = 38
+
+    // MARK: - Additional Spacing Values
+
+    /// Spacing of 20pt.
+    ///
+    /// Bridges the gap between Large (16pt) and XLarge (24pt) for layouts
+    /// that need intermediate spacing.
+    public static let arcSpacing20: CGFloat = 20
+
+    /// Spacing of 40pt.
+    ///
+    /// Use for extra separation between major content areas or hero sections.
+    public static let arcSpacing40: CGFloat = 40
+
+    /// Spacing of 48pt.
+    ///
+    /// Maximum comfortable spacing for section separators in scrollable content.
+    public static let arcSpacing48: CGFloat = 48
 }

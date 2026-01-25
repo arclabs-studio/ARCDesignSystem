@@ -46,6 +46,21 @@ struct TokenCatalogScreen: View {
                     MaterialsView()
                 }
 
+                // Typography Tokens
+                tokenSection(title: "Typography", icon: "textformat") {
+                    TypographyTokensView()
+                }
+
+                // Animation Tokens
+                tokenSection(title: "Animations", icon: "sparkles.rectangle.stack") {
+                    AnimationTokensView()
+                }
+
+                // Touch Targets
+                tokenSection(title: "Touch Targets", icon: "hand.tap") {
+                    TouchTargetTokensView()
+                }
+
                 // Symbol Effects
                 tokenSection(title: "Symbol Effects", icon: "sparkles") {
                     NavigationLink {
@@ -55,6 +70,11 @@ struct TokenCatalogScreen: View {
                         Label("View All Symbol Effects", systemImage: "arrow.right")
                             .font(.callout)
                     }
+                }
+
+                // Accessibility
+                tokenSection(title: "Accessibility", icon: "accessibility") {
+                    AccessibilityTokensView()
                 }
             }
             .padding(.arcPaddingSection)
@@ -250,6 +270,8 @@ private struct MaterialsView: View {
 // MARK: - Branding Colors View
 
 private struct BrandingColorsView: View {
+    @Environment(\.colorScheme) private var colorScheme
+
     var body: some View {
         VStack(spacing: .arcSpacingMedium) {
             Text("ARC Labs Studio official brand colors")
@@ -257,15 +279,37 @@ private struct BrandingColorsView: View {
                 .foregroundStyle(.secondary)
 
             HStack(spacing: .arcSpacingMedium) {
-                brandColorDemo("Burgundy", color: .arcBrandBurgundy, hex: "#541311")
-                brandColorDemo("Gold", color: .arcBrandGold, hex: "#FFB42E")
-                brandColorDemo("Black", color: .arcBrandBlack, hex: "#000000")
+                brandColorDemo(
+                    "Burgundy",
+                    color: .arcBrandBurgundy,
+                    lightHex: "#541311",
+                    darkHex: "#B23850"
+                )
+                brandColorDemo(
+                    "Gold",
+                    color: .arcBrandGold,
+                    lightHex: "#996B00",
+                    darkHex: "#FFB42E"
+                )
+                brandColorDemo(
+                    "Black",
+                    color: .arcBrandBlack,
+                    lightHex: "#000000",
+                    darkHex: "#000000"
+                )
             }
         }
     }
 
-    private func brandColorDemo(_ name: String, color: Color, hex: String) -> some View {
-        VStack(spacing: .arcSpacingXSmall) {
+    private func brandColorDemo(
+        _ name: String,
+        color: Color,
+        lightHex: String,
+        darkHex: String
+    ) -> some View {
+        let currentHex = colorScheme == .dark ? darkHex : lightHex
+
+        return VStack(spacing: .arcSpacingXSmall) {
             RoundedRectangle(cornerRadius: .arcCornerRadiusMedium)
                 .fill(color)
                 .frame(height: 60)
@@ -279,11 +323,196 @@ private struct BrandingColorsView: View {
                 .fontWeight(.medium)
                 .foregroundStyle(.primary)
 
-            Text(hex)
+            Text(currentHex)
                 .font(.caption2.monospaced())
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
+    }
+}
+
+// MARK: - Typography Tokens View
+
+private struct TypographyTokensView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: .arcSpacingSmall) {
+            Text("System fonts with ARC naming:")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            typographyRow(".arcLargeTitle", font: .arcLargeTitle)
+            typographyRow(".arcTitle", font: .arcTitle)
+            typographyRow(".arcTitle2", font: .arcTitle2)
+            typographyRow(".arcTitle3", font: .arcTitle3)
+            typographyRow(".arcHeadline", font: .arcHeadline)
+            typographyRow(".arcBody", font: .arcBody)
+            typographyRow(".arcCaption", font: .arcCaption)
+
+            Divider().padding(.vertical, .arcSpacingXSmall)
+
+            Text("Brand font (Radley Sans):")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            Text("ARC Labs Studio")
+                .font(.arcBrandFont(.title))
+                .foregroundStyle(Color.arcBrandBurgundy)
+        }
+    }
+
+    private func typographyRow(_ name: String, font: Font) -> some View {
+        HStack {
+            Text(name)
+                .font(.caption2.monospaced())
+                .foregroundStyle(.tertiary)
+
+            Spacer()
+
+            Text("Aa")
+                .font(font)
+        }
+    }
+}
+
+// MARK: - Animation Tokens View
+
+private struct AnimationTokensView: View {
+    @State private var isAnimating = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: .arcSpacingMedium) {
+            Text("Accessibility-aware animations:")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            HStack(spacing: .arcSpacingMedium) {
+                animationDemo("Quick", animation: .arcQuick)
+                animationDemo("Standard", animation: .arcStandard)
+                animationDemo("Smooth", animation: .arcSmooth)
+                animationDemo("Spring", animation: .arcSpring)
+            }
+
+            Button("Animate") {
+                withAnimation(.arcDefault) {
+                    isAnimating.toggle()
+                }
+            }
+            .buttonStyle(.borderedProminent)
+            .frame(maxWidth: .infinity)
+        }
+    }
+
+    private func animationDemo(_ name: String, animation: Animation) -> some View {
+        VStack(spacing: .arcSpacingXSmall) {
+            Circle()
+                .fill(Color.accentColor)
+                .frame(width: 20, height: 20)
+                .offset(y: isAnimating ? -10 : 10)
+                .animation(animation, value: isAnimating)
+
+            Text(name)
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 50)
+    }
+}
+
+// MARK: - Touch Target Tokens View
+
+private struct TouchTargetTokensView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: .arcSpacingSmall) {
+            Text("Minimum touch target sizes (Apple HIG):")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            touchTargetRow("Minimum", value: .arcTouchTargetMinimum, note: "44pt")
+            touchTargetRow("Recommended", value: .arcTouchTargetRecommended, note: "44pt")
+            touchTargetRow("watchOS", value: .arcTouchTargetWatchOS, note: "38pt")
+            touchTargetRow("visionOS", value: .arcTouchTargetVisionOS, note: "60pt")
+        }
+    }
+
+    private func touchTargetRow(_ name: String, value: CGFloat, note: String) -> some View {
+        HStack {
+            Text(".arcTouchTarget\(name)")
+                .font(.caption2.monospaced())
+                .foregroundStyle(.secondary)
+
+            Spacer()
+
+            Text(note)
+                .font(.caption2)
+                .foregroundStyle(.tertiary)
+
+            RoundedRectangle(cornerRadius: 4)
+                .fill(Color.accentColor.opacity(0.3))
+                .frame(width: value / 2, height: value / 2)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 4)
+                        .stroke(Color.accentColor, lineWidth: 1)
+                )
+        }
+    }
+}
+
+// MARK: - Accessibility Tokens View
+
+private struct AccessibilityTokensView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: .arcSpacingSmall) {
+            // Reduce Motion Status
+            HStack {
+                Image(systemName: reduceMotion ? "figure.roll" : "figure.walk")
+                    .foregroundStyle(reduceMotion ? .orange : .green)
+                Text("Reduce Motion: \(reduceMotion ? "ON" : "OFF")")
+                    .font(.caption)
+            }
+
+            Divider().padding(.vertical, .arcSpacingXSmall)
+
+            // Contrast Calculator
+            Text("WCAG Contrast Validation:")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            contrastRow("Burgundy/White", fg: .arcBrandBurgundy, bg: .white)
+            contrastRow("Gold/Black", fg: .arcBrandGold, bg: .black)
+            contrastRow("Black/White", fg: .arcBrandBlack, bg: .white)
+
+            NavigationLink {
+                ARCColorsPreview()
+                    .navigationTitle("Color Tokens")
+            } label: {
+                Label("View All Colors", systemImage: "arrow.right")
+                    .font(.callout)
+            }
+            .padding(.top, .arcSpacingSmall)
+        }
+    }
+
+    private func contrastRow(_ name: String, fg: Color, bg: Color) -> some View {
+        let result = ARCContrastCalculator.validate(foreground: fg, background: bg)
+
+        return HStack {
+            Text(name)
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+
+            Spacer()
+
+            Text(result.ratioDescription)
+                .font(.caption2.monospaced())
+                .foregroundStyle(result.meetsAA ? .green : .red)
+
+            Image(systemName: result.meetsAA ? "checkmark.circle.fill" : "xmark.circle.fill")
+                .foregroundStyle(result.meetsAA ? .green : .red)
+                .font(.caption)
+        }
     }
 }
 
