@@ -103,9 +103,8 @@ function_body_length:
   error: 100
 
 file_length:
-  warning: 600
+  warning: 500
   error: 1000
-  ignore_comment_only_lines: true
 
 # Custom rules for ARC Labs
 custom_rules:
@@ -114,6 +113,10 @@ custom_rules:
   observable_viewmodel:
     name: "ViewModels should use @Observable"
     regex: "final\\s+class\\s+\\w+ViewModel(?!.*@Observable)"
+    excluded_match_kinds:
+      - comment
+      - doccomment
+      - string
     message: "ViewModels must use @Observable in Swift 6"
     severity: warning
 
@@ -137,6 +140,13 @@ custom_rules:
     regex: 'try!'
     message: "Avoid force try. Use proper error handling"
     severity: error
+
+# Multiline declarations - first param on same line as opening paren (ARC Labs style)
+multiline_arguments:
+  first_argument_location: same_line
+
+multiline_parameters:
+  first_argument_location: same_line
 
 # Reporter (output format)
 reporter: "xcode"
