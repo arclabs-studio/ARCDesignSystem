@@ -128,11 +128,9 @@ extension Font {
     /// Text("Custom")
     ///     .font(.arcSystem(size: 18, weight: .medium, design: .rounded))
     /// ```
-    public static func arcSystem(
-        size: CGFloat,
-        weight: Font.Weight = .regular,
-        design: Font.Design = .default
-    ) -> Font {
+    public static func arcSystem(size: CGFloat,
+                                 weight: Font.Weight = .regular,
+                                 design: Font.Design = .default) -> Font {
         .system(size: size, weight: weight, design: design)
     }
 }

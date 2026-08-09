@@ -11,8 +11,7 @@ import SwiftUI
 ///
 /// This preview displays all color tokens with their light/dark mode variants
 /// and includes contrast ratio information for accessibility validation.
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-public struct ARCColorsPreview: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) public struct ARCColorsPreview: View {
     public init() {}
 
     public var body: some View {
@@ -29,23 +28,17 @@ public struct ARCColorsPreview: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
 
-                    BrandColorRow(
-                        name: "Burgundy",
-                        color: .arcBrandBurgundy,
-                        usage: "Prominent buttons, selected states"
-                    )
+                    BrandColorRow(name: "Burgundy",
+                                  color: .arcBrandBurgundy,
+                                  usage: "Prominent buttons, selected states")
 
-                    BrandColorRow(
-                        name: "Gold",
-                        color: .arcBrandGold,
-                        usage: "Accent color, status icons"
-                    )
+                    BrandColorRow(name: "Gold",
+                                  color: .arcBrandGold,
+                                  usage: "Accent color, status icons")
 
-                    BrandColorRow(
-                        name: "Black/White",
-                        color: .arcBrandBlack,
-                        usage: "High contrast text, logos"
-                    )
+                    BrandColorRow(name: "Black/White",
+                                  color: .arcBrandBlack,
+                                  usage: "High contrast text, logos")
                 }
                 .padding(.arcPaddingCard)
                 .background(Color.arcBackgroundSecondary)
@@ -93,11 +86,9 @@ public struct ARCColorsPreview: View {
                         RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
                             .fill(Color.arcBrandBurgundy)
                             .frame(height: 50)
-                            .overlay(
-                                Text("White on Burgundy")
-                                    .foregroundStyle(.white)
-                                    .font(.headline)
-                            )
+                            .overlay(Text("White on Burgundy")
+                                .foregroundStyle(.white)
+                                .font(.headline))
                     }
 
                     // Black text on Gold
@@ -105,11 +96,9 @@ public struct ARCColorsPreview: View {
                         RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
                             .fill(Color.arcBrandGold)
                             .frame(height: 50)
-                            .overlay(
-                                Text("Black on Gold")
-                                    .foregroundStyle(.black)
-                                    .font(.headline)
-                            )
+                            .overlay(Text("Black on Gold")
+                                .foregroundStyle(.black)
+                                .font(.headline))
                     }
 
                     // Button example
@@ -135,8 +124,7 @@ public struct ARCColorsPreview: View {
 
 // MARK: - Components
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct BrandColorRow: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct BrandColorRow: View {
     let name: String
     let color: Color
     let usage: String
@@ -146,10 +134,8 @@ private struct BrandColorRow: View {
             Circle()
                 .fill(color)
                 .frame(width: 50, height: 50)
-                .overlay(
-                    Circle()
-                        .stroke(.primary.opacity(0.1), lineWidth: 1)
-                )
+                .overlay(Circle()
+                    .stroke(.primary.opacity(0.1), lineWidth: 1))
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(name)
@@ -164,8 +150,7 @@ private struct BrandColorRow: View {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct SemanticColorRow: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct SemanticColorRow: View {
     let name: String
     let color: Color
 
@@ -174,10 +159,8 @@ private struct SemanticColorRow: View {
             RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
                 .fill(color)
                 .frame(width: 40, height: 30)
-                .overlay(
-                    RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
-                        .stroke(.primary.opacity(0.1), lineWidth: 0.5)
-                )
+                .overlay(RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
+                    .stroke(.primary.opacity(0.1), lineWidth: 0.5))
 
             Text(name)
                 .font(.callout)

@@ -9,44 +9,44 @@ import SwiftUI
 
 // MARK: - Vibrancy Effects
 
-/// Vibrancy effects make text and symbols appear vibrant when placed over
-/// materials, creating a sense of depth and helping content blend naturally
-/// with the underlying material.
-///
-/// ## Vibrancy Levels
-///
-/// | Level | Modifier | Use Case |
-/// |-------|----------|----------|
-/// | Label | `arcVibrancyLabel()` | Main content, titles |
-/// | Secondary | `arcVibrancySecondary()` | Supporting text, subtitles |
-/// | Tertiary | `arcVibrancyTertiary()` | Hints, timestamps, metadata |
-/// | Quaternary | `arcVibrancyQuaternary()` | Watermarks, decorative elements |
-///
-/// ## Material Compatibility (Apple HIG)
-///
-/// | Material | Label | Secondary | Tertiary | Quaternary |
-/// |----------|-------|-----------|----------|------------|
-/// | `.ultraThick` | ✅ | ✅ | ✅ | ✅ |
-/// | `.thick` | ✅ | ✅ | ✅ | ✅ |
-/// | `.regular` | ✅ | ✅ | ✅ | ✅ |
-/// | `.thin` | ✅ | ✅ | ✅ | ⚠️ Low contrast |
-/// | `.ultraThin` | ✅ | ✅ | ✅ | ⚠️ Low contrast |
-///
-/// - Important: **Avoid using quaternary vibrancy on thin and ultraThin materials**
-///   because the contrast is too low for comfortable reading (Apple HIG).
-///
-/// ## Example Usage
-///
-/// ```swift
-/// VStack {
-///     Text("Title").arcVibrancyLabel()
-///     Text("Subtitle").arcVibrancySecondary()
-///     Text("Details").arcVibrancyTertiary()
-/// }
-/// .background(.regularMaterial)
-/// ```
-///
-/// - Note: Vibrancy only has visible effect when content is placed over materials.
+// Vibrancy effects make text and symbols appear vibrant when placed over
+// materials, creating a sense of depth and helping content blend naturally
+// with the underlying material.
+//
+// ## Vibrancy Levels
+//
+// | Level | Modifier | Use Case |
+// |-------|----------|----------|
+// | Label | `arcVibrancyLabel()` | Main content, titles |
+// | Secondary | `arcVibrancySecondary()` | Supporting text, subtitles |
+// | Tertiary | `arcVibrancyTertiary()` | Hints, timestamps, metadata |
+// | Quaternary | `arcVibrancyQuaternary()` | Watermarks, decorative elements |
+//
+// ## Material Compatibility (Apple HIG)
+//
+// | Material | Label | Secondary | Tertiary | Quaternary |
+// |----------|-------|-----------|----------|------------|
+// | `.ultraThick` | ✅ | ✅ | ✅ | ✅ |
+// | `.thick` | ✅ | ✅ | ✅ | ✅ |
+// | `.regular` | ✅ | ✅ | ✅ | ✅ |
+// | `.thin` | ✅ | ✅ | ✅ | ⚠️ Low contrast |
+// | `.ultraThin` | ✅ | ✅ | ✅ | ⚠️ Low contrast |
+//
+// - Important: **Avoid using quaternary vibrancy on thin and ultraThin materials**
+//   because the contrast is too low for comfortable reading (Apple HIG).
+//
+// ## Example Usage
+//
+// ```swift
+// VStack {
+//     Text("Title").arcVibrancyLabel()
+//     Text("Subtitle").arcVibrancySecondary()
+//     Text("Details").arcVibrancyTertiary()
+// }
+// .background(.regularMaterial)
+// ```
+//
+// - Note: Vibrancy only has visible effect when content is placed over materials.
 
 extension View {
     /// Applies primary vibrancy effect (label level).
@@ -140,10 +140,8 @@ extension View {
     /// Label("Title", systemImage: "star")
     ///     .arcVibrancyHierarchical(primary: .primary, secondary: .secondary)
     /// ```
-    public func arcVibrancyHierarchical(
-        primary: some ShapeStyle,
-        secondary: some ShapeStyle
-    ) -> some View {
+    public func arcVibrancyHierarchical(primary: some ShapeStyle,
+                                        secondary: some ShapeStyle) -> some View {
         foregroundStyle(primary, secondary)
     }
 }

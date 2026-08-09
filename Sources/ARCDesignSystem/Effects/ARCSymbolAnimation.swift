@@ -42,8 +42,7 @@ import SwiftUI
 /// Image(systemName: isMuted ? "speaker.slash" : "speaker.wave.3")
 ///     .arcContentTransition(.smooth)
 /// ```
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-extension View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) extension View {
     // MARK: - Indefinite Effects
 
     /// Applies an indefinite symbol effect that animates while active.
@@ -62,11 +61,8 @@ extension View {
     /// - Returns: A view with the symbol effect applied.
     ///
     /// - Note: Respects "Reduce Motion" accessibility setting automatically.
-    @ViewBuilder
-    public func arcSymbolEffect(
-        _ effect: ARCSymbolEffect,
-        isActive: Bool
-    ) -> some View {
+    @ViewBuilder public func arcSymbolEffect(_ effect: ARCSymbolEffect,
+                                             isActive: Bool) -> some View {
         switch effect {
         case .inProgress:
             modifier(ARCPulsingEffectModifier(isActive: isActive))
@@ -103,11 +99,8 @@ extension View {
     /// - Returns: A view with the symbol effect applied.
     ///
     /// - Note: Respects "Reduce Motion" accessibility setting automatically.
-    @ViewBuilder
-    public func arcSymbolEffect(
-        _ effect: ARCSymbolEffect,
-        value: some Equatable
-    ) -> some View {
+    @ViewBuilder public func arcSymbolEffect(_ effect: ARCSymbolEffect,
+                                             value: some Equatable) -> some View {
         switch effect {
         case .success:
             modifier(ARCBounceEffectModifier(trigger: value))
@@ -138,8 +131,7 @@ extension View {
     /// - Returns: A view with the content transition applied.
     ///
     /// - Note: Respects "Reduce Motion" accessibility setting automatically.
-    @ViewBuilder
-    public func arcContentTransition(_ effect: ARCSymbolEffect) -> some View {
+    @ViewBuilder public func arcContentTransition(_ effect: ARCSymbolEffect) -> some View {
         switch effect {
         case .smooth:
             modifier(ARCReplaceTransitionModifier())
@@ -170,8 +162,7 @@ extension View {
     /// - Returns: A view with the transition applied.
     ///
     /// - Note: Respects "Reduce Motion" accessibility setting automatically.
-    @ViewBuilder
-    public func arcTransition(_ effect: ARCSymbolEffect) -> some View {
+    @ViewBuilder public func arcTransition(_ effect: ARCSymbolEffect) -> some View {
         switch effect {
         case .appear:
             modifier(ARCAppearTransitionModifier())
@@ -183,8 +174,7 @@ extension View {
 
 // MARK: - Indefinite Effect Modifiers
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCPulsingEffectModifier: ViewModifier {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCPulsingEffectModifier: ViewModifier {
     let isActive: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -197,8 +187,7 @@ private struct ARCPulsingEffectModifier: ViewModifier {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCScaleUpEffectModifier: ViewModifier {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCScaleUpEffectModifier: ViewModifier {
     let isActive: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -239,8 +228,7 @@ private struct ARCVariableColorEffectModifier: ViewModifier {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCBreathingEffectModifier: ViewModifier {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCBreathingEffectModifier: ViewModifier {
     let isActive: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -258,8 +246,7 @@ private struct ARCBreathingEffectModifier: ViewModifier {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCRotateEffectModifier: ViewModifier {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCRotateEffectModifier: ViewModifier {
     let isActive: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -323,8 +310,7 @@ private struct ARCPulseEffectModifier<T: Equatable>: ViewModifier {
 
 // MARK: - Content Transition Modifiers
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCReplaceTransitionModifier: ViewModifier {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCReplaceTransitionModifier: ViewModifier {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     func body(content: Content) -> some View {
@@ -336,8 +322,7 @@ private struct ARCReplaceTransitionModifier: ViewModifier {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCUpwardTransitionModifier: ViewModifier {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCUpwardTransitionModifier: ViewModifier {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     func body(content: Content) -> some View {
@@ -349,8 +334,7 @@ private struct ARCUpwardTransitionModifier: ViewModifier {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCLayeredTransitionModifier: ViewModifier {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCLayeredTransitionModifier: ViewModifier {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     func body(content: Content) -> some View {
@@ -364,8 +348,7 @@ private struct ARCLayeredTransitionModifier: ViewModifier {
 
 // MARK: - Appear/Disappear Transition Modifiers
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCAppearTransitionModifier: ViewModifier {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCAppearTransitionModifier: ViewModifier {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     func body(content: Content) -> some View {
@@ -379,32 +362,41 @@ private struct ARCAppearTransitionModifier: ViewModifier {
 
 // MARK: - Symbol Effect Options Extensions
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-extension SymbolEffectOptions {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) extension SymbolEffectOptions {
     // MARK: - ARC Speed Presets
 
     /// Very slow animation speed (0.5x).
     ///
     /// Use for calming, ambient effects or when you want to minimize distraction.
-    public static var arcSpeedVerySlow: SymbolEffectOptions { .speed(0.5) }
+    public static var arcSpeedVerySlow: SymbolEffectOptions {
+        .speed(0.5)
+    }
 
     /// Slow animation speed (0.75x).
     ///
     /// Use for gentle transitions or extended processes.
-    public static var arcSpeedSlow: SymbolEffectOptions { .speed(0.75) }
+    public static var arcSpeedSlow: SymbolEffectOptions {
+        .speed(0.75)
+    }
 
     /// Normal animation speed (1.0x).
     ///
     /// The default speed for most symbol effects.
-    public static var arcSpeedNormal: SymbolEffectOptions { .speed(1.0) }
+    public static var arcSpeedNormal: SymbolEffectOptions {
+        .speed(1.0)
+    }
 
     /// Fast animation speed (1.5x).
     ///
     /// Use for snappy feedback that responds to user actions.
-    public static var arcSpeedFast: SymbolEffectOptions { .speed(1.5) }
+    public static var arcSpeedFast: SymbolEffectOptions {
+        .speed(1.5)
+    }
 
     /// Very fast animation speed (2.0x).
     ///
     /// Use for immediate, quick feedback moments.
-    public static var arcSpeedVeryFast: SymbolEffectOptions { .speed(2.0) }
+    public static var arcSpeedVeryFast: SymbolEffectOptions {
+        .speed(2.0)
+    }
 }

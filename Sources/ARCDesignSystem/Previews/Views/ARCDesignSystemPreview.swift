@@ -44,8 +44,7 @@ import SwiftUI
 /// This view works on iOS 17.0+ and macOS 14.0+, adapting its presentation
 /// to each platform's conventions using ``ARCColorHelper`` for cross-platform
 /// color consistency.
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-public struct ARCDesignSystemPreview: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) public struct ARCDesignSystemPreview: View {
     /// Creates a new ARC Design System preview.
     public init() {}
 
@@ -115,8 +114,7 @@ public struct ARCDesignSystemPreview: View {
 
 // MARK: - Components
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCSpacingDemoRow: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCSpacingDemoRow: View {
     let label: String
     let value: CGFloat
 
@@ -135,8 +133,7 @@ private struct ARCSpacingDemoRow: View {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCColorSwatch: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCColorSwatch: View {
     let name: String
     let color: Color
 
@@ -145,10 +142,8 @@ private struct ARCColorSwatch: View {
             RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
                 .fill(color)
                 .frame(width: 60, height: 40)
-                .overlay(
-                    RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
-                        .stroke(ARCColorHelper.shadowMedium.opacity(0.3), lineWidth: 0.5)
-                )
+                .overlay(RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
+                    .stroke(ARCColorHelper.shadowMedium.opacity(0.3), lineWidth: 0.5))
 
             Text(name)
                 .font(.callout)
@@ -159,8 +154,7 @@ private struct ARCColorSwatch: View {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCRadiusDemo: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCRadiusDemo: View {
     let radius: CGFloat
     let label: String
 

@@ -11,8 +11,7 @@ import SwiftUI
 ///
 /// This preview demonstrates all animation tokens with interactive examples
 /// and shows how they behave with Reduce Motion enabled.
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-public struct ARCAnimationsPreview: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) public struct ARCAnimationsPreview: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var isAnimating = false
 
@@ -102,11 +101,9 @@ public struct ARCAnimationsPreview: View {
                 Button {
                     isAnimating.toggle()
                 } label: {
-                    Label(
-                        isAnimating ? "Reset" : "Play All",
-                        systemImage: isAnimating ? "arrow.counterclockwise" : "play.fill"
-                    )
-                    .frame(maxWidth: .infinity)
+                    Label(isAnimating ? "Reset" : "Play All",
+                          systemImage: isAnimating ? "arrow.counterclockwise" : "play.fill")
+                        .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.arcBrandBurgundy)
@@ -119,8 +116,7 @@ public struct ARCAnimationsPreview: View {
 
 // MARK: - Components
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct AnimationDemo: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct AnimationDemo: View {
     let name: String
     let animation: Animation
     let isAnimating: Bool
@@ -143,8 +139,7 @@ private struct AnimationDemo: View {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct SpringDemo: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct SpringDemo: View {
     let name: String
     let animation: Animation
     let isAnimating: Bool
@@ -166,8 +161,7 @@ private struct SpringDemo: View {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct AccessibilityAnimationDemo: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct AccessibilityAnimationDemo: View {
     let isAnimating: Bool
 
     var body: some View {
@@ -199,8 +193,7 @@ private struct AccessibilityAnimationDemo: View {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct DurationRow: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct DurationRow: View {
     let name: String
     let value: Double
 

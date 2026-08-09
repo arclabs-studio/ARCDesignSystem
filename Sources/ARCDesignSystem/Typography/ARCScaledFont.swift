@@ -34,8 +34,7 @@ import SwiftUI
 /// - Note: For standard text styles (body, title, etc.), prefer using the native
 ///   SwiftUI fonts directly, which handle scaling automatically.
 @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
-@propertyWrapper
-public struct ARCScaledFont: DynamicProperty {
+@propertyWrapper public struct ARCScaledFont: DynamicProperty {
     // MARK: - Properties
 
     @ScaledMetric private var scaledSize: CGFloat
@@ -51,12 +50,10 @@ public struct ARCScaledFont: DynamicProperty {
     ///   - weight: The weight of the font. Defaults to `.regular`.
     ///   - design: The design of the font. Defaults to `.default`.
     ///   - relativeTo: The text style to scale relative to. Defaults to `.body`.
-    public init(
-        size: CGFloat,
-        weight: Font.Weight = .regular,
-        design: Font.Design = .default,
-        relativeTo textStyle: Font.TextStyle = .body
-    ) {
+    public init(size: CGFloat,
+                weight: Font.Weight = .regular,
+                design: Font.Design = .default,
+                relativeTo textStyle: Font.TextStyle = .body) {
         _scaledSize = ScaledMetric(wrappedValue: size, relativeTo: textStyle)
         self.weight = weight
         self.design = design
@@ -83,8 +80,7 @@ public struct ARCScaledFont: DynamicProperty {
 
 // MARK: - Convenience Extensions
 
-@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
-extension ARCScaledFont {
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *) extension ARCScaledFont {
     /// Creates a scaled title font.
     ///
     /// - Parameter size: The base size. Scales relative to `.title`.
@@ -137,8 +133,7 @@ extension Text {
     /// Text("Hello")
     ///     .font(customFont)
     /// ```
-    @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
-    public func arcFont(_ font: Font) -> Text {
+    @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *) public func arcFont(_ font: Font) -> Text {
         self.font(font)
     }
 }

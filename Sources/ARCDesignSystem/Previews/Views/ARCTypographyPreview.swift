@@ -11,8 +11,7 @@ import SwiftUI
 ///
 /// This preview displays all typography tokens with Dynamic Type scaling
 /// demonstrations and size comparisons.
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-public struct ARCTypographyPreview: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) public struct ARCTypographyPreview: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     public init() {}
@@ -123,8 +122,7 @@ public struct ARCTypographyPreview: View {
 
 // MARK: - Components
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct TypographyRow: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct TypographyRow: View {
     let name: String
     let font: Font
 
@@ -139,10 +137,8 @@ private struct TypographyRow: View {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ScaledSpacingDemo: View {
-    @ScaledMetric(relativeTo: .body)
-    private var spacing: CGFloat = .arcSpacingMedium
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ScaledSpacingDemo: View {
+    @ScaledMetric(relativeTo: .body) private var spacing: CGFloat = .arcSpacingMedium
 
     var body: some View {
         VStack(alignment: .leading, spacing: spacing) {
@@ -167,8 +163,7 @@ private struct ScaledSpacingDemo: View {
 
 // MARK: - DynamicTypeSize Extension
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-extension DynamicTypeSize {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) extension DynamicTypeSize {
     var description: String {
         switch self {
         case .xSmall: return "XSmall"

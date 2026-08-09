@@ -9,10 +9,8 @@ import SwiftUI
 import Testing
 @testable import ARCDesignSystem
 
-@Suite("Padding Tokens Tests")
-struct PaddingTokensTests {
-    @Test("Card padding has correct values")
-    func cardPaddingHasCorrectValues() {
+@Suite("Padding Tokens Tests") struct PaddingTokensTests {
+    @Test("Card padding has correct values") func cardPaddingHasCorrectValues() {
         let padding = EdgeInsets.arcPaddingCard
 
         #expect(padding.top == 16)
@@ -21,8 +19,7 @@ struct PaddingTokensTests {
         #expect(padding.trailing == 16)
     }
 
-    @Test("Horizontal padding has correct values")
-    func horizontalPaddingHasCorrectValues() {
+    @Test("Horizontal padding has correct values") func horizontalPaddingHasCorrectValues() {
         let padding = EdgeInsets.arcPaddingHorizontal
 
         #expect(padding.top == 0)
@@ -31,8 +28,7 @@ struct PaddingTokensTests {
         #expect(padding.trailing == 16)
     }
 
-    @Test("Section padding has correct values")
-    func sectionPaddingHasCorrectValues() {
+    @Test("Section padding has correct values") func sectionPaddingHasCorrectValues() {
         let padding = EdgeInsets.arcPaddingSection
 
         #expect(padding.top == 24)
@@ -41,8 +37,7 @@ struct PaddingTokensTests {
         #expect(padding.trailing == 16)
     }
 
-    @Test("Compact padding has correct values")
-    func compactPaddingHasCorrectValues() {
+    @Test("Compact padding has correct values") func compactPaddingHasCorrectValues() {
         let padding = EdgeInsets.arcPaddingCompact
 
         #expect(padding.top == 8)
@@ -51,14 +46,11 @@ struct PaddingTokensTests {
         #expect(padding.trailing == 12)
     }
 
-    @Test("All padding values are non-negative")
-    func allPaddingValuesAreNonNegative() {
-        let paddings = [
-            EdgeInsets.arcPaddingCard,
-            EdgeInsets.arcPaddingHorizontal,
-            EdgeInsets.arcPaddingSection,
-            EdgeInsets.arcPaddingCompact
-        ]
+    @Test("All padding values are non-negative") func allPaddingValuesAreNonNegative() {
+        let paddings = [EdgeInsets.arcPaddingCard,
+                        EdgeInsets.arcPaddingHorizontal,
+                        EdgeInsets.arcPaddingSection,
+                        EdgeInsets.arcPaddingCompact]
 
         for padding in paddings {
             #expect(padding.top >= 0)
