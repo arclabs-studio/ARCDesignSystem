@@ -70,12 +70,9 @@ struct SampleForm: View {
 
     // MARK: - Helpers
 
-    @ViewBuilder
-    private func formField(
-        label: String,
-        placeholder: String,
-        text: Binding<String>
-    ) -> some View {
+    private func formField(label: String,
+                           placeholder: String,
+                           text: Binding<String>) -> some View {
         VStack(alignment: .leading, spacing: .arcSpacingXSmall) {
             Text(label)
                 .font(.footnote)

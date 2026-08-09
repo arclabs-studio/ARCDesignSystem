@@ -54,12 +54,10 @@ struct SampleCard: View {
 
 #Preview {
     VStack(spacing: .arcSpacingMedium) {
-        SampleCard(
-            title: "Welcome",
-            subtitle: "Getting Started",
-            description: "This is a sample card showing all tokens in use.",
-            imageName: "star.fill"
-        )
+        SampleCard(title: "Welcome",
+                   subtitle: "Getting Started",
+                   description: "This is a sample card showing all tokens in use.",
+                   imageName: "star.fill")
     }
     .padding()
     .background(Color.arcBackgroundPrimary)
