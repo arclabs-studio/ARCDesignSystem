@@ -38,8 +38,7 @@ import SwiftUI
 /// ```
 ///
 /// - Note: Requires iOS 17+, macOS 14+, tvOS 17+, or watchOS 10+.
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-public struct ARCSymbolEffectsPreview: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) public struct ARCSymbolEffectsPreview: View {
     @State private var selectedTab = 0
 
     public init() {}
@@ -89,8 +88,7 @@ public struct ARCSymbolEffectsPreview: View {
 
 // MARK: - Indefinite Effects Section
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCIndefiniteEffectsSection: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCIndefiniteEffectsSection: View {
     @State private var isRecording = false
     @State private var isSyncing = false
     @State private var isSearching = false
@@ -99,16 +97,12 @@ private struct ARCIndefiniteEffectsSection: View {
     var body: some View {
         ScrollView {
             VStack(spacing: .arcSpacingXLarge) {
-                ARCEffectSectionHeader(
-                    title: "Indefinite Effects",
-                    subtitle: "Continuous animations while active"
-                )
+                ARCEffectSectionHeader(title: "Indefinite Effects",
+                                       subtitle: "Continuous animations while active")
 
-                ARCEffectCard(
-                    title: "In Progress",
-                    description: "Recording, downloading, processing",
-                    systemImage: "record.circle"
-                ) {
+                ARCEffectCard(title: "In Progress",
+                              description: "Recording, downloading, processing",
+                              systemImage: "record.circle") {
                     Image(systemName: "record.circle.fill")
                         .font(.system(size: 56))
                         .foregroundStyle(.red)
@@ -119,11 +113,9 @@ private struct ARCIndefiniteEffectsSection: View {
                         .toggleStyle(.switch)
                 }
 
-                ARCEffectCard(
-                    title: "Syncing",
-                    description: "Cloud sync, data refresh",
-                    systemImage: "arrow.triangle.2.circlepath"
-                ) {
+                ARCEffectCard(title: "Syncing",
+                              description: "Cloud sync, data refresh",
+                              systemImage: "arrow.triangle.2.circlepath") {
                     Image(systemName: "arrow.triangle.2.circlepath")
                         .font(.system(size: 56))
                         .foregroundStyle(.blue)
@@ -134,11 +126,9 @@ private struct ARCIndefiniteEffectsSection: View {
                         .toggleStyle(.switch)
                 }
 
-                ARCEffectCard(
-                    title: "Searching",
-                    description: "Network scanning, discovery",
-                    systemImage: "wifi"
-                ) {
+                ARCEffectCard(title: "Searching",
+                              description: "Network scanning, discovery",
+                              systemImage: "wifi") {
                     Image(systemName: "wifi")
                         .font(.system(size: 56))
                         .foregroundStyle(.green)
@@ -149,11 +139,9 @@ private struct ARCIndefiniteEffectsSection: View {
                         .toggleStyle(.switch)
                 }
 
-                ARCEffectCard(
-                    title: "Hover",
-                    description: "Focus state, interactive elements",
-                    systemImage: "star.fill"
-                ) {
+                ARCEffectCard(title: "Hover",
+                              description: "Focus state, interactive elements",
+                              systemImage: "star.fill") {
                     Image(systemName: "star.fill")
                         .font(.system(size: 56))
                         .foregroundStyle(.yellow)
@@ -172,8 +160,7 @@ private struct ARCIndefiniteEffectsSection: View {
 
 // MARK: - Discrete Effects Section
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCDiscreteEffectsSection: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCDiscreteEffectsSection: View {
     @State private var successTrigger = 0
     @State private var errorTrigger = 0
     @State private var cartCount = 0
@@ -182,16 +169,12 @@ private struct ARCDiscreteEffectsSection: View {
     var body: some View {
         ScrollView {
             VStack(spacing: .arcSpacingXLarge) {
-                ARCEffectSectionHeader(
-                    title: "Discrete Effects",
-                    subtitle: "One-shot animations triggered by events"
-                )
+                ARCEffectSectionHeader(title: "Discrete Effects",
+                                       subtitle: "One-shot animations triggered by events")
 
-                ARCEffectCard(
-                    title: "Success",
-                    description: "Action completed, form submitted",
-                    systemImage: "checkmark.circle.fill"
-                ) {
+                ARCEffectCard(title: "Success",
+                              description: "Action completed, form submitted",
+                              systemImage: "checkmark.circle.fill") {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 56))
                         .foregroundStyle(.green)
@@ -203,11 +186,9 @@ private struct ARCDiscreteEffectsSection: View {
                     .buttonStyle(.borderedProminent)
                 }
 
-                ARCEffectCard(
-                    title: "Error",
-                    description: "Validation failed, action blocked",
-                    systemImage: "xmark.circle.fill"
-                ) {
+                ARCEffectCard(title: "Error",
+                              description: "Validation failed, action blocked",
+                              systemImage: "xmark.circle.fill") {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 56))
                         .foregroundStyle(.red)
@@ -219,11 +200,9 @@ private struct ARCDiscreteEffectsSection: View {
                     .buttonStyle(.borderedProminent)
                 }
 
-                ARCEffectCard(
-                    title: "Add Item",
-                    description: "Add to cart, favorite, bookmark",
-                    systemImage: "cart.badge.plus"
-                ) {
+                ARCEffectCard(title: "Add Item",
+                              description: "Add to cart, favorite, bookmark",
+                              systemImage: "cart.badge.plus") {
                     HStack(spacing: .arcSpacingMedium) {
                         Image(systemName: "cart.badge.plus")
                             .font(.system(size: 56))
@@ -243,11 +222,9 @@ private struct ARCDiscreteEffectsSection: View {
                     .buttonStyle(.borderedProminent)
                 }
 
-                ARCEffectCard(
-                    title: "Update",
-                    description: "Content refreshed, data changed",
-                    systemImage: "arrow.clockwise.circle.fill"
-                ) {
+                ARCEffectCard(title: "Update",
+                              description: "Content refreshed, data changed",
+                              systemImage: "arrow.clockwise.circle.fill") {
                     Image(systemName: "arrow.clockwise.circle.fill")
                         .font(.system(size: 56))
                         .foregroundStyle(.purple)
@@ -267,8 +244,7 @@ private struct ARCDiscreteEffectsSection: View {
 
 // MARK: - Content Transition Section
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCContentTransitionSection: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCContentTransitionSection: View {
     @State private var isMuted = false
     @State private var isDarkMode = false
     @State private var networkStatus: NetworkStatus = .connected
@@ -314,16 +290,12 @@ private struct ARCContentTransitionSection: View {
     var body: some View {
         ScrollView {
             VStack(spacing: .arcSpacingXLarge) {
-                ARCEffectSectionHeader(
-                    title: "Content Transitions",
-                    subtitle: "Smooth changes between symbols"
-                )
+                ARCEffectSectionHeader(title: "Content Transitions",
+                                       subtitle: "Smooth changes between symbols")
 
-                ARCEffectCard(
-                    title: "Smooth (Auto)",
-                    description: "System chooses optimal transition",
-                    systemImage: "bell"
-                ) {
+                ARCEffectCard(title: "Smooth (Auto)",
+                              description: "System chooses optimal transition",
+                              systemImage: "bell") {
                     Image(systemName: "bell")
                         .font(.system(size: 56))
                         .foregroundStyle(isMuted ? .gray : .blue)
@@ -338,11 +310,9 @@ private struct ARCContentTransitionSection: View {
                     .buttonStyle(.borderedProminent)
                 }
 
-                ARCEffectCard(
-                    title: "Upward",
-                    description: "Both symbols animate upward",
-                    systemImage: "sun.max"
-                ) {
+                ARCEffectCard(title: "Upward",
+                              description: "Both symbols animate upward",
+                              systemImage: "sun.max") {
                     Image(systemName: isDarkMode ? "moon.stars.fill" : "sun.max.fill")
                         .font(.system(size: 56))
                         .foregroundStyle(isDarkMode ? .indigo : .orange)
@@ -356,11 +326,9 @@ private struct ARCContentTransitionSection: View {
                     .buttonStyle(.borderedProminent)
                 }
 
-                ARCEffectCard(
-                    title: "Layered",
-                    description: "Layer-by-layer animation",
-                    systemImage: "wifi"
-                ) {
+                ARCEffectCard(title: "Layered",
+                              description: "Layer-by-layer animation",
+                              systemImage: "wifi") {
                     VStack(spacing: .arcSpacingSmall) {
                         Image(systemName: networkStatus.symbolName)
                             .font(.system(size: 56))
@@ -388,8 +356,7 @@ private struct ARCContentTransitionSection: View {
 
 // MARK: - Transition Effects Section
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCTransitionEffectsSection: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCTransitionEffectsSection: View {
     @State private var showWelcome = false
     @State private var showNotification = false
     @State private var showSuccess = false
@@ -397,16 +364,12 @@ private struct ARCTransitionEffectsSection: View {
     var body: some View {
         ScrollView {
             VStack(spacing: .arcSpacingXLarge) {
-                ARCEffectSectionHeader(
-                    title: "Transition Effects",
-                    subtitle: "Animations for appear/disappear"
-                )
+                ARCEffectSectionHeader(title: "Transition Effects",
+                                       subtitle: "Animations for appear/disappear")
 
-                ARCEffectCard(
-                    title: "Appear",
-                    description: "Symbol enters view hierarchy",
-                    systemImage: "hand.wave"
-                ) {
+                ARCEffectCard(title: "Appear",
+                              description: "Symbol enters view hierarchy",
+                              systemImage: "hand.wave") {
                     ZStack {
                         if showWelcome {
                             Image(systemName: "hand.wave.fill")
@@ -425,11 +388,9 @@ private struct ARCTransitionEffectsSection: View {
                     .buttonStyle(.borderedProminent)
                 }
 
-                ARCEffectCard(
-                    title: "Notification Badge",
-                    description: "Common pattern for badges",
-                    systemImage: "bell.badge"
-                ) {
+                ARCEffectCard(title: "Notification Badge",
+                              description: "Common pattern for badges",
+                              systemImage: "bell.badge") {
                     ZStack(alignment: .topTrailing) {
                         Image(systemName: "bell.fill")
                             .font(.system(size: 56))
@@ -453,11 +414,9 @@ private struct ARCTransitionEffectsSection: View {
                     .buttonStyle(.borderedProminent)
                 }
 
-                ARCEffectCard(
-                    title: "Success Confirmation",
-                    description: "Temporary success indicator",
-                    systemImage: "checkmark.circle"
-                ) {
+                ARCEffectCard(title: "Success Confirmation",
+                              description: "Temporary success indicator",
+                              systemImage: "checkmark.circle") {
                     ZStack {
                         if showSuccess {
                             Image(systemName: "checkmark.circle.fill")
@@ -486,71 +445,6 @@ private struct ARCTransitionEffectsSection: View {
             .padding(.arcPaddingSection)
         }
         .background(ARCColorHelper.backgroundPrimary)
-    }
-}
-
-// MARK: - Supporting Views
-
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCEffectSectionHeader: View {
-    let title: String
-    let subtitle: String
-
-    var body: some View {
-        VStack(spacing: .arcSpacingSmall) {
-            Text(title)
-                .font(.title)
-                .foregroundStyle(.primary)
-
-            Text(subtitle)
-                .font(.callout)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, .arcSpacingMedium)
-    }
-}
-
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCEffectCard<Content: View>: View {
-    let title: String
-    let description: String
-    let systemImage: String
-    @ViewBuilder let content: () -> Content
-
-    var body: some View {
-        VStack(spacing: .arcSpacingMedium) {
-            // Header
-            HStack {
-                Image(systemName: systemImage)
-                    .foregroundStyle(ARCColorHelper.accent)
-
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(title)
-                        .font(.headline)
-                        .foregroundStyle(.primary)
-
-                    Text(description)
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-
-                Spacer()
-            }
-
-            // Demo area
-            VStack(spacing: .arcSpacingMedium) {
-                content()
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.arcPaddingCard)
-            .background(ARCColorHelper.backgroundSecondary)
-            .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusSmall))
-        }
-        .padding(.arcPaddingCard)
-        .background(ARCColorHelper.backgroundTertiary)
-        .clipShape(RoundedRectangle(cornerRadius: .arcCornerRadiusMedium))
     }
 }
 
