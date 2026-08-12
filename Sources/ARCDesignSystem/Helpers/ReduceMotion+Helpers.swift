@@ -88,15 +88,11 @@ extension View {
     ///         full: { $0.symbolEffect(.bounce, value: likeCount) }
     ///     )
     /// ```
-    public func arcMotionSensitive(
-        @ViewBuilder reduced: @escaping (Self) -> some View,
-        @ViewBuilder full: @escaping (Self) -> some View
-    ) -> some View {
-        modifier(ARCMotionSensitiveModifier(
-            originalContent: self,
-            reducedContent: reduced,
-            fullContent: full
-        ))
+    public func arcMotionSensitive(@ViewBuilder reduced: @escaping (Self) -> some View,
+                                   @ViewBuilder full: @escaping (Self) -> some View) -> some View {
+        modifier(ARCMotionSensitiveModifier(originalContent: self,
+                                            reducedContent: reduced,
+                                            fullContent: full))
     }
 
     /// Applies a modifier only when full motion is enabled.
@@ -112,13 +108,9 @@ extension View {
     ///         view.animation(.spring(), value: isExpanded)
     ///     }
     /// ```
-    public func arcIfMotionAllowed(
-        @ViewBuilder _ transform: @escaping (Self) -> some View
-    ) -> some View {
-        arcMotionSensitive(
-            reduced: { $0 },
-            full: transform
-        )
+    public func arcIfMotionAllowed(@ViewBuilder _ transform: @escaping (Self) -> some View) -> some View {
+        arcMotionSensitive(reduced: { $0 },
+                           full: transform)
     }
 
     /// Applies an animation only when full motion is enabled.
@@ -136,10 +128,8 @@ extension View {
     ///     .frame(width: isExpanded ? 200 : 100)
     ///     .arcAnimationIfAllowed(.spring(), value: isExpanded)
     /// ```
-    public func arcAnimationIfAllowed(
-        _ animation: Animation?,
-        value: some Equatable
-    ) -> some View {
+    public func arcAnimationIfAllowed(_ animation: Animation?,
+                                      value: some Equatable) -> some View {
         modifier(ARCAnimationIfAllowedModifier(animation: animation, value: value))
     }
 }
@@ -153,7 +143,6 @@ private struct ARCMotionSensitiveModifier<OriginalContent: View, Reduced: View, 
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    @ViewBuilder
     func body(content _: Content) -> some View {
         if reduceMotion {
             reducedContent(originalContent)
@@ -169,7 +158,6 @@ private struct ARCAnimationIfAllowedModifier<V: Equatable>: ViewModifier {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    @ViewBuilder
     func body(content: Content) -> some View {
         if reduceMotion {
             content

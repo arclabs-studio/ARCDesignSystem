@@ -38,8 +38,7 @@ import SwiftUI
 ///
 /// Call ``ARCBrandFont/registerFonts()`` in your app's init to ensure
 /// the Radley Sans font is available.
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-public struct ARCBrandAssetsPreview: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) public struct ARCBrandAssetsPreview: View {
     /// Creates a new ARC Brand Assets preview.
     public init() {
         ARCBrandFont.registerFonts()
@@ -58,45 +57,33 @@ public struct ARCBrandAssetsPreview: View {
 
                 // MARK: - Icons
 
-                ARCAssetGridSection(
-                    title: "Icons",
-                    assets: ARCBrandAsset.icons
-                )
+                ARCAssetGridSection(title: "Icons",
+                                    assets: ARCBrandAsset.icons)
 
                 // MARK: - Symbols
 
-                ARCAssetGridSection(
-                    title: "Symbols",
-                    assets: ARCBrandAsset.symbols
-                )
+                ARCAssetGridSection(title: "Symbols",
+                                    assets: ARCBrandAsset.symbols)
 
                 // MARK: - Logos
 
-                ARCAssetListSection(
-                    title: "Logos",
-                    assets: ARCBrandAsset.logos
-                )
+                ARCAssetListSection(title: "Logos",
+                                    assets: ARCBrandAsset.logos)
 
                 // MARK: - Wordmarks
 
-                ARCAssetListSection(
-                    title: "Wordmarks",
-                    assets: ARCBrandAsset.wordmarks
-                )
+                ARCAssetListSection(title: "Wordmarks",
+                                    assets: ARCBrandAsset.wordmarks)
 
                 // MARK: - Badges
 
-                ARCAssetGridSection(
-                    title: "Badges",
-                    assets: ARCBrandAsset.badges
-                )
+                ARCAssetGridSection(title: "Badges",
+                                    assets: ARCBrandAsset.badges)
 
                 // MARK: - Banners
 
-                ARCAssetListSection(
-                    title: "Banners",
-                    assets: ARCBrandAsset.banners
-                )
+                ARCAssetListSection(title: "Banners",
+                                    assets: ARCBrandAsset.banners)
             }
             .padding(.arcPaddingSection)
         }
@@ -106,8 +93,7 @@ public struct ARCBrandAssetsPreview: View {
 
 // MARK: - Brand Colors Section
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCBrandColorsSection: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCBrandColorsSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingMedium) {
             Text("Brand Colors")
@@ -127,8 +113,7 @@ private struct ARCBrandColorsSection: View {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCBrandColorSwatch: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCBrandColorSwatch: View {
     let name: String
     let color: Color
     let hex: String
@@ -138,10 +123,8 @@ private struct ARCBrandColorSwatch: View {
             RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
                 .fill(color)
                 .frame(width: 60, height: 60)
-                .overlay(
-                    RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
-                        .stroke(Color.primary.opacity(0.1), lineWidth: 0.5)
-                )
+                .overlay(RoundedRectangle(cornerRadius: .arcCornerRadiusSmall)
+                    .stroke(Color.primary.opacity(0.1), lineWidth: 0.5))
 
             Text(name)
                 .font(.caption)
@@ -157,8 +140,7 @@ private struct ARCBrandColorSwatch: View {
 
 // MARK: - Typography Section
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCTypographySection: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCTypographySection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingMedium) {
             Text("Typography — Radley Sans")
@@ -186,8 +168,7 @@ private struct ARCTypographySection: View {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCTypographyRow: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCTypographyRow: View {
     let style: Font.TextStyle
     let name: String
 
@@ -207,8 +188,7 @@ private struct ARCTypographyRow: View {
 
 // MARK: - Asset Grid Section
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCAssetGridSection: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCAssetGridSection: View {
     let title: String
     let assets: [ARCBrandAsset]
 
@@ -219,12 +199,8 @@ private struct ARCAssetGridSection: View {
                 .fontWeight(.semibold)
                 .padding(.bottom, .arcSpacingSmall)
 
-            LazyVGrid(
-                columns: [
-                    GridItem(.adaptive(minimum: 100, maximum: 150), spacing: .arcSpacingMedium)
-                ],
-                spacing: .arcSpacingMedium
-            ) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100, maximum: 150), spacing: .arcSpacingMedium)],
+                      spacing: .arcSpacingMedium) {
                 ForEach(assets, id: \.rawValue) { asset in
                     ForEach(asset.availableVariants, id: \.rawValue) { variant in
                         ARCAssetGridItem(asset: asset, variant: variant)
@@ -238,8 +214,7 @@ private struct ARCAssetGridSection: View {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCAssetGridItem: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCAssetGridItem: View {
     let asset: ARCBrandAsset
     let variant: ARCBrandColorVariant
 
@@ -268,8 +243,7 @@ private struct ARCAssetGridItem: View {
 
 // MARK: - Asset List Section
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCAssetListSection: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCAssetListSection: View {
     let title: String
     let assets: [ARCBrandAsset]
 
@@ -292,8 +266,7 @@ private struct ARCAssetListSection: View {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ARCAssetListItem: View {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) private struct ARCAssetListItem: View {
     let asset: ARCBrandAsset
     let variant: ARCBrandColorVariant
 

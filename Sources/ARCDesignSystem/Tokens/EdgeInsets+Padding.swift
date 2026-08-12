@@ -54,43 +54,35 @@ extension EdgeInsets {
     ///
     /// Use for cards, containers, and general content blocks that need balanced
     /// internal spacing on all edges.
-    public static let arcPaddingCard = EdgeInsets(
-        top: 16,
-        leading: 16,
-        bottom: 16,
-        trailing: 16
-    )
+    public static let arcPaddingCard = EdgeInsets(top: 16,
+                                                  leading: 16,
+                                                  bottom: 16,
+                                                  trailing: 16)
 
     /// Horizontal-only padding (16pt left/right, 0pt top/bottom).
     ///
     /// Ideal for list items, rows, or content that needs horizontal insets
     /// without vertical spacing.
-    public static let arcPaddingHorizontal = EdgeInsets(
-        top: 0,
-        leading: 16,
-        bottom: 0,
-        trailing: 16
-    )
+    public static let arcPaddingHorizontal = EdgeInsets(top: 0,
+                                                        leading: 16,
+                                                        bottom: 0,
+                                                        trailing: 16)
 
     /// Section padding with extra vertical space (24pt top/bottom, 16pt left/right).
     ///
     /// Use for major content sections, full screens, or areas requiring
     /// generous vertical breathing room.
-    public static let arcPaddingSection = EdgeInsets(
-        top: 24,
-        leading: 16,
-        bottom: 24,
-        trailing: 16
-    )
+    public static let arcPaddingSection = EdgeInsets(top: 24,
+                                                     leading: 16,
+                                                     bottom: 24,
+                                                     trailing: 16)
 
     /// Compact padding for small elements (8pt top/bottom, 12pt left/right).
     ///
     /// Perfect for buttons, tags, badges, or other compact UI components
     /// that need minimal internal spacing.
-    public static let arcPaddingCompact = EdgeInsets(
-        top: 8,
-        leading: 12,
-        bottom: 8,
-        trailing: 12
-    )
+    public static let arcPaddingCompact = EdgeInsets(top: 8,
+                                                     leading: 12,
+                                                     bottom: 8,
+                                                     trailing: 12)
 }

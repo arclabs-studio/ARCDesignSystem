@@ -54,8 +54,7 @@ import SwiftUI
 ///
 /// - Note: Requires iOS 17+, macOS 14+, tvOS 17+, or watchOS 10+.
 ///   Earlier platforms will display static symbols without animation.
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-public enum ARCSymbolEffect: CaseIterable, Sendable {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) public enum ARCSymbolEffect: CaseIterable, Sendable {
     // MARK: - Indefinite Effects
 
     /// Indicates an ongoing process like recording or downloading.
@@ -181,8 +180,7 @@ public enum ARCSymbolEffect: CaseIterable, Sendable {
 
 // MARK: - Effect Classification
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-extension ARCSymbolEffect {
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) extension ARCSymbolEffect {
     /// Whether this effect is indefinite (continuous) or discrete (one-shot).
     public var isIndefinite: Bool {
         switch self {

@@ -12,12 +12,10 @@ import Testing
 // Note: ARCSymbolEffect requires iOS 17.0+, macOS 14.0+, tvOS 17.0+, watchOS 10.0+
 // Tests use runtime availability checks to ensure compatibility.
 
-@Suite("Symbol Effect Tests")
-struct SymbolEffectTests {
+@Suite("Symbol Effect Tests") struct SymbolEffectTests {
     // MARK: - Indefinite Effects
 
-    @Test("InProgress effect is indefinite")
-    func inProgressEffectIsIndefinite() {
+    @Test("InProgress effect is indefinite") func inProgressEffectIsIndefinite() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -26,8 +24,7 @@ struct SymbolEffectTests {
         #expect(effect.isDiscrete == false, "inProgress should not be discrete")
     }
 
-    @Test("Hover effect is indefinite")
-    func hoverEffectIsIndefinite() {
+    @Test("Hover effect is indefinite") func hoverEffectIsIndefinite() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -36,8 +33,7 @@ struct SymbolEffectTests {
         #expect(effect.isDiscrete == false, "hover should not be discrete")
     }
 
-    @Test("Syncing effect is indefinite")
-    func syncingEffectIsIndefinite() {
+    @Test("Syncing effect is indefinite") func syncingEffectIsIndefinite() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -46,8 +42,7 @@ struct SymbolEffectTests {
         #expect(effect.isDiscrete == false, "syncing should not be discrete")
     }
 
-    @Test("Searching effect is indefinite")
-    func searchingEffectIsIndefinite() {
+    @Test("Searching effect is indefinite") func searchingEffectIsIndefinite() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -56,8 +51,7 @@ struct SymbolEffectTests {
         #expect(effect.isDiscrete == false, "searching should not be discrete")
     }
 
-    @Test("Breathing effect is indefinite")
-    func breathingEffectIsIndefinite() {
+    @Test("Breathing effect is indefinite") func breathingEffectIsIndefinite() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -66,8 +60,7 @@ struct SymbolEffectTests {
         #expect(effect.isDiscrete == false, "breathing should not be discrete")
     }
 
-    @Test("Spinning effect is indefinite")
-    func spinningEffectIsIndefinite() {
+    @Test("Spinning effect is indefinite") func spinningEffectIsIndefinite() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -78,8 +71,7 @@ struct SymbolEffectTests {
 
     // MARK: - Discrete Effects
 
-    @Test("Success effect is discrete")
-    func successEffectIsDiscrete() {
+    @Test("Success effect is discrete") func successEffectIsDiscrete() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -88,8 +80,7 @@ struct SymbolEffectTests {
         #expect(effect.isIndefinite == false, "success should not be indefinite")
     }
 
-    @Test("AddItem effect is discrete")
-    func addItemEffectIsDiscrete() {
+    @Test("AddItem effect is discrete") func addItemEffectIsDiscrete() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -98,8 +89,7 @@ struct SymbolEffectTests {
         #expect(effect.isIndefinite == false, "addItem should not be indefinite")
     }
 
-    @Test("Error effect is discrete")
-    func errorEffectIsDiscrete() {
+    @Test("Error effect is discrete") func errorEffectIsDiscrete() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -108,8 +98,7 @@ struct SymbolEffectTests {
         #expect(effect.isIndefinite == false, "error should not be indefinite")
     }
 
-    @Test("Update effect is discrete")
-    func updateEffectIsDiscrete() {
+    @Test("Update effect is discrete") func updateEffectIsDiscrete() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -120,8 +109,7 @@ struct SymbolEffectTests {
 
     // MARK: - Content Transitions
 
-    @Test("Smooth effect is content transition")
-    func smoothEffectIsContentTransition() {
+    @Test("Smooth effect is content transition") func smoothEffectIsContentTransition() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -131,8 +119,7 @@ struct SymbolEffectTests {
         #expect(effect.isDiscrete == false, "smooth should not be discrete")
     }
 
-    @Test("Upward effect is content transition")
-    func upwardEffectIsContentTransition() {
+    @Test("Upward effect is content transition") func upwardEffectIsContentTransition() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -141,8 +128,7 @@ struct SymbolEffectTests {
         #expect(effect.isIndefinite == false, "upward should not be indefinite")
     }
 
-    @Test("Layered effect is content transition")
-    func layeredEffectIsContentTransition() {
+    @Test("Layered effect is content transition") func layeredEffectIsContentTransition() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -153,8 +139,7 @@ struct SymbolEffectTests {
 
     // MARK: - Transition Effects
 
-    @Test("Appear effect is transition")
-    func appearEffectIsTransition() {
+    @Test("Appear effect is transition") func appearEffectIsTransition() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -166,8 +151,7 @@ struct SymbolEffectTests {
 
     // MARK: - Effect Classification
 
-    @Test("All effects are accessible via CaseIterable")
-    func allEffectsAccessible() {
+    @Test("All effects are accessible via CaseIterable") func allEffectsAccessible() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
@@ -175,16 +159,13 @@ struct SymbolEffectTests {
         #expect(allEffects.count == 14, "Should have 14 symbol effect presets")
     }
 
-    @Test("Effects are correctly categorized as indefinite")
-    func effectsCorrectlyCategorizedAsIndefinite() {
+    @Test("Effects are correctly categorized as indefinite") func effectsCorrectlyCategorizedAsIndefinite() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
         let indefiniteEffects: [ARCSymbolEffect] = [.inProgress, .hover, .syncing, .searching, .breathing, .spinning]
-        let nonIndefiniteEffects: [ARCSymbolEffect] = [
-            .success, .addItem, .error, .update,
-            .smooth, .upward, .layered, .appear
-        ]
+        let nonIndefiniteEffects: [ARCSymbolEffect] = [.success, .addItem, .error, .update,
+                                                       .smooth, .upward, .layered, .appear]
 
         for effect in indefiniteEffects {
             #expect(effect.isIndefinite == true, "\(effect) should be indefinite")
@@ -195,16 +176,13 @@ struct SymbolEffectTests {
         }
     }
 
-    @Test("Effects are correctly categorized as discrete")
-    func effectsCorrectlyCategorizedAsDiscrete() {
+    @Test("Effects are correctly categorized as discrete") func effectsCorrectlyCategorizedAsDiscrete() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
         let discreteEffects: [ARCSymbolEffect] = [.success, .addItem, .error, .update]
-        let nonDiscreteEffects: [ARCSymbolEffect] = [
-            .inProgress, .hover, .syncing, .searching, .breathing, .spinning,
-            .smooth, .upward, .layered, .appear
-        ]
+        let nonDiscreteEffects: [ARCSymbolEffect] = [.inProgress, .hover, .syncing, .searching, .breathing, .spinning,
+                                                     .smooth, .upward, .layered, .appear]
 
         for effect in discreteEffects {
             #expect(effect.isDiscrete == true, "\(effect) should be discrete")
@@ -221,10 +199,9 @@ struct SymbolEffectTests {
             return
         }
         let contentTransitionEffects: [ARCSymbolEffect] = [.smooth, .upward, .layered]
-        let nonContentTransitionEffects: [ARCSymbolEffect] = [
-            .inProgress, .hover, .syncing, .searching, .breathing, .spinning,
-            .success, .addItem, .error, .update, .appear
-        ]
+        let nonContentTransitionEffects: [ARCSymbolEffect] = [.inProgress, .hover, .syncing, .searching, .breathing,
+                                                              .spinning,
+                                                              .success, .addItem, .error, .update, .appear]
 
         for effect in contentTransitionEffects {
             #expect(effect.isContentTransition == true, "\(effect) should be content transition")
@@ -235,17 +212,24 @@ struct SymbolEffectTests {
         }
     }
 
-    @Test("Effects are mutually exclusive categories")
-    func effectsAreMutuallyExclusive() {
+    @Test("Effects are mutually exclusive categories") func effectsAreMutuallyExclusive() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
         for effect in ARCSymbolEffect.allCases {
             var categoryCount = 0
-            if effect.isIndefinite { categoryCount += 1 }
-            if effect.isDiscrete { categoryCount += 1 }
-            if effect.isContentTransition { categoryCount += 1 }
-            if effect.isTransition { categoryCount += 1 }
+            if effect.isIndefinite {
+                categoryCount += 1
+            }
+            if effect.isDiscrete {
+                categoryCount += 1
+            }
+            if effect.isContentTransition {
+                categoryCount += 1
+            }
+            if effect.isTransition {
+                categoryCount += 1
+            }
 
             #expect(categoryCount == 1, "\(effect) should belong to exactly one category")
         }
@@ -254,10 +238,8 @@ struct SymbolEffectTests {
 
 // MARK: - Symbol Effect Options Tests
 
-@Suite("Symbol Effect Options Tests")
-struct SymbolEffectOptionsTests {
-    @Test("Speed presets are accessible")
-    func speedPresetsAreAccessible() {
+@Suite("Symbol Effect Options Tests") struct SymbolEffectOptionsTests {
+    @Test("Speed presets are accessible") func speedPresetsAreAccessible() {
         guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else {
             return
         }
