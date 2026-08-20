@@ -45,7 +45,7 @@ import AppKit
 ///
 /// - Note: This struct centralizes accessibility checks for use in non-View
 ///   contexts like view models or utility functions.
-public struct ARCAccessibility: Sendable {
+@MainActor public struct ARCAccessibility {
     // MARK: - Motion
 
     /// Whether the user has enabled Reduce Motion in accessibility settings.
