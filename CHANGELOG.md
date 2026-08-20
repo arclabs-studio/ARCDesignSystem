@@ -5,9 +5,39 @@ All notable changes to ARCDesignSystem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0] - 2025-12-19
+## [1.0.0] - 2026-08-20
+
+First public release of **ARCDesignSystem**.
+
+ARC Labs Studio re-baselined every package at `1.0.0` for its first product launch. The pre-launch version history (0.1.0 → 2.3.1) never corresponded to a release the studio stood behind; those tags and GitHub Releases have been removed and the notes are preserved below under [Pre-1.0 history](#pre-10-history-untagged).
 
 ### Added
+
+- **`INTERNAL-USE.md`** — documents ARC Labs Studio's self-grant for commercial use of its own products under the new licence.
+- **Claude GitHub Actions workflows** (`claude.yml`, `claude-code-review.yml`), previously only on `main`.
+
+### Fixed
+
+- **Swift 6 strict concurrency in `ARCAccessibility`** — the type is now `@MainActor`, matching the main-thread-only `UIAccessibility`/`NSWorkspace` reads behind `isReduceMotionEnabled`. `arcWithAnimation` is `@MainActor` for the same reason. The now-redundant explicit `Sendable` conformance on `ARCAccessibility` was dropped: an actor-isolated type is implicitly `Sendable`, so no capability is lost.
+- **`Previews/` excluded from the SPM target** ([#26](https://github.com/arclabs-studio/ARCDesignSystem/pull/26)) — `#Preview` requires Xcode's PreviewsMacros plugin, which is unavailable to `swift build`, so CLI and CI builds failed.
+
+### Notes
+
+- The 2.1.0, 2.2.0, 2.3.0 and 2.3.1 releases were tagged but never recorded in this file. Their content is in the package regardless; the pre-1.0 section below documents history only up to 2.0.0.
+
+### Changed
+
+- **License** — relicensed from MIT to [PolyForm Noncommercial 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0). Source-available and free for non-commercial use; commercial use requires a separate licence from ARC Labs Studio. ARC Labs Studio's own products are covered by an internal grant — see `INTERNAL-USE.md`.
+
+---
+
+## Pre-1.0 history (untagged)
+
+Everything below predates the 1.0.0 baseline. The version numbers are retained for traceability only — no tag or release exists for any of them.
+
+### [2.0.0] - 2025-12-19
+
+#### Added
 
 - **Material Effects** (`Material+Effects.swift`)
   - `.arcUltraThin`, `.arcThin`, `.arcRegular`, `.arcThick`, `.arcUltraThick`, `.arcBar` material presets
@@ -30,7 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Interactive Playground for materials and vibrancy
   - Accessibility Testing with `@ScaledMetric` demo
 
-### Changed
+#### Changed
 
 - **Spacing Tokens**: Now provide base values only; use `@ScaledMetric` for Dynamic Type scaling
 - **Corner Radius Tokens**: Fixed values (no longer scale with Dynamic Type, following Apple conventions)
@@ -38,7 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Color Tokens**: Reduced to semantic colors not available in native SwiftUI
 - **File Organization**: Reorganized into `Tokens/`, `Effects/`, `Helpers/`, `Previews/` structure
 
-### Removed
+#### Removed
 
 - **Typography Tokens** (`Font+Typography.swift`)
   - Use SwiftUI native: `.body`, `.title`, `.headline`, `.caption`, etc.
@@ -61,7 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `ARCDesignSystemDocumentation.swift`
   - `ARCDesignSystemInteractivePreview.swift`
 
-### Breaking Changes
+#### Breaking Changes
 
 This is a major version with intentional breaking changes to align with Apple's native APIs:
 
@@ -97,18 +127,18 @@ VStack(spacing: spacing) { }
 
 ---
 
-## [1.0.0] - 2025-12-16
+### [1.0.0] - 2025-12-16
 
-### Added
+#### Added
 
-#### Development Infrastructure
+##### Development Infrastructure
 - **ARCDevTools integration** (v1.1.4) for standardized code quality
   - SwiftLint configuration with ARC Labs standards
   - SwiftFormat automatic code formatting
   - Makefile with convenient commands (`make lint`, `make format`, `make fix`)
   - Local development tools (not versioned in git)
 
-#### Comprehensive Test Suite
+##### Comprehensive Test Suite
 - **29 unit tests** across 6 test suites with **59 assertions**
   - `ARCLayoutScaleTests`: Scale factor validation (2 tests)
   - `SpacingTokensTests`: All spacing token validation (8 tests)
@@ -120,14 +150,14 @@ VStack(spacing: spacing) { }
 - All tests include meaningful `#expect` assertions
 - Tests verify exact token values, scaling behavior, and relationships
 
-#### Documentation
+##### Documentation
 - This CHANGELOG.md file for version tracking
 - Enhanced code documentation with inline comments
 - Reference to comprehensive ARCHITECTURE_REVIEW.md
 
-### Changed
+#### Changed
 
-#### Code Organization - "One Type Per File" Principle
+##### Code Organization - "One Type Per File" Principle
 **Before:** 1 monolithic file (ARCDesignSystem.swift - 631 lines)
 **After:** 8 modular files (all <150 lines each)
 
@@ -146,15 +176,15 @@ VStack(spacing: spacing) { }
 - Faster incremental builds
 - Reduced merge conflicts
 
-#### Code Quality Improvements
+##### Code Quality Improvements
 - **Variable naming**: Renamed short variables (`s` → `scaleFactor`) for clarity
 - **Line length**: Fixed all lines exceeding 120 characters
 - **Formatting**: Applied consistent SwiftFormat styling across all files
 - **Multi-line readability**: Improved EdgeInsets initialization formatting
 
-### Fixed
+#### Fixed
 
-#### Linting and Build Issues
+##### Linting and Build Issues
 - **0 linting violations** (previously 5 violations)
   - Resolved File Length violation (631 lines → max 133 lines per file)
   - Fixed 4 Identifier Name violations (short variable names)
@@ -162,7 +192,7 @@ VStack(spacing: spacing) { }
 - **0 build warnings** (clean builds)
 - **Swift 6 compliance**: Full compatibility with strict concurrency checking
 
-### Removed
+#### Removed
 
 - Empty test file (`ARCDesignSystemTests.swift`)
 - Monolithic `ARCDesignSystem.swift` file (split into modular files)
@@ -170,7 +200,7 @@ VStack(spacing: spacing) { }
 
 ---
 
-## Quality Metrics - Before vs After
+### Quality Metrics - Before vs After
 
 | Metric | Before (v0.1.0) | After (v1.0.0) | Improvement |
 |--------|-----------------|----------------|-------------|
@@ -186,7 +216,7 @@ VStack(spacing: spacing) { }
 
 ---
 
-## Architecture Review
+### Architecture Review
 
 A comprehensive architecture review was conducted prior to this release. The full review document is available in `ARCHITECTURE_REVIEW.md` and includes:
 
@@ -211,14 +241,14 @@ Key findings:
 
 ---
 
-## Development Setup
+### Development Setup
 
-### Requirements
+#### Requirements
 - Swift 6.0+
 - Xcode 16.0+
 - iOS 17.0+ / macOS 12.0+ / tvOS 14.0+ / watchOS 7.0+
 
-### Installing Development Tools
+#### Installing Development Tools
 ```bash
 # Install SwiftLint and SwiftFormat (required for linting)
 brew install swiftlint swiftformat
@@ -227,7 +257,7 @@ brew install swiftlint swiftformat
 swift run arc-setup
 ```
 
-### Available Commands
+#### Available Commands
 ```bash
 make lint      # Run SwiftLint
 make format    # Preview formatting changes
@@ -236,7 +266,7 @@ make clean     # Remove build artifacts
 make help      # Show all available commands
 ```
 
-### Running Tests
+#### Running Tests
 ```bash
 # Run all tests
 swift test
@@ -247,9 +277,9 @@ swift build && swift test
 
 ---
 
-## Migration Guide
+### Migration Guide
 
-### From v0.1.0 to v1.0.0
+#### From v0.1.0 to v1.0.0
 
 **No Breaking Changes** - v1.0.0 is fully backward compatible with v0.1.0.
 
@@ -270,7 +300,7 @@ All public APIs remain unchanged:
 
 ---
 
-## Contributing
+### Contributing
 
 We welcome contributions! Please see our contribution guidelines:
 
@@ -280,7 +310,7 @@ We welcome contributions! Please see our contribution guidelines:
 4. **Documentation**: Update inline documentation for public APIs
 5. **Changelog**: Add entry to [Unreleased] section
 
-### Development Workflow
+#### Development Workflow
 ```bash
 # 1. Setup development environment
 swift run arc-setup
@@ -302,7 +332,7 @@ git commit -m "feat: add new spacing token"
 
 ---
 
-## Links
+### Links
 
 - **Repository**: [ARCDesignSystem](https://github.com/arclabs-studio/ARCDesignSystem)
 - **Documentation**: See inline DocC documentation
@@ -311,7 +341,7 @@ git commit -m "feat: add new spacing token"
 
 ---
 
-## Acknowledgments
+### Acknowledgments
 
 This release was prepared with the assistance of Claude Code (Anthropic), following ARC Labs Studio development standards defined in [ARCAgentsDocs](https://github.com/arclabs-studio/ARCAgentsDocs).
 
