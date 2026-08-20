@@ -17,6 +17,9 @@ let package = Package(name: "ARCDesignSystem",
                       dependencies: [],
                       targets: [.target(name: "ARCDesignSystem",
                                         path: "Sources",
+                                        // Preview files use the #Preview macro, which requires Xcode's
+                                        // PreviewsMacros plugin. Excluding them lets CLI builds and CI succeed.
+                                        exclude: ["ARCDesignSystem/Previews"],
                                         resources: [.process("ARCDesignSystem/Resources")],
                                         swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]),
                                 .testTarget(name: "ARCDesignSystemTests",
