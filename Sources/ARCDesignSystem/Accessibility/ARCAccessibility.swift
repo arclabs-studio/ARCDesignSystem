@@ -45,8 +45,7 @@ import AppKit
 ///
 /// - Note: This struct centralizes accessibility checks for use in non-View
 ///   contexts like view models or utility functions.
-@MainActor
-public struct ARCAccessibility: Sendable {
+@MainActor public struct ARCAccessibility {
     // MARK: - Motion
 
     /// Whether the user has enabled Reduce Motion in accessibility settings.
@@ -174,10 +173,8 @@ public struct ARCAccessibility: Sendable {
     ///   - animation: The animation to use when motion is allowed.
     ///   - reduced: The fallback animation when motion is reduced. Defaults to `.linear(duration: 0.1)`.
     /// - Returns: The appropriate animation for current accessibility settings.
-    public static func animation(
-        _ animation: Animation,
-        reducedMotion reduced: Animation = .linear(duration: 0.1)
-    ) -> Animation {
+    public static func animation(_ animation: Animation,
+                                 reducedMotion reduced: Animation = .linear(duration: 0.1)) -> Animation {
         isReduceMotionEnabled ? reduced : animation
     }
 
@@ -187,10 +184,8 @@ public struct ARCAccessibility: Sendable {
     ///   - duration: The duration to use when motion is allowed.
     ///   - reduced: The fallback duration when motion is reduced. Defaults to `0.1`.
     /// - Returns: The appropriate duration for current accessibility settings.
-    public static func duration(
-        _ duration: Double,
-        reducedMotion reduced: Double = 0.1
-    ) -> Double {
+    public static func duration(_ duration: Double,
+                                reducedMotion reduced: Double = 0.1) -> Double {
         isReduceMotionEnabled ? reduced : duration
     }
 }
@@ -198,8 +193,7 @@ public struct ARCAccessibility: Sendable {
 // MARK: - ContentSizeCategory Extension
 
 #if os(iOS) || os(tvOS)
-@available(iOS 15.0, tvOS 15.0, *)
-extension ContentSizeCategory {
+@available(iOS 15.0, tvOS 15.0, *) extension ContentSizeCategory {
     // swiftlint:disable:next cyclomatic_complexity
     init(_ category: UIContentSizeCategory) {
         switch category {
@@ -222,8 +216,7 @@ extension ContentSizeCategory {
 #endif
 
 #if os(watchOS)
-@available(watchOS 8.0, *)
-extension ContentSizeCategory {
+@available(watchOS 8.0, *) extension ContentSizeCategory {
     // swiftlint:disable:next cyclomatic_complexity
     init(_ category: String) {
         switch category {

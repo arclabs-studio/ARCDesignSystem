@@ -18,13 +18,11 @@ struct SampleList: View {
         let subtitle: String
     }
 
-    private let items: [ListItem] = [
-        ListItem(icon: "person.fill", title: "Profile", subtitle: "Manage your account"),
-        ListItem(icon: "gearshape.fill", title: "Settings", subtitle: "App preferences"),
-        ListItem(icon: "bell.fill", title: "Notifications", subtitle: "3 new"),
-        ListItem(icon: "lock.fill", title: "Privacy", subtitle: "Security settings"),
-        ListItem(icon: "questionmark.circle.fill", title: "Help", subtitle: "Get support")
-    ]
+    private let items: [ListItem] = [ListItem(icon: "person.fill", title: "Profile", subtitle: "Manage your account"),
+                                     ListItem(icon: "gearshape.fill", title: "Settings", subtitle: "App preferences"),
+                                     ListItem(icon: "bell.fill", title: "Notifications", subtitle: "3 new"),
+                                     ListItem(icon: "lock.fill", title: "Privacy", subtitle: "Security settings"),
+                                     ListItem(icon: "questionmark.circle.fill", title: "Help", subtitle: "Get support")]
 
     var body: some View {
         VStack(spacing: 0) {
@@ -43,7 +41,6 @@ struct SampleList: View {
 
     // MARK: - Helpers
 
-    @ViewBuilder
     private func listRow(icon: String, title: String, subtitle: String) -> some View {
         HStack(spacing: .arcSpacingMedium) {
             // Icon

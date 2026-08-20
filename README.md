@@ -2,8 +2,8 @@
 
 ![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)
 ![Platforms](https://img.shields.io/badge/platforms-iOS%2017%20%7C%20macOS%2014%20%7C%20tvOS%2017%20%7C%20watchOS%2010-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-orange.svg)
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 
 **A modern, minimal SwiftUI design system for ARC Labs Studio applications.**
 
@@ -57,7 +57,7 @@ ARCDesignSystem provides **only what SwiftUI doesn't offer natively**. It follow
 ```swift
 // Package.swift
 dependencies: [
-    .package(url: "https://github.com/arclabs-studio/ARCDesignSystem", from: "2.0.0")
+    .package(url: "https://github.com/arclabs-studio/ARCDesignSystem", from: "1.0.0")
 ]
 ```
 
@@ -333,9 +333,13 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 ## 📄 License
 
-MIT License © 2025 ARC Labs Studio
+**PolyForm Noncommercial License 1.0.0** © 2025–2026 ARC Labs Studio.
 
-See [LICENSE](LICENSE) for details.
+Source-available. Free for non-commercial use (research, study, hobby, evaluation). **Commercial use requires a separate license** — contact `arclabs.studio@gmail.com`.
+
+ARC Labs Studio's own commercial products are covered by an internal use grant — see [INTERNAL-USE.md](INTERNAL-USE.md).
+
+See [LICENSE](LICENSE) for the full license text.
 
 ---
 

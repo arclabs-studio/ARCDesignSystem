@@ -61,12 +61,9 @@ struct BrandAssetsScreen: View {
         #endif
     }
 
-    @ViewBuilder
-    private func assetSection(
-        title: String,
-        icon: String,
-        @ViewBuilder content: () -> some View
-    ) -> some View {
+    private func assetSection(title: String,
+                              icon: String,
+                              @ViewBuilder content: () -> some View) -> some View {
         VStack(alignment: .leading, spacing: .arcSpacingMedium) {
             Label(title, systemImage: icon)
                 .font(.title2.bold())
@@ -125,12 +122,8 @@ private struct AssetGridView: View {
     let assets: [ARCBrandAsset]
 
     var body: some View {
-        LazyVGrid(
-            columns: [
-                GridItem(.adaptive(minimum: 100, maximum: 150), spacing: .arcSpacingMedium)
-            ],
-            spacing: .arcSpacingMedium
-        ) {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 100, maximum: 150), spacing: .arcSpacingMedium)],
+                  spacing: .arcSpacingMedium) {
             ForEach(assets, id: \.rawValue) { asset in
                 ForEach(asset.availableVariants, id: \.rawValue) { variant in
                     AssetGridItem(asset: asset, variant: variant)

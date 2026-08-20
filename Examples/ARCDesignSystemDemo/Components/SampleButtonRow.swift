@@ -70,7 +70,6 @@ struct SampleButtonRow: View {
 
     // MARK: - Helpers
 
-    @ViewBuilder
     private func iconButton(systemName: String, label: String) -> some View {
         Button {
             // Action

@@ -200,11 +200,9 @@ extension ARCBrandAsset {
 
     /// All logo assets.
     public static var logos: [ARCBrandAsset] {
-        [
-            .logoHorizontal, .logoHorizontalAlt,
-            .logoStacked, .logoStackedAlt,
-            .logoBoxed, .logoBoxedAlt
-        ]
+        [.logoHorizontal, .logoHorizontalAlt,
+         .logoStacked, .logoStackedAlt,
+         .logoBoxed, .logoBoxedAlt]
     }
 
     /// All wordmark assets.

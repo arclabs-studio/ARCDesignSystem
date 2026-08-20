@@ -21,37 +21,49 @@ extension Material {
     ///
     /// Use for very subtle overlays where you want the background
     /// to remain highly visible.
-    public static var arcUltraThin: Material { .ultraThinMaterial }
+    public static var arcUltraThin: Material {
+        .ultraThinMaterial
+    }
 
     /// Thin blur - light frosted glass effect.
     ///
     /// Use for overlays that need some separation from the background
     /// while keeping content visible.
-    public static var arcThin: Material { .thinMaterial }
+    public static var arcThin: Material {
+        .thinMaterial
+    }
 
     /// Regular blur - standard frosted glass.
     ///
     /// The recommended material for most use cases. Provides good
     /// balance between blur and content visibility.
-    public static var arcRegular: Material { .regularMaterial }
+    public static var arcRegular: Material {
+        .regularMaterial
+    }
 
     /// Thick blur - more opaque, stronger separation.
     ///
     /// Use when you need stronger visual separation between
     /// layers or for content that requires higher contrast.
-    public static var arcThick: Material { .thickMaterial }
+    public static var arcThick: Material {
+        .thickMaterial
+    }
 
     /// Ultra thick - maximum opacity while maintaining blur.
     ///
     /// Use for maximum separation from background content,
     /// such as modal overlays or important dialogs.
-    public static var arcUltraThick: Material { .ultraThickMaterial }
+    public static var arcUltraThick: Material {
+        .ultraThickMaterial
+    }
 
     /// Bar material - matches navigation and tab bars.
     ///
     /// Use for custom bars or elements that should visually match
     /// the system navigation and tab bar appearance.
-    public static var arcBar: Material { .bar }
+    public static var arcBar: Material {
+        .bar
+    }
 }
 
 // MARK: - View Extensions
@@ -74,14 +86,10 @@ extension View {
     /// .padding()
     /// .arcMaterialBackground(.arcThick, cornerRadius: .arcCornerRadiusLarge)
     /// ```
-    public func arcMaterialBackground(
-        _ material: Material = .arcRegular,
-        cornerRadius: CGFloat = .arcCornerRadiusMedium
-    ) -> some View {
-        background(
-            material,
-            in: RoundedRectangle(cornerRadius: cornerRadius)
-        )
+    public func arcMaterialBackground(_ material: Material = .arcRegular,
+                                      cornerRadius: CGFloat = .arcCornerRadiusMedium) -> some View {
+        background(material,
+                   in: RoundedRectangle(cornerRadius: cornerRadius))
     }
 
     /// Applies an ARC material background with a capsule shape.
