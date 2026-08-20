@@ -163,10 +163,8 @@ extension View {
     /// Rectangle()
     ///     .arcAnimation(.arcSpring, value: isExpanded)
     /// ```
-    public func arcAnimation(
-        _ animation: Animation?,
-        value: some Equatable
-    ) -> some View {
+    public func arcAnimation(_ animation: Animation?,
+                             value: some Equatable) -> some View {
         modifier(ARCAnimationModifier(animation: animation, value: value))
     }
 }
@@ -180,10 +178,8 @@ private struct ARCAnimationModifier<V: Equatable>: ViewModifier {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     func body(content: Content) -> some View {
-        content.animation(
-            reduceMotion ? .linear(duration: 0.1) : animation,
-            value: value
-        )
+        content.animation(reduceMotion ? .linear(duration: 0.1) : animation,
+                          value: value)
     }
 }
 
@@ -204,10 +200,8 @@ private struct ARCAnimationModifier<V: Equatable>: ViewModifier {
 ///     isExpanded.toggle()
 /// }
 /// ```
-public func arcWithAnimation<Result>(
-    _ animation: Animation? = .arcDefault,
-    _ body: () throws -> Result
-) rethrows -> Result {
+public func arcWithAnimation<Result>(_ animation: Animation? = .arcDefault,
+                                     _ body: () throws -> Result) rethrows -> Result {
     let effectiveAnimation = ARCAccessibility.isReduceMotionEnabled
         ? nil
         : animation

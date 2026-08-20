@@ -18,19 +18,15 @@ struct ComponentShowcaseScreen: View {
             VStack(spacing: .arcSpacingXLarge) {
                 // Cards section
                 componentSection(title: "Cards") {
-                    SampleCard(
-                        title: "Welcome to ARC",
-                        subtitle: "Design System Demo",
-                        description: "This card demonstrates spacing, and color tokens.",
-                        imageName: "star.fill"
-                    )
+                    SampleCard(title: "Welcome to ARC",
+                               subtitle: "Design System Demo",
+                               description: "This card demonstrates spacing, and color tokens.",
+                               imageName: "star.fill")
 
-                    SampleCard(
-                        title: "Accessibility First",
-                        subtitle: "Dynamic Type Support",
-                        description: "All components scale with system accessibility settings.",
-                        imageName: "accessibility"
-                    )
+                    SampleCard(title: "Accessibility First",
+                               subtitle: "Dynamic Type Support",
+                               description: "All components scale with system accessibility settings.",
+                               imageName: "accessibility")
                 }
 
                 // Buttons section
@@ -59,11 +55,8 @@ struct ComponentShowcaseScreen: View {
 
     // MARK: - Helpers
 
-    @ViewBuilder
-    private func componentSection(
-        title: String,
-        @ViewBuilder content: () -> some View
-    ) -> some View {
+    private func componentSection(title: String,
+                                  @ViewBuilder content: () -> some View) -> some View {
         VStack(alignment: .leading, spacing: .arcSpacingMedium) {
             Text(title)
                 .font(.title2.bold())

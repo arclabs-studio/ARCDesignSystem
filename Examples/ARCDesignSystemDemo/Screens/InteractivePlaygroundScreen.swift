@@ -44,12 +44,10 @@ struct InteractivePlaygroundScreen: View {
     // MARK: - Background
 
     private var backgroundGradient: some View {
-        LinearGradient(
-            colors: [.blue.opacity(0.3), .purple.opacity(0.3), .pink.opacity(0.3)],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
-        .ignoresSafeArea()
+        LinearGradient(colors: [.blue.opacity(0.3), .purple.opacity(0.3), .pink.opacity(0.3)],
+                       startPoint: .topLeading,
+                       endPoint: .bottomTrailing)
+            .ignoresSafeArea()
     }
 
     // MARK: - Material Section
@@ -132,10 +130,8 @@ struct InteractivePlaygroundScreen: View {
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .fill(Color.accentColor.opacity(0.5))
                     .frame(height: 60)
-                    .overlay(
-                        Text("Corner: \(Int(cornerRadius))pt")
-                            .font(.caption)
-                    )
+                    .overlay(Text("Corner: \(Int(cornerRadius))pt")
+                        .font(.caption))
             }
             .padding(.arcSpacingLarge)
         }
@@ -152,7 +148,9 @@ private enum MaterialOption: String, CaseIterable, Identifiable {
     case regular = "Regular"
     case thick = "Thick"
 
-    var id: String { rawValue }
+    var id: String {
+        rawValue
+    }
 
     var material: Material {
         switch self {

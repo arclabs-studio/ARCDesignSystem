@@ -104,11 +104,9 @@ public struct ARCContrastCalculator: Sendable {
     /// - Returns: Relative luminance value between 0 (black) and 1 (white).
     public static func relativeLuminance(of color: Color) -> Double {
         let components = color.rgbComponents
-        return relativeLuminance(
-            red: components.red,
-            green: components.green,
-            blue: components.blue
-        )
+        return relativeLuminance(red: components.red,
+                                 green: components.green,
+                                 blue: components.blue)
     }
 
     /// Calculates relative luminance from RGB components.
@@ -118,11 +116,9 @@ public struct ARCContrastCalculator: Sendable {
     ///   - green: Green component (0.0 to 1.0).
     ///   - blue: Blue component (0.0 to 1.0).
     /// - Returns: Relative luminance value between 0 and 1.
-    public static func relativeLuminance(
-        red: Double,
-        green: Double,
-        blue: Double
-    ) -> Double {
+    public static func relativeLuminance(red: Double,
+                                         green: Double,
+                                         blue: Double) -> Double {
         let linearRed = linearize(red)
         let linearGreen = linearize(green)
         let linearBlue = linearize(blue)
@@ -148,10 +144,8 @@ public struct ARCContrastCalculator: Sendable {
     ///   - foreground: The foreground (text) color.
     ///   - background: The background color.
     /// - Returns: The contrast ratio (e.g., 4.5 for 4.5:1).
-    public static func contrastRatio(
-        foreground: Color,
-        background: Color
-    ) -> Double {
+    public static func contrastRatio(foreground: Color,
+                                     background: Color) -> Double {
         let l1 = relativeLuminance(of: foreground)
         let l2 = relativeLuminance(of: background)
         return contrastRatio(luminance1: l1, luminance2: l2)
@@ -163,10 +157,8 @@ public struct ARCContrastCalculator: Sendable {
     ///   - luminance1: First luminance value.
     ///   - luminance2: Second luminance value.
     /// - Returns: The contrast ratio.
-    public static func contrastRatio(
-        luminance1: Double,
-        luminance2: Double
-    ) -> Double {
+    public static func contrastRatio(luminance1: Double,
+                                     luminance2: Double) -> Double {
         let lighter = max(luminance1, luminance2)
         let darker = min(luminance1, luminance2)
         return (lighter + 0.05) / (darker + 0.05)
@@ -182,12 +174,10 @@ public struct ARCContrastCalculator: Sendable {
     ///   - level: The WCAG level to validate against (AA or AAA).
     ///   - isLargeText: Whether the text is considered large (≥18pt or 14pt bold).
     /// - Returns: `true` if the contrast meets the specified requirements.
-    public static func meetsWCAG(
-        foreground: Color,
-        background: Color,
-        level: WCAGLevel,
-        isLargeText: Bool = false
-    ) -> Bool {
+    public static func meetsWCAG(foreground: Color,
+                                 background: Color,
+                                 level: WCAGLevel,
+                                 isLargeText: Bool = false) -> Bool {
         let ratio = contrastRatio(foreground: foreground, background: background)
         let required = requiredRatio(for: level, isLargeText: isLargeText)
         return ratio >= required
@@ -199,10 +189,8 @@ public struct ARCContrastCalculator: Sendable {
     ///   - level: The WCAG level.
     ///   - isLargeText: Whether the text is considered large.
     /// - Returns: The minimum required contrast ratio.
-    public static func requiredRatio(
-        for level: WCAGLevel,
-        isLargeText: Bool
-    ) -> Double {
+    public static func requiredRatio(for level: WCAGLevel,
+                                     isLargeText: Bool) -> Double {
         switch (level, isLargeText) {
         case (.AA, false):
             wcagAANormalText
@@ -222,21 +210,17 @@ public struct ARCContrastCalculator: Sendable {
     ///   - background: The background color.
     ///   - isLargeText: Whether the text is considered large.
     /// - Returns: A `ValidationResult` with detailed contrast information.
-    public static func validate(
-        foreground: Color,
-        background: Color,
-        isLargeText: Bool = false
-    ) -> ValidationResult {
+    public static func validate(foreground: Color,
+                                background: Color,
+                                isLargeText: Bool = false) -> ValidationResult {
         let ratio = contrastRatio(foreground: foreground, background: background)
         let aaRequired = requiredRatio(for: .AA, isLargeText: isLargeText)
         let aaaRequired = requiredRatio(for: .AAA, isLargeText: isLargeText)
 
-        return ValidationResult(
-            ratio: ratio,
-            meetsAA: ratio >= aaRequired,
-            meetsAAA: ratio >= aaaRequired,
-            isLargeText: isLargeText
-        )
+        return ValidationResult(ratio: ratio,
+                                meetsAA: ratio >= aaRequired,
+                                meetsAAA: ratio >= aaaRequired,
+                                isLargeText: isLargeText)
     }
 
     // MARK: - UI Components
@@ -250,10 +234,8 @@ public struct ARCContrastCalculator: Sendable {
     ///   - foreground: The UI component color.
     ///   - background: The background color.
     /// - Returns: `true` if the contrast meets UI component requirements.
-    public static func meetsUIComponentRequirement(
-        foreground: Color,
-        background: Color
-    ) -> Bool {
+    public static func meetsUIComponentRequirement(foreground: Color,
+                                                   background: Color) -> Bool {
         let ratio = contrastRatio(foreground: foreground, background: background)
         return ratio >= wcagUIComponents
     }
@@ -306,12 +288,10 @@ extension Color {
         let resolvedColor = uiColor.resolvedColor(with: UITraitCollection.current)
         resolvedColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
 
-        return RGBComponents(
-            red: Double(red),
-            green: Double(green),
-            blue: Double(blue),
-            alpha: Double(alpha)
-        )
+        return RGBComponents(red: Double(red),
+                             green: Double(green),
+                             blue: Double(blue),
+                             alpha: Double(alpha))
     }
     #endif
 
@@ -331,12 +311,10 @@ extension Color {
             nsColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         }
 
-        return RGBComponents(
-            red: Double(red),
-            green: Double(green),
-            blue: Double(blue),
-            alpha: Double(alpha)
-        )
+        return RGBComponents(red: Double(red),
+                             green: Double(green),
+                             blue: Double(blue),
+                             alpha: Double(alpha))
     }
     #endif
 }

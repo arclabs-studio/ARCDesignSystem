@@ -61,8 +61,7 @@ private let arcBrandFontName = "Radley-Sans"
 /// Text("Welcome")
 ///     .font(.arcBrandFont(.title))
 /// ```
-@MainActor
-public enum ARCBrandFont {
+@MainActor public enum ARCBrandFont {
     /// Whether the font has been registered.
     private static var isRegistered = false
 
@@ -85,10 +84,8 @@ public enum ARCBrandFont {
     public static func registerFonts() {
         guard !isRegistered else { return }
 
-        guard let fontURL = Bundle.module.url(
-            forResource: "radleysans",
-            withExtension: "ttf"
-        ) else {
+        guard let fontURL = Bundle.module.url(forResource: "radleysans",
+                                              withExtension: "ttf") else {
             print("ARCDesignSystem: Failed to find radleysans.ttf in bundle")
             return
         }

@@ -15,11 +15,9 @@ import SwiftUI
 struct AccessibilityTestScreen: View {
     @State private var selectedSize: DynamicTypeSize = .large
 
-    private let sizes: [DynamicTypeSize] = [
-        .xSmall, .small, .medium, .large, .xLarge,
-        .xxLarge, .xxxLarge, .accessibility1,
-        .accessibility2, .accessibility3
-    ]
+    private let sizes: [DynamicTypeSize] = [.xSmall, .small, .medium, .large, .xLarge,
+                                            .xxLarge, .xxxLarge, .accessibility1,
+                                            .accessibility2, .accessibility3]
 
     var body: some View {
         ScrollView {
@@ -142,10 +140,8 @@ struct AccessibilityTestScreen: View {
 
 /// Demonstrates @ScaledMetric for Dynamic Type scaling
 private struct ScaledSpacingDemo: View {
-    @ScaledMetric(relativeTo: .body)
-    var scaledSpacing = CGFloat.arcSpacingLarge
-    @ScaledMetric(relativeTo: .body)
-    var scaledSize = CGFloat.arcSpacingLarge
+    @ScaledMetric(relativeTo: .body) var scaledSpacing = CGFloat.arcSpacingLarge
+    @ScaledMetric(relativeTo: .body) var scaledSize = CGFloat.arcSpacingLarge
 
     var body: some View {
         VStack(alignment: .leading, spacing: .arcSpacingMedium) {

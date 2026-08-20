@@ -3,46 +3,28 @@
 
 import PackageDescription
 
-let package = Package(
-    name: "ARCDesignSystem",
-    platforms: [
-        .iOS(.v17),
-        .macOS(.v14),
-        .tvOS(.v17),
-        .watchOS(.v10)
-    ],
-    products: [
-        // Main library - this is what consumers import
-        .library(
-            name: "ARCDesignSystem",
-            targets: ["ARCDesignSystem"]
-        )
-        // Note: ARCDesignSystemDemo is intentionally NOT exposed as a product.
-        // It's an internal executable for development/testing purposes only.
-    ],
-    dependencies: [],
-    targets: [
-        .target(
-            name: "ARCDesignSystem",
-            path: "Sources",
-            exclude: [
-                // Preview files use #Preview macro which requires Xcode's PreviewsMacros plugin.
-                // Excluding them allows CLI builds (swift build/test) and CI to succeed.
-                "ARCDesignSystem/Previews"
-            ],
-            resources: [
-                .process("ARCDesignSystem/Resources")
-            ],
-            swiftSettings: [
-                .enableExperimentalFeature("StrictConcurrency")
-            ]
-        ),
-        .testTarget(
-            name: "ARCDesignSystemTests",
-            dependencies: ["ARCDesignSystem"],
-            path: "Tests"
-        )
-        // Note: iOS demo app is in Examples/ARCDesignSystemDemo.xcodeproj
-        // It's a separate Xcode project that imports this package locally.
-    ]
-)
+let package = Package(name: "ARCDesignSystem",
+                      platforms: [.iOS(.v17),
+                                  .macOS(.v14),
+                                  .tvOS(.v17),
+                                  .watchOS(.v10)],
+                      products: [// Main library - this is what consumers import
+                          .library(name: "ARCDesignSystem",
+                                   targets: ["ARCDesignSystem"])
+                          // Note: ARCDesignSystemDemo is intentionally NOT exposed as a product.
+                          // It's an internal executable for development/testing purposes only.
+                      ],
+                      dependencies: [],
+                      targets: [.target(name: "ARCDesignSystem",
+                                        path: "Sources",
+                                        // Preview files use the #Preview macro, which requires Xcode's
+                                        // PreviewsMacros plugin. Excluding them lets CLI builds and CI succeed.
+                                        exclude: ["ARCDesignSystem/Previews"],
+                                        resources: [.process("ARCDesignSystem/Resources")],
+                                        swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]),
+                                .testTarget(name: "ARCDesignSystemTests",
+                                            dependencies: ["ARCDesignSystem"],
+                                            path: "Tests")
+                                // Note: iOS demo app is in Examples/ARCDesignSystemDemo.xcodeproj
+                                // It's a separate Xcode project that imports this package locally.
+                      ])
