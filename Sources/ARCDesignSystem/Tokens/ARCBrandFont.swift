@@ -5,6 +5,7 @@
 //  Created by ARC Labs on 1/24/26.
 //
 
+import os
 import SwiftUI
 
 #if canImport(UIKit)
@@ -64,6 +65,7 @@ private let arcBrandFontName = "Radley-Sans"
 @MainActor public enum ARCBrandFont {
     /// Whether the font has been registered.
     private static var isRegistered = false
+    private static let logger = Logger(subsystem: "com.arclabs.ARCDesignSystem", category: "ARCBrandFont")
 
     /// Registers the Radley Sans font from the package bundle.
     ///
@@ -86,17 +88,15 @@ private let arcBrandFontName = "Radley-Sans"
 
         guard let fontURL = Bundle.module.url(forResource: "radleysans",
                                               withExtension: "ttf") else {
-            print("ARCDesignSystem: Failed to find radleysans.ttf in bundle")
+            logger.error("Failed to find radleysans.ttf in bundle")
             return
         }
 
         var errorRef: Unmanaged<CFError>?
         if CTFontManagerRegisterFontsForURL(fontURL as CFURL, .process, &errorRef) {
             isRegistered = true
-        } else {
-            if let error = errorRef?.takeRetainedValue() {
-                print("ARCDesignSystem: Failed to register font: \(error)")
-            }
+        } else if let error = errorRef?.takeRetainedValue() {
+            logger.error("Failed to register font: \(error.localizedDescription, privacy: .public)")
         }
     }
 }
