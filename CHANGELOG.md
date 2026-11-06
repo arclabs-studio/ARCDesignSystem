@@ -5,6 +5,18 @@ All notable changes to ARCDesignSystem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-11-06
+
+### Added
+
+- **The public showcase views ship in the library again.** `ARCColorsPreview`, `ARCSymbolEffectsPreview` and the `ARCColorHelper` they depend on lived under `Sources/ARCDesignSystem/Previews/`, which 1.0.0 excluded from the target ([#26](https://github.com/arclabs-studio/ARCDesignSystem/pull/26)), so they were not compiled and apps could not use them. They now live in `Sources/ARCDesignSystem/Showcase/`. The other preview-only files stay excluded ([#34](https://github.com/arclabs-studio/ARCDesignSystem/pull/34)).
+
+### Changed
+
+- **`ContrastResult.ratioDescription` follows the user's locale.** It is formatted with `FormatStyle` instead of `String(format:)`, so the decimal separator matches the locale: `8.92:1` in English, `8,92:1` in Spanish. Code that parses the string or compares it to a fixed literal should read `ratio` instead ([#35](https://github.com/arclabs-studio/ARCDesignSystem/pull/35)).
+- **`ARCBrandFont.registerFonts()` reports failures through `os.Logger`.** A missing `radleysans.ttf` or a failed registration is logged with subsystem `com.arclabs.ARCDesignSystem` and category `ARCBrandFont`, not printed to stdout. Look in Console or Xcode's unified log instead of the plain console output ([#35](https://github.com/arclabs-studio/ARCDesignSystem/pull/35)).
+- **The success state in `ARCSymbolEffectsPreview` resets from a `.task`.** It used `DispatchQueue.main.asyncAfter`. The 2-second delay is the same, and the reset is now cancelled if the view goes away first ([#35](https://github.com/arclabs-studio/ARCDesignSystem/pull/35)).
+
 ## [1.0.0] - 2026-08-20
 
 First public release of **ARCDesignSystem**.
