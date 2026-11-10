@@ -68,7 +68,7 @@ public struct ARCContrastCalculator: Sendable {
 
         /// Human-readable description of the ratio.
         public var ratioDescription: String {
-            String(format: "%.2f:1", ratio)
+            "\(ratio.formatted(.number.precision(.fractionLength(2)))):1"
         }
     }
 
@@ -267,12 +267,12 @@ extension Color {
     ///   in the current environment.
     var rgbComponents: RGBComponents {
         #if canImport(UIKit)
-        return uiKitComponents
+        uiKitComponents
         #elseif canImport(AppKit)
-        return appKitComponents
+        appKitComponents
         #else
         // Fallback for other platforms
-        return RGBComponents(red: 0.5, green: 0.5, blue: 0.5)
+        RGBComponents(red: 0.5, green: 0.5, blue: 0.5)
         #endif
     }
 

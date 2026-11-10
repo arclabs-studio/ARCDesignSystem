@@ -3,10 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29270CC630935EBA0054492C /* AccessibilityTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29270CBC30935EBA0054492C /* AccessibilityTokensView.swift */; };
+		29270CC730935EBA0054492C /* ColorTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29270CBF30935EBA0054492C /* ColorTokensView.swift */; };
+		29270CC830935EBA0054492C /* AnimationTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29270CBD30935EBA0054492C /* AnimationTokensView.swift */; };
+		29270CC930935EBA0054492C /* BrandingColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29270CBE30935EBA0054492C /* BrandingColorsView.swift */; };
+		29270CCA30935EBA0054492C /* PaddingTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29270CC230935EBA0054492C /* PaddingTokensView.swift */; };
+		29270CCB30935EBA0054492C /* SpacingTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29270CC330935EBA0054492C /* SpacingTokensView.swift */; };
+		29270CCC30935EBA0054492C /* MaterialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29270CC130935EBA0054492C /* MaterialsView.swift */; };
+		29270CCD30935EBA0054492C /* CornerRadiusTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29270CC030935EBA0054492C /* CornerRadiusTokensView.swift */; };
+		29270CCE30935EBA0054492C /* TypographyTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29270CC530935EBA0054492C /* TypographyTokensView.swift */; };
+		29270CCF30935EBA0054492C /* TouchTargetTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29270CC430935EBA0054492C /* TouchTargetTokensView.swift */; };
 		A10000010000000000000001 /* ARCDesignSystemDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000001 /* ARCDesignSystemDemoApp.swift */; };
 		A10000010000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000002 /* ContentView.swift */; };
 		A10000010000000000000003 /* TokenCatalogScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000003 /* TokenCatalogScreen.swift */; };
@@ -23,6 +33,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29270CBC30935EBA0054492C /* AccessibilityTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityTokensView.swift; sourceTree = "<group>"; };
+		29270CBD30935EBA0054492C /* AnimationTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTokensView.swift; sourceTree = "<group>"; };
+		29270CBE30935EBA0054492C /* BrandingColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandingColorsView.swift; sourceTree = "<group>"; };
+		29270CBF30935EBA0054492C /* ColorTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokensView.swift; sourceTree = "<group>"; };
+		29270CC030935EBA0054492C /* CornerRadiusTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusTokensView.swift; sourceTree = "<group>"; };
+		29270CC130935EBA0054492C /* MaterialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsView.swift; sourceTree = "<group>"; };
+		29270CC230935EBA0054492C /* PaddingTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTokensView.swift; sourceTree = "<group>"; };
+		29270CC330935EBA0054492C /* SpacingTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokensView.swift; sourceTree = "<group>"; };
+		29270CC430935EBA0054492C /* TouchTargetTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchTargetTokensView.swift; sourceTree = "<group>"; };
+		29270CC530935EBA0054492C /* TypographyTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyTokensView.swift; sourceTree = "<group>"; };
 		A20000010000000000000001 /* ARCDesignSystemDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCDesignSystemDemoApp.swift; sourceTree = "<group>"; };
 		A20000010000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A20000010000000000000003 /* TokenCatalogScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCatalogScreen.swift; sourceTree = "<group>"; };
@@ -69,7 +89,7 @@
 				A50000010000000000000006 /* Components */,
 				A50000010000000000000007 /* Resources */,
 			);
-			path = "";
+			name = ARCDesignSystemDemo;
 			sourceTree = "<group>";
 		};
 		A50000010000000000000003 /* Products */ = {
@@ -91,6 +111,16 @@
 		A50000010000000000000005 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				29270CBC30935EBA0054492C /* AccessibilityTokensView.swift */,
+				29270CBD30935EBA0054492C /* AnimationTokensView.swift */,
+				29270CBE30935EBA0054492C /* BrandingColorsView.swift */,
+				29270CBF30935EBA0054492C /* ColorTokensView.swift */,
+				29270CC030935EBA0054492C /* CornerRadiusTokensView.swift */,
+				29270CC130935EBA0054492C /* MaterialsView.swift */,
+				29270CC230935EBA0054492C /* PaddingTokensView.swift */,
+				29270CC330935EBA0054492C /* SpacingTokensView.swift */,
+				29270CC430935EBA0054492C /* TouchTargetTokensView.swift */,
+				29270CC530935EBA0054492C /* TypographyTokensView.swift */,
 				A20000010000000000000003 /* TokenCatalogScreen.swift */,
 				A2000001000000000000000F /* BrandAssetsScreen.swift */,
 				A20000010000000000000004 /* InteractivePlaygroundScreen.swift */,
@@ -205,6 +235,16 @@
 				A10000010000000000000008 /* SampleButtonRow.swift in Sources */,
 				A10000010000000000000009 /* SampleForm.swift in Sources */,
 				A1000001000000000000000A /* SampleList.swift in Sources */,
+				29270CC630935EBA0054492C /* AccessibilityTokensView.swift in Sources */,
+				29270CC730935EBA0054492C /* ColorTokensView.swift in Sources */,
+				29270CC830935EBA0054492C /* AnimationTokensView.swift in Sources */,
+				29270CC930935EBA0054492C /* BrandingColorsView.swift in Sources */,
+				29270CCA30935EBA0054492C /* PaddingTokensView.swift in Sources */,
+				29270CCB30935EBA0054492C /* SpacingTokensView.swift in Sources */,
+				29270CCC30935EBA0054492C /* MaterialsView.swift in Sources */,
+				29270CCD30935EBA0054492C /* CornerRadiusTokensView.swift in Sources */,
+				29270CCE30935EBA0054492C /* TypographyTokensView.swift in Sources */,
+				29270CCF30935EBA0054492C /* TouchTargetTokensView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,7 +458,7 @@
 /* Begin XCLocalSwiftPackageReference section */
 		AC0000010000000000000001 /* XCLocalSwiftPackageReference "../.." */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "../..";
+			relativePath = ../..;
 		};
 /* End XCLocalSwiftPackageReference section */
 

@@ -423,11 +423,14 @@ import SwiftUI
                                 .font(.system(size: 56))
                                 .foregroundStyle(.green)
                                 .arcTransition(.appear)
-                                .onAppear {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                        withAnimation(.smooth) {
-                                            showSuccess = false
-                                        }
+                                .task {
+                                    do {
+                                        try await Task.sleep(for: .seconds(2))
+                                    } catch {
+                                        return
+                                    }
+                                    withAnimation(.smooth) {
+                                        showSuccess = false
                                     }
                                 }
                         } else {
